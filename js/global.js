@@ -20,6 +20,8 @@ $(document).ready(
         $('nav').find('a').first().remove();
 
         //Comments Field 
+        var commentTemplate =
+        
         $('.comment-submit').click(
             function () {
                 //assigns post to clone the first post
