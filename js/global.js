@@ -19,10 +19,7 @@ $(document).ready(
         nav_items.clone().appendTo('nav').attr('href','#').html('Profile & Settings');
         $('nav').find('a').first().remove();
 
-    };
-
-    //Comments Field 
-    function() {
+        //Comments Field 
         $('.comment-submit').click(
             function () {
                 //assigns post to clone the first post
@@ -36,6 +33,5 @@ $(document).ready(
                 //clears the text box after you submit a comment
                 $('#comment-text').val('');
 
-            });
-      };
-);
+        });
+});
