@@ -9,11 +9,10 @@ $(document).ready(
             <div class="user-pro"> 
                 <div><img src=""></div>
     
-                <div><h2></h2></div>
+                <div><h2>Name 1</h2></div>
             </div>
         </li>
         `
-
 
         $("html").on("drop", function(event) { event.preventDefault(); event.stopPropagation(); });
 
