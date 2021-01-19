@@ -28,7 +28,7 @@ $(document).ready(
                 <div><h2>Player 1</h2></div>
             </div>
                 <div><p class="comment">This is a comment.</p></div>
-                <div></div>
+                <div class="likeButton"></div>
         </div>
         `
         
@@ -45,4 +45,16 @@ $(document).ready(
                 $('#comment-text').val('');
 
         });
+
+        //Like Dislike Buttons
+        // Create value and add to element, function updates value, updates element
+        $('.like').click(
+            function() {
+            // console.log(typeof $('.like').html())
+                let likes = $('.like').text();
+                let likeCount = parseInt(likes);
+                likeCount++;
+                $('.like').html(likeCount);
+            }
+        )
 });
