@@ -20,17 +20,28 @@ $(document).ready(
         $('nav').find('a').first().remove();
 
         //Comments Field 
+        var commentTemplate =
+        `
+        <div class="post">
+             <div class="user-pro"> 
+                <div><img src="./img/shiggy.jpg"></div>
+                <div><h2>Player 1</h2></div>
+            </div>
+                <div><p class="comment">This is a comment.</p></div>
+                <div></div>
+        </div>
+        `
+        
         $('.comment-submit').click(
             function () {
-                //assigns post to clone the first post
-                let post = $('.post').first().clone();
-                //assigns text to current value (whatever text you input) in comment box
+                //on click 
+                //create a new post
+                //find where to put the new post
+                //clear the comment box after submitting
+                let post = commentTemplate;
                 let text = $('#comment-text').val();
-                //finds the comment class, sets html to the text
                 post.find('.comment').html(text);
-                //appends comment to the rest of the posts
-                post.appendTo('.posts');
-                //clears the text box after you submit a comment
+                $('.posts').append(commentTemplate);
                 $('#comment-text').val('');
 
         });
