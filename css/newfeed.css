@@ -32,8 +32,6 @@ p{
     min-height:300px;
     margin-bottom:2vh;
     background-color:#315682;
-    display:flex;
-    flex-flow:row wrap;
 }
 .post h2{
     display:inline-block;
