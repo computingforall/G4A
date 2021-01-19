@@ -1,7 +1,7 @@
 $(document).ready(
     function () {
             var tabs = $('.tab');
-            context = $('.content');
+            context = $('.tab-container');
             //tabs (class used to define the head tab)
             //context (class used to define the content for the specified tab)
             tabs.addClass('inactive');
@@ -12,7 +12,7 @@ $(document).ready(
                     function () {
                             var t = $(this).attr("id")
                             if ($(this).hasClass('inactive')) {
-                                    tbs.addClass('inactive');
+                                    tabs.addClass('inactive');
                                     $(this).removeClass('inactive');
                                     context.hide();
                                     $('#' + t + 'container').fadeIn(500);
