@@ -20,29 +20,21 @@ $(document).ready(
         $('nav').find('a').first().remove();
 
         //Comments Field 
-        var commentTemplate =
-        `
-        <div class="post">
-             <div class="user-pro"> 
-                <div><img src="./img/shiggy.jpg"></div>
-                <div><h2>Player 1</h2></div>
-            </div>
-                <div><p class="comment">This is a comment.</p></div>
-                <div></div>
-        </div>
-        `
-        
-        $('.posts').append(commentTemplate);
-        
+       // $('.posts').append(commentTemplate);
         $('.comment-submit').click(
             function () {
-                //on click 
-                //create a new post
-                //find where to put the new post
-                //clear the comment box after submitting
-                let post = commentTemplate;
                 let text = $('#comment-text').val();
-                post.find('.comment').html(text);
+                var commentTemplate =
+                `
+                <div class="post">
+                     <div class="user-pro"> 
+                        <div><img src="./img/shiggy.jpg"></div>
+                        <div><h2>Player 1</h2></div>
+                    </div>
+                        <div><p class="comment">`+text+`</p></div>
+                        <div></div>
+                </div>
+                `
                 $('.posts').append(commentTemplate);
                 $('#comment-text').val('');
 
