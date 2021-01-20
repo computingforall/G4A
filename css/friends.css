@@ -1,0 +1,65 @@
+#managefriends {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+h2{
+    margin:0;
+}
+.friends-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    width:50%;
+   grid-gap:20px;
+    }
+.friends-grid ul{margin:0;
+padding: 0;}
+
+
+.friends-grid ul li{
+  display: grid;
+    grid-template-columns: auto 1fr;
+    background-color:#00e1ff; margin-bottom: 2px;
+    padding: 10px;
+    }
+.friends-grid ul li h2 {
+    padding-left:30px;
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+  }
+
+.friends-grid ul li img {
+    margin-top:0;
+}
+.friends-grid h1{
+    text-align: center;
+   padding: 10px;
+    margin: 0;
+    }
+.friends-grid h1{
+    background-color:#00ffffc0 ;
+}
+   
+.online-list ul li{
+background-color:#5390D9 ;
+    }  
+   
+.invited-list ul li{
+   background-color:#48BFE3  ;
+}
+
+.friends-grid li img{
+    width:50px;
+    height:50px;
+    border-radius:100%;
+    object-fit:cover;
+   }
+@media only screen and (min-width:780px) {
+    .friends-grid {
+       grid-template-columns:1fr 1fr 1fr;
+       width:100%;
+    }
+}
+ 
