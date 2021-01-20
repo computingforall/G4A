@@ -38,13 +38,11 @@
 
 /*NewsFeed starts*/
 
-<<<<<<< HEAD
 #newsfeed{
     min-height:300px;
     margin-bottom:2vh;
     background-color:#315682;
-=======
-#newsfeed{}
+}
 
 .post {
     margin-bottom:3em;
@@ -66,7 +64,6 @@
     box-sizing: border-box;
     margin:0;
     padding:0;
->>>>>>> staging
 }
 
 .placement {
