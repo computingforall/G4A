@@ -20,7 +20,6 @@ $(document).ready(
         $('nav').find('a').first().remove();
 
         //Comments Field 
-       // $('.posts').append(commentTemplate);
         $('.comment-submit').click(
             function () {
                 let text = $('#comment-text').val();
@@ -33,10 +32,23 @@ $(document).ready(
                     </div>
                         <div><p class="comment">`+text+`</p></div>
                         <div></div>
+                        <div class="likeButton"></div>
                 </div>
                 `
                 $('.posts').append(commentTemplate);
                 $('#comment-text').val('');
 
         });
+
+        //Like Dislike Buttons
+        // Create value and add to element, function updates value, updates element
+        $('.like').click(
+            function() {
+            // console.log(typeof $('.like').html())
+                let likes = $('.like').text();
+                let likeCount = parseInt(likes);
+                likeCount++;
+                $('.like').html(likeCount);
+            }
+        )
 });
