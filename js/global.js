@@ -5,14 +5,24 @@ $(document).ready(
         var nav_html =
         `
         <header>
-            <h1>Site</h1>
+            <div><div class="nav-logo">Games For All</div></div>
             <nav>
                 <a></a>
             </nav>
         </header>
         `
 
+        var footer_html =
+        `
+        <footer>
+            <div id="copyright"><i class="fas fa-copyright"></i> Games For All 2021</div>
+            <nav></nav>
+        </footer>
+        `
+
         $('body').prepend(nav_html);
+        $('body').append(footer_html);
+
         let nav_items = $('nav').find('a').first();
         nav_items.clone().appendTo('nav').attr('href','#').html('Home');
         nav_items.clone().appendTo('nav').attr('href','#').html('Games');
@@ -27,7 +37,7 @@ $(document).ready(
                 `
                 <div class="post">
                      <div class="user-pro"> 
-                        <div><img src="./img/shiggy.jpg"></div>
+                        <div><img src="./widgets/img/shiggy.jpg"></div>
                         <div><h2>Player 1</h2></div>
                     </div>
                         <div><p class="comment">`+text+`</p></div>
