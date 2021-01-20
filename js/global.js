@@ -5,14 +5,24 @@ $(document).ready(
         var nav_html =
         `
         <header>
-            <h1>Site</h1>
+            <div><div class="nav-logo">Games For All</div></div>
             <nav>
                 <a></a>
             </nav>
         </header>
         `
 
+        var footer_html =
+        `
+        <footer>
+            <div id="copyright"><i class="fas fa-copyright"></i> Games For All 2021</div>
+            <nav></nav>
+        </footer>
+        `
+
         $('body').prepend(nav_html);
+        $('body').append(footer_html);
+
         let nav_items = $('nav').find('a').first();
         nav_items.clone().appendTo('nav').attr('href','#').html('Home');
         nav_items.clone().appendTo('nav').attr('href','#').html('Games');
@@ -20,7 +30,6 @@ $(document).ready(
         $('nav').find('a').first().remove();
 
         //Comments Field 
-       // $('.posts').append(commentTemplate);
         $('.comment-submit').click(
             function () {
                 let text = $('#comment-text').val();
@@ -33,10 +42,23 @@ $(document).ready(
                     </div>
                         <div><p class="comment">`+text+`</p></div>
                         <div></div>
+                        <div class="likeButton"></div>
                 </div>
                 `
                 $('.posts').append(commentTemplate);
                 $('#comment-text').val('');
 
         });
+
+        //Like Dislike Buttons
+        // Create value and add to element, function updates value, updates element
+        $('.like').click(
+            function() {
+            // console.log(typeof $('.like').html())
+                let likes = $('.like').text();
+                let likeCount = parseInt(likes);
+                likeCount++;
+                $('.like').html(likeCount);
+            }
+        )
 });
