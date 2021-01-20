@@ -38,7 +38,11 @@
 
 /*NewsFeed starts*/
 
-#newsfeed{}
+#newsfeed{
+    min-height:300px;
+    margin-bottom:2vh;
+    background-color:#315682;
+}
 
 .post {
     margin-bottom:3em;
@@ -47,7 +51,7 @@
 .post p {
     margin-left:27px;
     padding:0.5em 2em;
-    border-left:2px solid #8dbef7;
+    border-left:2px solid #1c1ab1;
     font-size:1.2em;
 }
 
@@ -77,7 +81,7 @@
 }
 
 .top-player-container:nth-child(1) .top-player-bar {
-    background-color:#294970;
+    background-color:#12203b;
 }
 
 .top-player-container:nth-child(2) .top-player-bar {
