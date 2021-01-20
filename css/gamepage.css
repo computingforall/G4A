@@ -38,7 +38,11 @@
 
 /*NewsFeed starts*/
 
-#newsfeed{}
+#newsfeed{
+    min-height:300px;
+    margin-bottom:2vh;
+    background-color:#315682;
+}
 
 .post {
     margin-bottom:3em;
@@ -111,5 +115,6 @@
     background-color:#97bff0;
 }
 
+/*Tabs*/
 /*Leader board ends */
 
