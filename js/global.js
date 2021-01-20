@@ -28,7 +28,7 @@ $(document).ready(
                 `
                 <div class="post">
                      <div class="user-pro"> 
-                        <div><img src="./img/shiggy.jpg"></div>
+                        <div><img src="./widgets/img/shiggy.jpg"></div>
                         <div><h2>Player 1</h2></div>
                     </div>
                         <div><p class="comment">`+text+`</p></div>
