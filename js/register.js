@@ -21,7 +21,7 @@ $(document).ready(
         $(registrationTemplate).prependTo('body');
         $('#submit-registration').click(
             function() {
-                if($('#password').val() == $('#confirm-password').val()) {
+                if(($('#password').val() == $('#confirm-password').val()) && $('password').length > 0) {
                     localStorage.setItem('username', $('#username').val());
                     localStorage.setItem('password', $('#password').val());
                     alert("Success in creating account");
