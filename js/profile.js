@@ -1,7 +1,5 @@
 $(document).ready(
     function() {
-        var new_name = '';
-        var new_image = '';
 
         $('.apply-settings').click( 
             function() {
