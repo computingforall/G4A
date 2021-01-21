@@ -1,9 +1,6 @@
 $(document).ready(
     function() {
 
-        var new_name = 'test';
-        var new_image = 'test';
-
         $('.apply-settings').click( 
             function() {
                 localStorage.setItem('username', new_name);
