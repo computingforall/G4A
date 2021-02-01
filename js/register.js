@@ -20,7 +20,8 @@ $(document).ready(
         `
         $(registrationTemplate).prependTo('body');
         $('#submit-registration').click(
-            function() {
+            function(e) {
+                e.preventDefault();
                 if($('#password').val() == $('#confirm-password').val() ) {
                     localStorage.setItem('username', $('#username').val());
                     localStorage.setItem('password', $('#password').val());
