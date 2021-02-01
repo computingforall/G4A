@@ -45,13 +45,15 @@ $(document).ready(function () {
   $(".comment-submit").click(function () {
     let text = $("#comment-text").val();
     var commentTemplate =
-        `
+      `
                 <div class="post">
                      <div class="user-pro"> 
                         <div><img src="./widgets/img/shiggy.jpg"></div>
                         <div><h2>Player 1</h2></div>
                     </div>
-                        <div><p class="comment">` +text + `</p></div>
+                        <div><p class="comment">` +
+      text +
+      `</p></div>
                         <div></div>
                         <div class=''><p class="likeCount">0</p><i class='like unliked far fa-heart'></i></div>
                 </div>
@@ -62,8 +64,29 @@ $(document).ready(function () {
 
   //Like Dislike Buttons
   // Create value and add to element, function updates value, updates element
+  // Like Button
   $(".like").click(function () {
-    // console.log(typeof $('.like').html())
+    let likeBon = $(".like");
+    let likes = $(".likeCount").text();
+    let likeNum = parseInt(likes);
+    if ($(likeBon).hasClass("liked")) {
+      likeNum--;
+      $(".like").removeClass("liked");
+      $(".like").addClass("unliked");
+      $(".likeCount").html(likeNum);
+      return;
+    }
+
+    if ($(likeBon).hasClass("unliked")) {
+      likeNum++;
+      $(".like").removeClass("unliked");
+      $(".like").addClass("liked");
+    }
+    $(".likeCount").html(likeNum);
+  });
+
+  // Dislike Button
+  $(".like").click(function () {
     let likeBon = $(".like");
     let likes = $(".likeCount").text();
     let likeNum = parseInt(likes);
