@@ -29,26 +29,73 @@ $(document).ready(
         nav_items.clone().appendTo('nav').attr('href','#').html('Profile & Settings');
         $('nav').find('a').first().remove();
 
+        var commentId = 0;
+
         //Comments Field 
         $('.comment-submit').click(
             function () {
+                commentId++
                 let text = $('#comment-text').val();
                 var commentTemplate =
                 `
-                <div class="post">
+                <div class="post" id=${commentId}>
                     <div class="user-pro"> 
                         <div><img src="./widgets/img/shiggy.jpg"></div>
                         <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
                     </div>
                     <div><p class="comment">` + text + `</p></div>
-                    <div></div>
+                    <button class="reply-button">Reply</button>
+                    <div class="reply-field">
+                        <button class="reply-submit">Submit</button>
+                        <textarea class="reply-text"></textarea>
+                    </div>
                     <div class="likeButton"></div>
                 </div>
                 `
                 $('.posts').append(commentTemplate);
                 $('#comment-text').val('');
 
+                $('.reply-field').eq(commentId -1).hide();
+                $('.reply-button').eq(commentId -1).click(
+                    function () {
+                        $('.reply-field').eq(commentId -1).show();
+                    }
+                );
+                
+                var reply;
+
+                $('.reply-text').eq(commentId -1).keyup(
+                    function() {
+                        reply = $(this).val();
+                        
+                    }
+                );
+
+                $('.reply-submit').eq(commentId -1).click(
+                    function () {
+                        let replyId = $(this).parent().parent().attr('id');
+                        console.log(replyId);
+                        //let reply = $('.reply-text').eq(commentId -1).val();
+                        var replyTemplate = 
+                        `
+                        <div>` + reply + `</div>
+                        `
+
+                        $('#' + replyId).append(replyTemplate);
+                    }
+
+                );
+
         });
+
+        // //Reply Button
+        // $('.reply-button').click(
+        //     function () {
+        //         //alert(e.target.parentNode.id)
+        //         let replyId = $(this).parent().attr('id');
+        //         console.log(replyId);
+        //     }
+        // );
 
         //Like Dislike Buttons
         // Create value and add to element, function updates value, updates element
@@ -81,4 +128,5 @@ $(document).ready(
             }
         );
 });
+
 
