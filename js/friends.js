@@ -40,6 +40,7 @@ $(document).ready(
 
         $('.f-grid').mouseup(
             function() {
+                console.log($(this));
                 dragging.appendTo($(this));
                 dragging = null;
             }
