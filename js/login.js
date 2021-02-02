@@ -25,6 +25,7 @@ $(document).ready(
                         temp_user.loggedIn = true;
                         
                         localStorage.setItem(temp_user.username, JSON.stringify(temp_user));
+                        temp_user = '';
                         alert("Successfully logged in");
                     } else {
                         alert("wrong Username/Password");
