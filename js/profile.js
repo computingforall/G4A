@@ -4,9 +4,7 @@ $(document).ready(
         $('.apply-settings').click( 
             function(e) {
                 e.preventDefault();
-
-                localStorage.setItem('username', $('#username').val());
-                localStorage.setItem('image', $('#image').val());
+                // Many things borked, this will wait.
 
         });
 

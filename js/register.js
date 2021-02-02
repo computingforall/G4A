@@ -1,8 +1,21 @@
 $(document).ready(
     function() {
+        
+        class user {
+            constructor(username, password, loggedIn, avatar) {
+                this.username = username;
+                this.password = password;
+                this.loggedIn = loggedIn;
+                this.avatar = avatar;
+            }
+        }
+        
+        
+
+
         var registrationTemplate =
         `
-        <form>
+        <form name="registration-form">
             <label for="username">Username: </label><br>
             <input type="text" name="username" id="username" required><br>
 
@@ -21,10 +34,13 @@ $(document).ready(
         $(registrationTemplate).prependTo('body');
         $('#submit-registration').click(
             function(e) {
+
                 e.preventDefault();
                 if($('#password').val() == $('#confirm-password').val() ) {
-                    localStorage.setItem('username', $('#username').val());
-                    localStorage.setItem('password', $('#password').val());
+                    let new_user = new user($('#username').val(), $('#password').val(), false, 'c://users/');
+                    localStorage.setItem(new_user.username, JSON.stringify(new_user));
+                    
+                    document.forms['registration-form'].reset();
                     alert("Success in creating account");
                 }
             }

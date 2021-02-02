@@ -15,10 +15,24 @@ $(document).ready(
         `
         $(loginTemplate).prependTo('body');
         $('#submit-login').click(
-            function() {
-                if(($('#password').val() == localStorage.getItem('password')) && ($('#username').val() == localStorage.getItem('username'))) {
-                    alert("Successfully logged in");
+            function(e) {
+                e.preventDefault();
+
+                
+                if ($('#username').val() == (JSON.parse(localStorage.getItem($('#username').val())).username)) {
+                    if ($('#password').val() == JSON.parse(localStorage.getItem($('#username').val())).password) {
+                        let temp_user = JSON.parse(localStorage.getItem($('#username').val()));
+                        temp_user.loggedIn = true;
+                        
+                        localStorage.setItem(temp_user.username, JSON.stringify(temp_user));
+                        alert("Successfully logged in");
+                    } else {
+                        alert("wrong Username/Password");
+                    }
+                } else {
+                    alert("wrong Username/Password");
                 }
+                
             }
         );
 });
