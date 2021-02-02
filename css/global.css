@@ -1,5 +1,5 @@
 @import url('https://use.fontawesome.com/releases/v5.3.1/css/all.css');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=PT+Sans:wght@400;700&display=swap');
 
 /* RESETS */
 h1,h2,h3,h4,h5,h6,ul,ol,li {margin:0;padding:0;}
@@ -10,10 +10,10 @@ html, body {
     height:100%;
     margin:0;
     padding:0;
-    color:#fff;
-    background-color:#223;
+    color:#232429;
+    background-color:#232429;
     font-size:16px;
-    font-family:sans-serif;
+    font-family: "Montserrat", "PT Sans", Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
@@ -26,43 +26,74 @@ main {
 }
 
 .overlay {
-    background-color:#00000099;
+    background-color:#f0f2f7dd;
     width:100%;
 }
 
 #page {
+    background-color:#f0f2f799;
     width:100%;
     max-width:900px;
     margin:auto;
+    padding:3em;
+    box-sizing: border-box;
 }
+
+
+/* FONTS */
+h1 {font-weight:300;font-size:2em;}
+h2 {}
+h4 {font-weight:800;color:#315682;text-transform:uppercase;}
+h6 {font-weight:800;color:#666;text-transform:uppercase;}
+
+
+/* COLORS */
+.col-prime {color:#315682;}
+.bg-prime {background-color:#315682;}
+
+.col-second {color:#1e2f63;}
+.bg-second {color:#1e2f63;}
+
+.col-white {color:#f0f2f7;}
+.bg-white {color:#f0f2f7;}
+
+.col-black {color:#232429;}
+.bg-black {color:#232429;}
+
 
 /* HEADER NAV */
 header {
-    background-color:#336;
+    background-color:#f0f2f7;
     display:grid;
     grid-template-columns:auto 1fr;
+    box-shadow: 0px 1px 2px 0 hsla(0, 0%, 0%, 0.2);
+    position: relative;
 }
 header nav {
     text-align:right;
 }
+
+header a {
+    color:#232429;
+    text-decoration: none;
+}
+
 header nav a {
     display:inline-block;
     padding:2em;
-    color:#fff;
     background-color:transparent;
     font-size:0.8em;
     text-transform: uppercase;
-    text-decoration: none;
     transition: background-color 0.5s;
 }
 
 header nav a:hover {
-    background-color:#669;
+    background-color:#cbced4;
 }
 
 .nav-logo {
     text-transform: uppercase;
-    color:#fff;
+    color:#232429;
     padding:0 2em;
     position: relative;
     top:50%;
@@ -84,7 +115,7 @@ footer nav {
 
 footer nav a {
     display:inline-block;
-    color:#888;
+    color:#bbb;
     text-decoration: none;
     margin:0 1em;
 }
