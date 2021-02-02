@@ -5,7 +5,7 @@ $(document).ready(
         var nav_html =
         `
         <header>
-            <div><div class="nav-logo">Games For All</div></div>
+            <div><div class="nav-logo"><a href="index.html">Games For All</a></div></div>
             <nav>
                 <a></a>
             </nav>
@@ -25,8 +25,8 @@ $(document).ready(
 
         let nav_items = $('nav').find('a').first();
         nav_items.clone().appendTo('nav').attr('href','#').html('Home');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Games');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Profile & Settings');
+        nav_items.clone().appendTo('nav').attr('href','#').html('Friends');
+        nav_items.clone().appendTo('nav').attr('href','#').html('Profile');
         $('nav').find('a').first().remove();
 
         //Comments Field 
