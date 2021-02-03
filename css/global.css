@@ -3,6 +3,10 @@
 
 /* RESETS */
 h1,h2,h3,h4,h5,h6,ul,ol,li {margin:0;padding:0;}
+img{
+    margin-bottom:-4px;
+}
+
 
 /* MAIN ELEMENTS */
 html, body {
@@ -39,6 +43,10 @@ main {
     box-sizing: border-box;
 }
 
+section {
+    margin-bottom:30px;
+}
+
 
 /* FONTS */
 h1 {font-weight:300;font-size:2em;}
@@ -46,6 +54,11 @@ h2 {}
 h4 {font-weight:800;color:#315682;text-transform:uppercase;}
 h6 {font-weight:800;color:#666;text-transform:uppercase;}
 
+section > h2{
+    margin-bottom:1em;
+    border-bottom:1px solid; border-color: #bec0c4;
+    padding-bottom:10px;
+}
 
 /* COLORS */
 .col-prime {color:#315682;}
