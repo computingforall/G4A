@@ -29,24 +29,72 @@ $(document).ready(
         nav_items.clone().appendTo('nav').attr('href','#').html('Profile & Settings');
         $('nav').find('a').first().remove();
 
+        var commentId = 0;
+
         //Comments Field 
         $('.comment-submit').click(
             function () {
+                commentId++
                 let text = $('#comment-text').val();
                 var commentTemplate =
                 `
+
                 <div class="post">
-                     <div class="user-pro"> 
+
+                    <div class="user-pro"> 
                         <div><img src="./widgets/img/shiggy.jpg"></div>
-                        <div><h2>Player 1</h2></div>
+                        <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
                     </div>
-                        <div><p class="comment">`+text+`</p></div>
-                        <div></div>
-                        <div class="likeButton"></div>
+                    <div><p class="comment">` + text + `</p></div>
+                    <div id=${commentId} class="reply-box"></div>
+                    <button class="reply-button">Reply</button>
+                    <div class="reply-field">
+                        <button class="reply-submit">Submit</button>
+                        <textarea class="reply-text"></textarea>
+                    </div>
+                    <div class="likeButton"></div>
                 </div>
                 `
                 $('.posts').append(commentTemplate);
                 $('#comment-text').val('');
+
+
+                //Reply Button
+                $('.reply-field').eq(commentId -1).hide();
+                $('.reply-button').eq(commentId -1).click(
+                    function () {
+                        $('.reply-field').eq(commentId -1).show();
+                    }
+                );
+                
+                var reply;
+
+                $('.reply-text').eq(commentId -1).keyup(
+                    function() {
+                        reply = $(this).val();
+                        
+                    }
+                );
+
+                $('.reply-submit').eq(commentId -1).click(
+                    function () {
+
+                        let replyId = $(this).parent().parent().find('.reply-box').attr('id');
+                        console.log(replyId);
+                      
+                        var replyTemplate = 
+                        `
+                        <div>` + reply + `</div>
+                        `
+
+                        $('#' + replyId).append(replyTemplate);
+
+                        $('.reply-text').val('');
+                        $('.reply-field').eq(commentId -1).hide();
+
+                    }
+
+                );
 
         });
 
@@ -61,4 +109,25 @@ $(document).ready(
                 $('.like').html(likeCount);
             }
         )
+
+        //Share Button
+        $('.share-button').click(
+            function(){
+                let score = Math.ceil(Math.random() * (10000 - 1000) + 1000);
+                let shareTemplate = 
+                ` 
+                <div class="post">
+                   <div><h2>Player 1</h2></div>
+               </div>
+                   <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
+                   <div></div>
+                   <div class="likeButton"></div>
+                </div>
+                `
+                $('.posts').append(shareTemplate);
+                
+            }
+        );
 });
+
+
