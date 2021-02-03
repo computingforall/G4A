@@ -38,7 +38,9 @@ $(document).ready(
                 let text = $('#comment-text').val();
                 var commentTemplate =
                 `
+
                 <div class="post">
+
                     <div class="user-pro"> 
                         <div><img src="./widgets/img/shiggy.jpg"></div>
                         <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
@@ -55,6 +57,7 @@ $(document).ready(
                 `
                 $('.posts').append(commentTemplate);
                 $('#comment-text').val('');
+
 
                 //Reply Button
                 $('.reply-field').eq(commentId -1).hide();
@@ -75,17 +78,20 @@ $(document).ready(
 
                 $('.reply-submit').eq(commentId -1).click(
                     function () {
+
                         let replyId = $(this).parent().parent().find('.reply-box').attr('id');
                         console.log(replyId);
+                      
                         var replyTemplate = 
                         `
                         <div>` + reply + `</div>
                         `
 
                         $('#' + replyId).append(replyTemplate);
+
                         $('.reply-text').val('');
                         $('.reply-field').eq(commentId -1).hide();
-                        
+
                     }
 
                 );
