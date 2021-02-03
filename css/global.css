@@ -36,7 +36,7 @@ html {
     padding: 1em;
   }
   
-  #login-button {
+  #home {
     display:inline-block;
     background-color: #1b2838;
     height: 30px;
@@ -44,11 +44,11 @@ html {
     margin-right: 5px;
   }
   
-  #login-button:hover {
+  #home:hover {
     background-color: #000000;
   }
   
-  #setting-button {
+  #games {
     display:inline-block;
     background-color: #1b2838;
     height:30px;
@@ -56,7 +56,7 @@ html {
     margin-left: 5px;
   }
   
-  #setting-button:hover {
+  #games:hover {
     background: #000000;
   }
   
@@ -85,7 +85,7 @@ html {
     height: 1em;
   }
   
-  #friends-button {
+  #home {
     display:inline-block;
     background:#1B2838;
     border-top-right-radius:10px;
@@ -95,22 +95,22 @@ html {
     border-left: 1px solid white;
   }
   
-  #friends-button:hover {
+  #home:hover {
     background:#ffffff;
   }
   
-  #leaderboard-button {
+  #games {
     display:inline-block;
     background:#1b2838;
     width: 100%;
     border-left: 1px solid white; 
   }
   
-  #leaderboard-button:hover {
+  #games:hover {
     background: #ffffff;
   }
   
-  #page-button {
+  #profile and settings {
     display:inline-block;
     background:#1b2838;
     border-bottom-left-radius:10px;
@@ -119,7 +119,7 @@ html {
     border-right: 1px solid white;
   }
   
-  #page-button:hover {
+  #profile and settings:hover {
     background: #ffffff;
   }
   
