@@ -38,12 +38,15 @@ $(document).ready(
                 let text = $('#comment-text').val();
                 var commentTemplate =
                 `
-                <div class="post" id=${commentId}>
+
+                <div class="post">
+
                     <div class="user-pro"> 
                         <div><img src="./widgets/img/shiggy.jpg"></div>
                         <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
                     </div>
                     <div><p class="comment">` + text + `</p></div>
+                    <div id=${commentId} class="reply-box"></div>
                     <button class="reply-button">Reply</button>
                     <div class="reply-field">
                         <button class="reply-submit">Submit</button>
@@ -55,6 +58,8 @@ $(document).ready(
                 $('.posts').append(commentTemplate);
                 $('#comment-text').val('');
 
+
+                //Reply Button
                 $('.reply-field').eq(commentId -1).hide();
                 $('.reply-button').eq(commentId -1).click(
                     function () {
@@ -73,29 +78,25 @@ $(document).ready(
 
                 $('.reply-submit').eq(commentId -1).click(
                     function () {
-                        let replyId = $(this).parent().parent().attr('id');
+
+                        let replyId = $(this).parent().parent().find('.reply-box').attr('id');
                         console.log(replyId);
-                        //let reply = $('.reply-text').eq(commentId -1).val();
+                      
                         var replyTemplate = 
                         `
                         <div>` + reply + `</div>
                         `
 
                         $('#' + replyId).append(replyTemplate);
+
+                        $('.reply-text').val('');
+                        $('.reply-field').eq(commentId -1).hide();
+
                     }
 
                 );
 
         });
-
-        // //Reply Button
-        // $('.reply-button').click(
-        //     function () {
-        //         //alert(e.target.parentNode.id)
-        //         let replyId = $(this).parent().attr('id');
-        //         console.log(replyId);
-        //     }
-        // );
 
         //Like Dislike Buttons
         // Create value and add to element, function updates value, updates element
