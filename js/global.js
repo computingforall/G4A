@@ -128,6 +128,42 @@ $(document).ready(
                 
             }
         );
+
+        //Game Preview Slider
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = $(".slider-preview");
+            var dots = $(".dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides.eq(i).hide();
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides.eq(slideIndex-1).fadeIn(1000);
+            dots.eq(slideIndex-1).addClass('active');
+          }
+
+        $('.slide-left').click(
+            function(){
+              plusSlides(-1);
+            }
+        
+        );
+        $('.slide-right').click(
+            function(){
+                plusSlides(1);
+            }
+        );
 });
 
 
