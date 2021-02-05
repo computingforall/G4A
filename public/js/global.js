@@ -117,9 +117,9 @@ $(document).ready(
                 let shareTemplate = 
                 ` 
                 <div class="post">
-                   <div><h2>null</h2></div>
+                   <div><h2>Player 1</h2></div>
                </div>
-                   <div><p class="comment">null scored  `+score+`  points!</p></div>
+                   <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
                    <div></div>
                    <div class="likeButton"></div>
                 </div>
