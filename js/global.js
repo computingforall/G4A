@@ -63,46 +63,45 @@ $(document).ready(function () {
   });
 
   //Like Dislike Buttons
-  // Create value and add to element, function updates value, updates element
-  // Like Button
-  $(".like").click(function () {
-    let likeBon = $(".like");
-    let likes = $(".likeCount").text();
-    let likeNum = parseInt(likes);
-    if ($(likeBon).hasClass("liked")) {
-      likeNum--;
-      $(".like").removeClass("liked");
-      $(".like").addClass("unliked");
-      $(".likeCount").html(likeNum);
-      return;
+  $(document).on('click', '.like', function() {
+    let currentVal = $(this).children().last().html();
+    let siblingVal = $(this).siblings().first().children().last().html();
+    if ($(this).siblings().first().hasClass("checked")) {
+      currentVal = Number(currentVal) + 1;
+      $(this).children().last().html(currentVal);
+      siblingVal = Number(siblingVal) - 1;
+      $(this).siblings().first().children().last().html(siblingVal);
+      $(this).siblings().first().removeClass('checked');
+      $(this).addClass('checked');
+    } else if ($(this).hasClass('checked')) {
+      currentVal = Number(currentVal) - 1;
+      $(this).children().last().html(currentVal);
+      $(this).removeClass('checked');             
+    } else {
+      $(this).addClass('checked');
+      currentVal = Number(currentVal) + 1;
+      $(this).children().last().html(currentVal);        
     }
-
-    if ($(likeBon).hasClass("unliked")) {
-      likeNum++;
-      $(".like").removeClass("unliked");
-      $(".like").addClass("liked");
-    }
-    $(".likeCount").html(likeNum);
   });
 
-  // Dislike Button
-  $(".like").click(function () {
-    let likeBon = $(".like");
-    let likes = $(".likeCount").text();
-    let likeNum = parseInt(likes);
-    if ($(likeBon).hasClass("liked")) {
-      likeNum--;
-      $(".like").removeClass("liked");
-      $(".like").addClass("unliked");
-      $(".likeCount").html(likeNum);
-      return;
+  $(document).on('click', '.dislike', function() {
+    let currentVal = $(this).children().last().html();
+    let siblingVal = $(this).siblings().first().children().last().html();
+    if ($(this).siblings().first().hasClass("checked")) {
+      currentVal = Number(currentVal) + 1;
+      $(this).children().last().html(currentVal);
+      siblingVal = Number(siblingVal) - 1;
+      $(this).siblings().first().children().last().html(siblingVal);
+      $(this).siblings().first().removeClass('checked');
+      $(this).addClass('checked');
+    } else if ($(this).hasClass('checked')) {
+      currentVal = Number(currentVal) - 1;
+      $(this).children().last().html(currentVal);
+      $(this).removeClass('checked');             
+    } else {
+      $(this).addClass('checked');
+      currentVal = Number(currentVal) + 1;
+      $(this).children().last().html(currentVal);        
     }
-
-    if ($(likeBon).hasClass("unliked")) {
-      likeNum++;
-      $(".like").removeClass("unliked");
-      $(".like").addClass("liked");
-    }
-    $(".likeCount").html(likeNum);
   });
 });
