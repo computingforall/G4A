@@ -128,6 +128,48 @@ $(document).ready(
                 
             }
         );
+
+        $(document).on('click', '.like', function() {
+            let currentVal = $(this).children().last().html();
+            let siblingVal = $(this).siblings().first().children().last().html();
+            if ($(this).siblings().first().hasClass("checked")) {
+              currentVal = Number(currentVal) + 1;
+              $(this).children().last().html(currentVal);
+              siblingVal = Number(siblingVal) - 1;
+              $(this).siblings().first().children().last().html(siblingVal);
+              $(this).siblings().first().removeClass('checked');
+              $(this).addClass('checked');
+            } else if ($(this).hasClass('checked')) {
+              currentVal = Number(currentVal) - 1;
+              $(this).children().last().html(currentVal);
+              $(this).removeClass('checked');             
+            } else {
+              $(this).addClass('checked');
+              currentVal = Number(currentVal) + 1;
+              $(this).children().last().html(currentVal);        
+            }
+          });
+      
+          $(document).on('click', '.dislike', function() {
+            let currentVal = $(this).children().last().html();
+            let siblingVal = $(this).siblings().first().children().last().html();
+            if ($(this).siblings().first().hasClass("checked")) {
+              currentVal = Number(currentVal) + 1;
+              $(this).children().last().html(currentVal);
+              siblingVal = Number(siblingVal) - 1;
+              $(this).siblings().first().children().last().html(siblingVal);
+              $(this).siblings().first().removeClass('checked');
+              $(this).addClass('checked');
+            } else if ($(this).hasClass('checked')) {
+              currentVal = Number(currentVal) - 1;
+              $(this).children().last().html(currentVal);
+              $(this).removeClass('checked');             
+            } else {
+              $(this).addClass('checked');
+              currentVal = Number(currentVal) + 1;
+              $(this).children().last().html(currentVal);        
+            }
+          });
 });
 
 
