@@ -14,4 +14,5 @@ $(document).ready(
         <form>
         `
         $(loginTemplate).prependTo('body');
+
 });

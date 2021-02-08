@@ -2,7 +2,7 @@ $(document).ready(
     function() {
         var registrationTemplate =
         `
-        <form name="registration-form">
+        <form name="form" id="form" action="/register" method="post">
             <label for="displayname">Display Name: </label><br>
             <input type="text" name="displayname" id="displayname" required><br>
 
@@ -12,25 +12,41 @@ $(document).ready(
             <label for="password">Password: </label><br>
             <input type="password" name="password" id="password" required><br>
 
-            <label for="confirm-password">Confirm Password: </label><br>
-            <input type="password" name="confirm-password" id="confirm-password" required><br>
-
             <label for="tos">Agree to Terms of Service: </label><br>
             <input type="checkbox" name="tos" id="tos" required>
 
-            <input type="submit" value="submit" id="submit-registration">
+            <input type="submit" id="submit-registration">
         <form>
         `
         $(registrationTemplate).prependTo('body');
-        $('#submit-registration').on('submit', function() {
-            axios.post('/register', {
-                displayname: 'displayname', email: 'email', password: 'password'
-            })
+
+        
+        $('form').on('submit', function() {
+
+            bcrypt.genSalt(saltNumber, function(err, salt) {
+                bcrypt.hash($('#password').val(), salt, function(err, hash) {
+                  console.log(hash);
+                });
+              });
+
+
+
+
+
+
+            /*
+            console.log(document.querySelector('form'));
+            let bodyFormData = new FormData(document.querySelector('form'));
+            console.log(bodyFormData.keys.displayname);
+            for (var val of bodyFormData.keys()) {
+                console.log(val);
+            }
+            axios.post('/register', {data: bodyFormData})
                 .then(function(response) {
                     console.log(response);
                 })
                 .catch(function(error) {
                     console.log(error);
-                });
+                });*/
         });
 });

@@ -4,19 +4,21 @@ const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
 const Users = require("./database/db.js");
+const axios = require("axios")
 
 const bcrypt = require("bcrypt");
-const salt = 15;
+const saltNumber = 15;
 
 app.use(express.static(path.join(__dirname, "./public")));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get("/login", (req, res) => {
   const email = req.query.email;
   const pass = req.query.password;
   
   Users.find({email: email}, (err, found) => {
-    if (found[0].password === pass) {
+    if (bcrypt.compareSync(pass, found[0].password)) {
       res.send('Success').status(200);
     } else {
       res.send('Failed Login').status(401);
@@ -26,9 +28,14 @@ app.get("/login", (req, res) => {
 
 
 app.post('/register', (req, res) => {
+   let password_hash =  bcrypt.hashSync(req.body.password, saltNumber, function(err, hash) {
+    console.log(hash);
+    return hash;
+  });
+
   const new_user = new Users({
     name: req.body.displayname,
-    password: req.body.password,
+    password: password_hash,
     email: req.body.email,
     comments: [],
   });
