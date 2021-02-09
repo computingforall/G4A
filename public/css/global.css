@@ -3,7 +3,7 @@
 
 /* RESETS */
 h1,h2,h3,h4,h5,h6,ul,ol,li {margin:0;padding:0;}
-img{margin-bottom:-4px;}
+img{width:100%;margin-bottom:-4px;}
 
 
 /* MAIN ELEMENTS */
@@ -14,7 +14,7 @@ html, body {
     padding:0;
     color:#232429;
     background-color:#232429;
-    font-size:16px;
+    font-size:14px;
     font-family: "Montserrat", "PT Sans", Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -46,12 +46,12 @@ section {
 }
 
 /* FONTS */
-h1 {font-weight:300;font-size:2em;}
+h1 {font-weight:300;font-size:2.4em;}
 h2 {}
 h3 {font-weight:600;}
-h4 {font-weight:800;color:#315682;text-transform:uppercase;}
+h4 {font-weight:800;font-size:1.8em;color:#315682;text-transform:uppercase;}
 h6 {font-weight:800;color:#666;text-transform:uppercase;}
-
+p{line-height: 1.8em;}
 section > h2{
     margin-bottom:1em;
     border-bottom:1px solid; border-color: #bec0c4;
