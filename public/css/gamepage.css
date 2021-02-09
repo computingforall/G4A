@@ -1,0 +1,109 @@
+
+
+/* TABS */
+
+#tabs-content {
+    padding:0;
+}
+
+#tabs {
+    padding-left:20px;
+    border-bottom:1px solid #999;
+}
+
+.tab {
+    display:inline-block;
+    padding:1em 2em;
+    font-size:0.9em;
+    color:#232429;
+    background-color:#f0f2f7;
+    border:1px solid #999;
+    cursor: pointer;
+    margin-right:-6px;
+    margin-bottom:-1px;
+}
+
+.tab.inactive {
+    background-color:#c7cbd6;
+    color:#666;
+    border-bottom:1px solid #999;
+}
+
+.tab-container {
+    padding:3em 0;
+    height:100%;
+}
+
+
+/*NewsFeed starts*/
+
+#newsfeed{
+    margin-bottom:3em;
+}
+
+.post {
+    margin-bottom:3em;
+}
+
+.post p {
+    margin-left:27px;
+    padding:0.5em 2em;
+    border-left:2px solid #5c88bd;
+    font-size:1.2em;
+}
+
+/*NewsFeed ends*/
+/*Leader board starts */
+#leaderboard{
+}
+
+.top-player-container {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+.top-player-bar {
+    box-sizing: border-box;
+    display:grid;
+    grid-template-columns: auto auto;
+    padding:10px;
+    background-color:#315682;
+    margin-bottom:1px;
+    min-width:40%;
+}
+
+.top-player-bar h3 {color:#f0f2f7;}
+
+.top-player-bar .high-score h3 {
+    position:relative;
+    top:50%;
+    transform: translateY(-50%);
+    text-align: right;
+}
+
+.top-player-container:nth-child(1) .top-player-bar {
+    background-color:#5e8cc4;
+}
+
+.top-player-container:nth-child(2) .top-player-bar {
+    background-color:#4c76aa;
+}
+
+.top-player-container:nth-child(3) .top-player-bar {
+    background-color:#3c6494;
+}
+
+
+/*Leader board ends */
+
+/* Game Details */
+#game-details img {
+    width:100%;
+    height:250px;
+    object-fit: cover;
+}
+
+#game-details p {margin:2em 0;}
+
+/* END -- Game Details */
