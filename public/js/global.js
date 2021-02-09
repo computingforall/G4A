@@ -5,7 +5,7 @@ $(document).ready(
         var nav_html =
         `
         <header>
-            <div><div class="nav-logo">Games For All</div></div>
+            <div><div class="nav-logo"><a href="index.html">Games For All</a></div></div>
             <nav>
                 <a></a>
             </nav>
@@ -25,8 +25,8 @@ $(document).ready(
 
         let nav_items = $('nav').find('a').first();
         nav_items.clone().appendTo('nav').attr('href','#').html('Home');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Games');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Profile & Settings');
+        nav_items.clone().appendTo('nav').attr('href','#').html('Friends');
+        nav_items.clone().appendTo('nav').attr('href','#').html('Profile');
         $('nav').find('a').first().remove();
 
         var commentId = 0;
@@ -128,6 +128,48 @@ $(document).ready(
                 
             }
         );
+
+        $(document).on('click', '.like', function() {
+            let currentVal = $(this).children().last().html();
+            let siblingVal = $(this).siblings().first().children().last().html();
+            if ($(this).siblings().first().hasClass("checked")) {
+              currentVal = Number(currentVal) + 1;
+              $(this).children().last().html(currentVal);
+              siblingVal = Number(siblingVal) - 1;
+              $(this).siblings().first().children().last().html(siblingVal);
+              $(this).siblings().first().removeClass('checked');
+              $(this).addClass('checked');
+            } else if ($(this).hasClass('checked')) {
+              currentVal = Number(currentVal) - 1;
+              $(this).children().last().html(currentVal);
+              $(this).removeClass('checked');             
+            } else {
+              $(this).addClass('checked');
+              currentVal = Number(currentVal) + 1;
+              $(this).children().last().html(currentVal);        
+            }
+          });
+      
+          $(document).on('click', '.dislike', function() {
+            let currentVal = $(this).children().last().html();
+            let siblingVal = $(this).siblings().first().children().last().html();
+            if ($(this).siblings().first().hasClass("checked")) {
+              currentVal = Number(currentVal) + 1;
+              $(this).children().last().html(currentVal);
+              siblingVal = Number(siblingVal) - 1;
+              $(this).siblings().first().children().last().html(siblingVal);
+              $(this).siblings().first().removeClass('checked');
+              $(this).addClass('checked');
+            } else if ($(this).hasClass('checked')) {
+              currentVal = Number(currentVal) - 1;
+              $(this).children().last().html(currentVal);
+              $(this).removeClass('checked');             
+            } else {
+              $(this).addClass('checked');
+              currentVal = Number(currentVal) + 1;
+              $(this).children().last().html(currentVal);        
+            }
+          });
 });
 
 
