@@ -58,5 +58,4 @@ $(document).ready(
                 $('.f-grid').removeClass('redrop');
             }
         );
-
 });
