@@ -14,7 +14,7 @@
 .tab {
     display:inline-block;
     padding:1em 2em;
-    font-size:0.8em;
+    font-size:0.9em;
     color:#232429;
     background-color:#f0f2f7;
     border:1px solid #999;
@@ -30,7 +30,7 @@
 }
 
 .tab-container {
-    padding:3em;
+    padding:3em 0;
     height:100%;
 }
 
@@ -70,6 +70,7 @@
     padding:10px;
     background-color:#315682;
     margin-bottom:1px;
+    min-width:40%;
 }
 
 .top-player-bar h3 {color:#f0f2f7;}
