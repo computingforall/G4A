@@ -1,24 +1,41 @@
+require('dotenv').config();
+
 const express = require("express");
 const path = require("path");
-const app = express();
-const port = 3000;
 const bodyParser = require("body-parser");
 const Users = require("./database/db.js");
 const axios = require("axios")
-
 const bcrypt = require("bcrypt");
-const saltNumber = 15;
+const session = require('express-session');
+const app = express();
+
+const {PORT, SECRET} = process.env;
+
+const saltNumber = Number(process.env.SALT);
 
 app.use(express.static(path.join(__dirname, "./public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(session({
+  secret: SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {}
+}))
 
-app.get("/login", (req, res) => {
-  const email = req.query.email;
-  const pass = req.query.password;
+
+
+app.get('/', function(req, res) {
+  
+});
+
+app.post('/login', (req, res) => {
+  const email = req.body.email;
+  const pass = req.body.password;
   
   Users.find({email: email}, (err, found) => {
     if (bcrypt.compareSync(pass, found[0].password)) {
+      
       res.send('Success').status(200);
     } else {
       res.send('Failed Login').status(401);
@@ -53,6 +70,6 @@ app.post('/register', (req, res) => {
   })
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Example app listening at http://localhost:${PORT}`);
 });

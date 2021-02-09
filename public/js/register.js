@@ -2,7 +2,7 @@ $(document).ready(
     function() {
         var registrationTemplate =
         `
-        <form name="form" id="form" action="/register" method="post">
+        <form name="form" id="form">
             <label for="displayname">Display Name: </label><br>
             <input type="text" name="displayname" id="displayname" required><br>
 
@@ -21,32 +21,22 @@ $(document).ready(
         $(registrationTemplate).prependTo('body');
 
         
-        $('form').on('submit', function() {
-
-            bcrypt.genSalt(saltNumber, function(err, salt) {
-                bcrypt.hash($('#password').val(), salt, function(err, hash) {
-                  console.log(hash);
-                });
-              });
-
-
-
-
-
-
-            /*
-            console.log(document.querySelector('form'));
-            let bodyFormData = new FormData(document.querySelector('form'));
-            console.log(bodyFormData.keys.displayname);
-            for (var val of bodyFormData.keys()) {
-                console.log(val);
-            }
-            axios.post('/register', {data: bodyFormData})
-                .then(function(response) {
-                    console.log(response);
-                })
-                .catch(function(error) {
-                    console.log(error);
-                });*/
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+            const displayname = $('#displayname').val();
+            const email = $('#email').val();
+            const password = $('#password').val();
+            
+            axios.post('/register', {
+                displayname,
+                email,
+                password
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         });
 });
