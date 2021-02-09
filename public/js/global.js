@@ -52,7 +52,16 @@ $(document).ready(
                         <button class="reply-submit">Submit</button>
                         <textarea class="reply-text"></textarea>
                     </div>
-                    <div class="likeButton"></div>
+                    <div class="likeButton">
+                        <div class="like unliked checkLike">
+                            <i class='far fa-heart'></i>
+                            <p class="likeCount">0</p>
+                        </div>
+                        <div class="dislike undisliked checkDislike">
+                            <i class="fas fa-heart-broken"></i>
+                            <p class="dislikeCount">0</p>
+                        </div>
+                    </div>
                 </div>
                 `
                 $('.posts').append(commentTemplate);
