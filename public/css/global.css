@@ -151,6 +151,7 @@ footer nav a:hover {color:#fff;}
     height:60px;
     border-radius:100%;
     object-fit:cover;
+    border:2px solid #ccc;
    }
 
 .user-pro div h2 {
