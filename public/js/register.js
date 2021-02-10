@@ -26,17 +26,29 @@ $(document).ready(
             const displayname = $('#displayname').val();
             const email = $('#email').val();
             const password = $('#password').val();
-            
-            axios.post('/register', {
-                displayname,
-                email,
-                password
-            })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+
+            const displayname_regex = /^(?=.*[\w!@#$%^&*()_-]).{4,16}$/;
+            const email_regex = /^(("[\w\d-.!%+ ]{1,64}")|^([\w\d-.!%+]{1,64}))(@[a-zA-Z0-9-.]+)(.[\w\d]+)?$/;
+            const password_regex = /^(?=.*[\w])(?=.*[!@#$%^&*()_-]).{6,16}$/; // word, must have some special character, 6 chars min for length, 16 max.
+
+            if (email_regex.exec(email) === null) {
+                alert('bad email');
+            } else if (password_regex.exec(password) === null) {
+                alert('bad password');
+            } else if (displayname_regex.exec(displayname) === null) {
+                alert('bad display name');
+            } else {
+                axios.post('/register', {
+                    displayname,
+                    email,
+                    password
+                })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            } 
         });
 });
