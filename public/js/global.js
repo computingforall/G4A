@@ -124,13 +124,15 @@ $(document).ready(
             function(){
                 let score = Math.ceil(Math.random() * (10000 - 1000) + 1000);
                 let shareTemplate = 
-                ` 
+                `
                 <div class="post">
-                   <div><h2>Player 1</h2></div>
-               </div>
-                   <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
-                   <div></div>
-                   <div class="likeButton"></div>
+                    <div class="user-pro"> 
+                        <div><img src='${localStorage.getItem('image')}'></div>
+                        <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
+                    </div>
+                    <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
+                    <div></div>
+                    <div class="likeButton"></div>
                 </div>
                 `
                 $('.posts').append(shareTemplate);
