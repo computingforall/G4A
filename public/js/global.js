@@ -134,7 +134,7 @@ $(document).ready(
             function(){
                 let score = Math.ceil(Math.random() * (10000 - 1000) + 1000);
                 let shareTemplate = 
-                ` 
+                `
                 <div class="post">
                    <div><h2>Player 1</h2></div>
                 </div>
