@@ -16,7 +16,7 @@ $(document).ready(
             <input type="checkbox" name="tos" id="tos" required>
 
             <input type="submit" id="submit-registration">
-        <form>
+        </form>
         `
         $(registrationTemplate).prependTo('body');
 

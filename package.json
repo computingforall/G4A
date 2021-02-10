@@ -27,7 +27,8 @@
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.15",
     "path": "^0.12.7",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "uid-safe": "^2.1.5"
   },
   "description": ""
 }

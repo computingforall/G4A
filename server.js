@@ -7,12 +7,12 @@ const Users = require("./database/db.js");
 const axios = require("axios")
 const bcrypt = require("bcrypt");
 const session = require('express-session');
+var uid = require('uid-safe')
 const app = express();
 
 const {PORT, SECRET} = process.env;
 
 const saltNumber = Number(process.env.SALT);
-
 app.use(express.static(path.join(__dirname, "./public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -35,7 +35,7 @@ app.post('/login', (req, res) => {
   
   Users.find({email: email}, (err, found) => {
     if (bcrypt.compareSync(pass, found[0].password)) {
-      
+      req.session.user = found;
       res.send('Success').status(200);
     } else {
       res.send('Failed Login').status(401);
@@ -46,7 +46,6 @@ app.post('/login', (req, res) => {
 
 app.post('/register', (req, res) => {
    let password_hash =  bcrypt.hashSync(req.body.password, saltNumber, function(err, hash) {
-    console.log(hash);
     return hash;
   });
 
@@ -69,6 +68,12 @@ app.post('/register', (req, res) => {
     }
   })
 });
+
+app.get('/logout', function(req, res) {
+  req.session.destroy(function() {
+    console.log('user logged out of account');
+  });
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
