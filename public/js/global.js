@@ -115,61 +115,21 @@ $(document).ready(
             function(){
                 let score = Math.ceil(Math.random() * (10000 - 1000) + 1000);
                 let shareTemplate = 
-                ` 
+                `
                 <div class="post">
-                   <div><h2>Player 1</h2></div>
-               </div>
-                   <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
-                   <div></div>
-                   <div class="likeButton"></div>
+                    <div class="user-pro"> 
+                        <div><img src='${localStorage.getItem('image')}'></div>
+                        <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
+                    </div>
+                    <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
+                    <div></div>
+                    <div class="likeButton"></div>
                 </div>
                 `
                 $('.posts').append(shareTemplate);
                 
             }
         );
-
-        $(document).on('click', '.like', function() {
-            let currentVal = $(this).children().last().html();
-            let siblingVal = $(this).siblings().first().children().last().html();
-            if ($(this).siblings().first().hasClass("checked")) {
-              currentVal = Number(currentVal) + 1;
-              $(this).children().last().html(currentVal);
-              siblingVal = Number(siblingVal) - 1;
-              $(this).siblings().first().children().last().html(siblingVal);
-              $(this).siblings().first().removeClass('checked');
-              $(this).addClass('checked');
-            } else if ($(this).hasClass('checked')) {
-              currentVal = Number(currentVal) - 1;
-              $(this).children().last().html(currentVal);
-              $(this).removeClass('checked');             
-            } else {
-              $(this).addClass('checked');
-              currentVal = Number(currentVal) + 1;
-              $(this).children().last().html(currentVal);        
-            }
-          });
-      
-          $(document).on('click', '.dislike', function() {
-            let currentVal = $(this).children().last().html();
-            let siblingVal = $(this).siblings().first().children().last().html();
-            if ($(this).siblings().first().hasClass("checked")) {
-              currentVal = Number(currentVal) + 1;
-              $(this).children().last().html(currentVal);
-              siblingVal = Number(siblingVal) - 1;
-              $(this).siblings().first().children().last().html(siblingVal);
-              $(this).siblings().first().removeClass('checked');
-              $(this).addClass('checked');
-            } else if ($(this).hasClass('checked')) {
-              currentVal = Number(currentVal) - 1;
-              $(this).children().last().html(currentVal);
-              $(this).removeClass('checked');             
-            } else {
-              $(this).addClass('checked');
-              currentVal = Number(currentVal) + 1;
-              $(this).children().last().html(currentVal);        
-            }
-          });
 });
 
 
