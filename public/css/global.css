@@ -149,7 +149,7 @@ footer nav a:hover {color:#fff;}
     height:60px;
     border-radius:100%;
     object-fit:cover;
-    border:1px solid #ccc;
+    border:2px solid #ccc;
    }
 
 .user-pro div h2, .user-pro div h3 {
