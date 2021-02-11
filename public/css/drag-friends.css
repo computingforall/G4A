@@ -19,6 +19,7 @@
 }
 #managefriends > .friends-grid > div {
     height:100%;
+    background-color:#f0f2f7;
 }
 #managefriends > .friend-requests > div {
     margin-bottom:30px;
@@ -30,6 +31,7 @@
 #managefriends ul {
     margin:0;
     padding:0;
+    height:100%;
 }
 
 #managefriends ul li, #dragging-container li {
