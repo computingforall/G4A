@@ -18,9 +18,10 @@
     color:#232429;
     background-color:#f0f2f7;
     border:1px solid #999;
+    border-bottom:1px solid #000;
     cursor: pointer;
     margin-right:-6px;
-    margin-bottom:-1px;
+    margin-bottom:-2px;
 }
 
 .tab.inactive {
@@ -30,7 +31,7 @@
 }
 
 .tab-container {
-    padding:3em 0;
+    padding:3em;
     height:100%;
 }
 
@@ -38,24 +39,55 @@
 /*NewsFeed starts*/
 
 #newsfeed{
-    margin-bottom:3em;
+    min-height:300px;
+    margin-bottom:2vh;
+}
+
+.pointButton {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 20%;
+}
+
+.pointButtonG {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.pointButtonG > p {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 1% 0% 0% 0%;
 }
 
 .post {
     margin-bottom:3em;
 }
 
-.post p {
+.post > div > p {
     margin-left:27px;
     padding:0.5em 2em;
     border-left:2px solid #5c88bd;
     font-size:1.2em;
 }
 
+button {
+    border:1px solid #999;
+    border-radius:7px;
+}
+
+.reply-box > div > p {
+    padding:1em 0em 1em 5em;
+    
+}
+
+.reply-box > div + div {
+    padding: 0em 0em 0em 5em;
+}
+
+
 /*NewsFeed ends*/
 /*Leader board starts */
-#leaderboard{
-}
 
 .top-player-container {
     box-sizing: border-box;
@@ -98,12 +130,34 @@
 /*Leader board ends */
 
 /* Game Details */
-#game-details img {
+
+#game-details {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    border:1px solid #999;
+}
+
+#game-details > div:last-child {
+    padding:1em 2em;
+    background-color:#f0f2f7;
+}
+
+#game-details > div:first-child {
+    background-color:#232429;
+}
+
+#game-details > div:first-child img {
+    width:100%;
+    height:300px;
+    object-fit: cover;
+}
+
+#game-about img {
     width:100%;
     height:250px;
     object-fit: cover;
 }
 
-#game-details p {margin:2em 0;}
+#game-about p {margin:2em 0;}
 
 /* END -- Game Details */
