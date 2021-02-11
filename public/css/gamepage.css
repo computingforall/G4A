@@ -98,12 +98,34 @@
 /*Leader board ends */
 
 /* Game Details */
-#game-details img {
+
+#game-details {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    border:1px solid #999;
+}
+
+#game-details > div:last-child {
+    padding:1em 2em;
+    background-color:#f0f2f7;
+}
+
+#game-details > div:first-child {
+    background-color:#232429;
+}
+
+#game-details > div:first-child img {
+    width:100%;
+    height:300px;
+    object-fit: cover;
+}
+
+#game-about img {
     width:100%;
     height:250px;
     object-fit: cover;
 }
 
-#game-details p {margin:2em 0;}
+#game-about p {margin:2em 0;}
 
 /* END -- Game Details */
