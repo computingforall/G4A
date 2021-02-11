@@ -24,8 +24,8 @@ $(document).ready(
         $('body').append(footer_html);
 
         let nav_items = $('nav').find('a').first();
-        nav_items.clone().appendTo('nav').attr('href','#').html('Home');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Friends');
+        nav_items.clone().appendTo('nav').attr('href','index.html').html('Home');
+        nav_items.clone().appendTo('nav').attr('href','friends.html').html('Friends');
         nav_items.clone().appendTo('nav').attr('href','#').html('Profile');
         $('nav').find('a').first().remove();
 
@@ -175,7 +175,7 @@ $(document).ready(
                 slides.eq(i).hide();
             }
             for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
+                dots.eq(i).removeClass('active');
             }
             slides.eq(slideIndex-1).fadeIn(1000);
             dots.eq(slideIndex-1).addClass('active');
