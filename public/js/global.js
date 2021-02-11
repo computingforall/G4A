@@ -24,8 +24,8 @@ $(document).ready(
         $('body').append(footer_html);
 
         let nav_items = $('nav').find('a').first();
-        nav_items.clone().appendTo('nav').attr('href','#').html('Home');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Friends');
+        nav_items.clone().appendTo('nav').attr('href','index.html').html('Home');
+        nav_items.clone().appendTo('nav').attr('href','friends.html').html('Friends');
         nav_items.clone().appendTo('nav').attr('href','#').html('Profile');
         $('nav').find('a').first().remove();
 
@@ -46,21 +46,21 @@ $(document).ready(
                         <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
                     </div>
                     <div><p class="comment">` + text + `</p></div>
+                    <div class="pointButton likeButton">
+                        <div class="pointButtonG like unliked checkLike">
+                            <i class="fas fa-thumbs-up"></i>
+                            <p class="likeCount">0</p>
+                        </div>
+                        <div class="pointButtonG dislike undisliked checkDislike">
+                            <i class="fas fa-thumbs-down"></i>
+                            <p class="dislikeCount">0</p>
+                        </div>
+                    </div>
                     <div id=${commentId} class="reply-box"></div>
                     <button class="reply-button">Reply</button>
                     <div class="reply-field">
                         <button class="reply-submit">Submit</button>
                         <textarea class="reply-text"></textarea>
-                    </div>
-                    <div class="likeButton">
-                        <div class="like unliked checkLike">
-                            <i class='far fa-heart'></i>
-                            <p class="likeCount">0</p>
-                        </div>
-                        <div class="dislike undisliked checkDislike">
-                            <i class="fas fa-heart-broken"></i>
-                            <p class="dislikeCount">0</p>
-                        </div>
                     </div>
                 </div>
                 `
@@ -93,7 +93,17 @@ $(document).ready(
                       
                         var replyTemplate = 
                         `
-                        <div>` + reply + `</div>
+                        <div><p>` + reply + `</p></div>
+                        <div class="pointButton likeButton">
+                        <div class="pointButtonG like unliked checkLike">
+                            <i class="fas fa-thumbs-up"></i>
+                            <p class="likeCount">0</p>
+                        </div>
+                        <div class="pointButtonG dislike undisliked checkDislike">
+                            <i class="fas fa-thumbs-down"></i>
+                            <p class="dislikeCount">0</p>
+                        </div>
+                    </div>
                         `
 
                         $('#' + replyId).append(replyTemplate);
@@ -126,13 +136,20 @@ $(document).ready(
                 let shareTemplate = 
                 `
                 <div class="post">
-                    <div class="user-pro"> 
-                        <div><img src='${localStorage.getItem('image')}'></div>
-                        <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
+                   <div><h2>Player 1</h2></div>
+                </div>
+                   <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
+                   <div></div>
+                   <div class="pointButton likeButton">
+                        <div class="pointButtonG like unliked checkLike">
+                            <i class="fas fa-thumbs-up"></i>
+                            <p class="likeCount">0</p>
+                        </div>
+                        <div class="pointButtonG dislike undisliked checkDislike">
+                            <i class="fas fa-thumbs-down"></i>
+                            <p class="dislikeCount">0</p>
+                        </div>
                     </div>
-                    <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
-                    <div></div>
-                    <div class="likeButton"></div>
                 </div>
                 `
                 $('.posts').append(shareTemplate);
@@ -158,7 +175,7 @@ $(document).ready(
                 slides.eq(i).hide();
             }
             for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
+                dots.eq(i).removeClass('active');
             }
             slides.eq(slideIndex-1).fadeIn(1000);
             dots.eq(slideIndex-1).addClass('active');

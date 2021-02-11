@@ -8,6 +8,7 @@
     background-color:#f0f2f7;
     border:1px solid #bec0c4;
 }
+
 .game-grid img{
     width:100%;
     height:200px;
@@ -20,17 +21,25 @@
 .slider .slider-main{
     display:grid;
     grid-template-columns:auto 1fr auto;
-    grid-gap:20px;
+    
 }
+
+.slider .slider-main > div {
+    background-color:#fff7f7;
+    border:1px solid #d6d6d6;
+    transition:background-color 0.5s;
+}
+
+.slider-main > div.slide-left:hover, .slider-main > div.slide-right:hover {
+    background-color:#bdc2ce;
+}
+
 .slider .slider-main i{
     position:relative;
     top:50%;
     transform:translateY(-50%);
     font-size:2em;
-    background-color:#fff7f7;
     padding:0.5em;
-    border:1px solid #d6d6d6;
-
 }
 
 .slider .slider-preview{
@@ -43,11 +52,11 @@
 }
 .slider .slider-preview img{
     width:100%;
-    height:100px;
+    height:150px;
     object-fit:cover;
 }
 .slider .slider-preview > div:first-child img{
-    height:200px;
+    height:300px;
 }
 .slider .slider-pages{
     margin-top:10px;
