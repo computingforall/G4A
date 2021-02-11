@@ -1,6 +1,5 @@
 $(document).ready(
     function() {
-        // action="/login" method="get"
         var loginTemplate =
         `
         <form name="login-form" id="login-form">
