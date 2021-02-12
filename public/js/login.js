@@ -1,6 +1,6 @@
 $(document).ready(
     function() {
-        var loginTemplate =
+        var loginTemplate = 
         `
         <form name="login-form" id="login-form">
             <label for="email">email: </label><br>
@@ -11,14 +11,15 @@ $(document).ready(
 
             <input type="submit" value="Submit" id="submit-login">
         </form>
-        `
+        `;
+
         var logoutTemplate =
         `
             <form name="logout-form" id="logout-form">
                 <label>Logout: </label>
                 <input type="submit" value="submit" id="submit-logout">
             </form>
-        `
+        `;
 
         $(logoutTemplate).prependTo('body');
         $(loginTemplate).prependTo('body');
@@ -39,13 +40,13 @@ $(document).ready(
             e.preventDefault();
             const email = $('#email').val();
             const password = $('#password').val();
-            // console.log(email, password);
+
             axios.post('/login', {
                 email,
                 password
             })
               .then((response) => {
-                  console.log(response);
+                  
               })
               .catch((error) => {
                   console.log(error);

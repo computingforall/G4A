@@ -25,8 +25,12 @@ app.use(session({
 
 
 
-app.get('/', function(req, res) {
-  
+app.post('/', function(req, res) {
+  if(req.session.user) {
+    res.send(true);
+  } else {
+    res.send(false);
+  }
 });
 
 app.post('/login', (req, res) => {
@@ -34,10 +38,13 @@ app.post('/login', (req, res) => {
   const pass = req.body.password;
   
   Users.find({email: email}, (err, found) => {
-    if (bcrypt.compareSync(pass, found[0].password)) {
-      req.session.user = found;
-      res.send('Success').status(200);
-    } else {
+    if (found.length === 1) {
+      if (bcrypt.compareSync(pass, found[0].password)) {
+        req.session.user = found;
+        res.send('Success').status(200);
+      }
+    }
+     else {
       res.send('Failed Login').status(401);
     }
   })

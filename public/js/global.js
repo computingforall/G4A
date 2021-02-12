@@ -1,6 +1,23 @@
 $(document).ready(
     function() {
 
+        let session_data = undefined;
+        
+        async function checkSession() {
+            try {
+                await axios.post('/')
+                .then((response) => {
+                    session_data = response.data; 
+                    console.log(session_data);
+                })
+            } catch (error) {
+                
+            }
+        }
+        checkSession();
+        
+        
+
         // Main Navigation Bar
         var nav_html =
         `
@@ -26,7 +43,14 @@ $(document).ready(
         let nav_items = $('nav').find('a').first();
         nav_items.clone().appendTo('nav').attr('href','index.html').html('Home');
         nav_items.clone().appendTo('nav').attr('href','friends.html').html('Friends');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Profile');
+        
+        if (session_data) {
+            console.log('pot');
+            nav_items.clone().appendTo('nav').attr('href','#').html('Profile');
+        } else {
+            console.log('pot');
+            nav_items.clone().appendTo('nav').attr('href','widgets/login.html').html('Login');
+        }
         $('nav').find('a').first().remove();
 
         var commentId = 0;
