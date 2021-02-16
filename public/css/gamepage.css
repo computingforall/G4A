@@ -23,6 +23,11 @@
     margin-bottom:-1px;
 }
 
+.tab:hover, .tab.inactive:hover {
+    background-color:#315682;
+    color:#f0f2f7;
+}
+
 .tab.inactive {
     background-color:#c7cbd6;
     color:#666;
@@ -30,7 +35,7 @@
 }
 
 .tab-container {
-    padding:3em;
+    padding:3em 0;
     height:100%;
 }
 
@@ -91,6 +96,7 @@ button {
     box-sizing: border-box;
     margin:0;
     padding:0;
+    background-color:#cdd0d8;
 }
 
 .top-player-bar {

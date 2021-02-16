@@ -14,10 +14,16 @@
 }
 
 #managefriends > div {
-    border:1px solid #777;
+    border:1px solid #999;
     background-color:#f0f2f7;
     padding:2px;
 }
+
+#managefriends > .friend-requests {
+    background-color:#cdd0d8;
+    padding:0;
+}
+
 #managefriends > .friends-grid > div {
     height:100%;
 }
@@ -25,14 +31,13 @@
     margin-bottom:1px;
 }
 
-
 #managefriends ul {
     margin:0;
     padding:0;
     height:100%;
 }
 
-#managefriends ul li, #dragging-container li {
+#managefriends ul li {
     display:block;
     padding:1em;
     margin-bottom:2px;
@@ -71,6 +76,15 @@
 
 #dragging-container > * {
     transform:translate(-50%,-50%);
+}
+
+#dragging-container li {
+    display:block;
+    min-width:350px;
+    padding:1em;
+    background-color: #315682;
+    color: #f0f2f7;
+    border:1px solid #bbb;
 }
 
 
