@@ -22,13 +22,13 @@ $(document).ready(function(){
     function gameDetails() {
         if(gameId['gm'] === 'vesta'){
             gameTitle.html('Vesta');
-            gamePlayer.html('<img src="images/games/placeholder3.jpg">');
+            gamePlayer.html('<img src="images/games/vesta-cover.jpg">');
             gameDescription.html('Vesta is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
             gamePublishedBy.html('Vesta Studios');
             gameAbout.html(
                 `
                 <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
-                <div><img src="images/games/placeholder3.jpg"></div>
+                <div><img src="images/games/vesta-desc1.jpg"></div>
                 <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
                 `
             )
@@ -36,13 +36,13 @@ $(document).ready(function(){
         
         if(gameId['gm'] === 'blueoceans'){
             gameTitle.html('Blue Oceans');
-            gamePlayer.html('<img src="images/games/placeholder2.jpg">');
+            gamePlayer.html('<img src="images/games/blueoceans-cover.jpg">');
             gameDescription.html('Blue Oceans is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
             gamePublishedBy.html('The Anonymous');
             gameAbout.html(
                 `
                 <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
-                <div><img src="images/games/placeholder2.jpg"></div>
+                <div><img src="images/games/blueoceans-cover.jpg"></div>
                 <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
                 `
             )
