@@ -8,7 +8,6 @@ $(document).ready(
                 await axios.post('/')
                 .then((response) => {
                     session_data = response.data;
-                    console.log(session_data);
                     navBar();
                 })
             } catch (error) {
