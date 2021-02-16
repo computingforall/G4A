@@ -26,7 +26,8 @@ $(document).ready(
                 // eat@eat.com aA1!bB
                 axios.post('/profile', {
                     displayname,
-                    password
+                    password,
+                    image
                 })
                   .then((response) => {
                       console.log(response);

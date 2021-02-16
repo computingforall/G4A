@@ -46,7 +46,7 @@ $(document).ready(
         nav_items.clone().appendTo('nav').attr('href','friends.html').html('Friends');
         function navBar() {
             if (session_data) {
-                nav_items.clone().appendTo('nav').attr('href','#').html('Profile');
+                nav_items.clone().appendTo('nav').attr('href','widgets/profile.html').html('Profile');
                 nav_items.clone().appendTo('nav').attr('href','').attr('id', 'logout').html('Logout');
             } else {
                 nav_items.clone().appendTo('nav').attr('href','widgets/login.html').html('Login');

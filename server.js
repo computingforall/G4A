@@ -40,7 +40,7 @@ app.post('/login', (req, res) => {
   Users.find({email: email}, (err, found) => {
     if (found.length === 1) {
       if (bcrypt.compareSync(pass, found[0].password)) {
-        req.session.user = found;
+        req.session.user = found[0];
         res.send('Success').status(200);
       }
     }
@@ -79,7 +79,7 @@ app.post('/register', (req, res) => {
 app.post('/profile', function(req, res) {
   if(req.session.user) {
     let user = req.session.user;
-    user[0].name = req.body.displayname;
+    user[0].name = req.body.displayname;  // Need to actually update the DB with this info.
   } else {
     res.sendStatus(404);
   }
