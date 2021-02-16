@@ -41,13 +41,9 @@ main {
     box-sizing: border-box;
 }
 
-<<<<<<< HEAD
-section {
-    margin-bottom:6em;
-=======
+
 section ~ section {
     margin-top:6em;
->>>>>>> 2d8cb71b0e96f53654e2015bc2dabb6e424b6172
 }
 
 /* FONTS */
