@@ -76,11 +76,20 @@ app.post('/register', (req, res) => {
   })
 });
 
+app.post('/profile', function(req, res) {
+  if(req.session.user) {
+    let user = req.session.user;
+    user[0].name = req.body.displayname;
+  } else {
+    res.sendStatus(404);
+  }
+});
+
 app.get('/logout', function(req, res) {
   req.session.destroy(function() {
     console.log('user logged out of account');
   });
-})
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);

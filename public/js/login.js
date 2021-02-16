@@ -13,28 +13,7 @@ $(document).ready(
         </form>
         `;
 
-        var logoutTemplate =
-        `
-            <form name="logout-form" id="logout-form">
-                <label>Logout: </label>
-                <input type="submit" value="submit" id="submit-logout">
-            </form>
-        `;
-
-        $(logoutTemplate).prependTo('body');
         $(loginTemplate).prependTo('body');
-
-        $('#logout-form').on('submit', function(e) {
-            e.preventDefault();
-            axios.get('/logout', {})
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        });
-
 
         $('#login-form').on('submit', function(e) {
             e.preventDefault();
@@ -46,7 +25,7 @@ $(document).ready(
                 password
             })
               .then((response) => {
-                  
+                  window.location = '/';
               })
               .catch((error) => {
                   console.log(error);

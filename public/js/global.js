@@ -7,8 +7,9 @@ $(document).ready(
             try {
                 await axios.post('/')
                 .then((response) => {
-                    session_data = response.data; 
+                    session_data = response.data;
                     console.log(session_data);
+                    navBar();
                 })
             } catch (error) {
                 
@@ -43,14 +44,25 @@ $(document).ready(
         let nav_items = $('nav').find('a').first();
         nav_items.clone().appendTo('nav').attr('href','index.html').html('Home');
         nav_items.clone().appendTo('nav').attr('href','friends.html').html('Friends');
-        
-        if (session_data) {
-            console.log('pot');
-            nav_items.clone().appendTo('nav').attr('href','#').html('Profile');
-        } else {
-            console.log('pot');
-            nav_items.clone().appendTo('nav').attr('href','widgets/login.html').html('Login');
+        function navBar() {
+            if (session_data) {
+                nav_items.clone().appendTo('nav').attr('href','#').html('Profile');
+                nav_items.clone().appendTo('nav').attr('href','').attr('id', 'logout').html('Logout');
+            } else {
+                nav_items.clone().appendTo('nav').attr('href','widgets/login.html').html('Login');
+            }
         }
+
+        $(document).on('click', '#logout', function(e) {
+            axios.get('/logout', {})
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        });
+        
         $('nav').find('a').first().remove();
 
         var commentId = 0;
@@ -67,7 +79,7 @@ $(document).ready(
 
                     <div class="user-pro"> 
                         <div><img src='${localStorage.getItem('image')}'></div>
-                        <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
+                        <div><h2>`+ session_data + ` </h2></div>
                     </div>
                     <div><p class="comment">` + text + `</p></div>
                     <div class="pointButton likeButton">
