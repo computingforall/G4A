@@ -39,7 +39,10 @@
 /*NewsFeed starts*/
 
 #newsfeed{
+<<<<<<< HEAD
     min-height:300px;
+=======
+>>>>>>> 2d8cb71b0e96f53654e2015bc2dabb6e424b6172
     margin-bottom:2vh;
 }
 

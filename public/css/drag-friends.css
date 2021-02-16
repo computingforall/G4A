@@ -1,8 +1,14 @@
 #managefriends {
     display:grid;
+<<<<<<< HEAD
     grid-template-columns: 2fr 1fr ;
     grid-gap: 30px;
     user-select:none;
+=======
+    grid-template-columns: 2fr 1fr;
+    user-select:none;
+    min-height:500px;
+>>>>>>> 2d8cb71b0e96f53654e2015bc2dabb6e424b6172
 }
 
 #managefriends > div {
@@ -13,18 +19,30 @@
     
 }
 
+<<<<<<< HEAD
 #managefriends > div > div {
     border:1px solid #777;
+=======
+#managefriends > div {
+    border:1px solid #777;
+    background-color:#f0f2f7;
+>>>>>>> 2d8cb71b0e96f53654e2015bc2dabb6e424b6172
     padding:2px;
 }
 #managefriends > .friends-grid > div {
     height:100%;
+<<<<<<< HEAD
     background-color:#f0f2f7;
 }
 #managefriends > .friend-requests > div {
     margin-bottom:30px;
     min-height:50px;
     background-color:#f0f2f7;
+=======
+}
+#managefriends > .friend-requests > div {
+    margin-bottom:1px;
+>>>>>>> 2d8cb71b0e96f53654e2015bc2dabb6e424b6172
 }
 
 
@@ -46,7 +64,11 @@
 }
 
 #managefriends > .friend-requests h4 {
+<<<<<<< HEAD
     background-color:#315682;
+=======
+    background-color:#232429;
+>>>>>>> 2d8cb71b0e96f53654e2015bc2dabb6e424b6172
     padding:0.5em;
     color:#fff;
 }
@@ -68,6 +90,10 @@
 #dragging-container {
     position:fixed;
     pointer-events:none;
+<<<<<<< HEAD
+=======
+    z-index:1000;
+>>>>>>> 2d8cb71b0e96f53654e2015bc2dabb6e424b6172
 }
 
 #dragging-container > * {
@@ -84,6 +110,7 @@
 #managefriends ul.friends-list li.played-with h2 {
     color:#888;
 }
+<<<<<<< HEAD
 /*
 #managefriends {
     box-sizing: border-box;
@@ -201,3 +228,5 @@ background-color:#5390D9 ;
             }
         }
 */
+=======
+>>>>>>> 2d8cb71b0e96f53654e2015bc2dabb6e424b6172
