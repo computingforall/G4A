@@ -1,7 +1,6 @@
 #managefriends {
     display:grid;
-    grid-template-columns: 2fr 1fr ;
-    grid-gap: 30px;
+    grid-template-columns: 2fr 1fr;
     user-select:none;
 }
 
@@ -13,18 +12,16 @@
     
 }
 
-#managefriends > div > div {
+#managefriends > div {
     border:1px solid #777;
+    background-color:#f0f2f7;
     padding:2px;
 }
 #managefriends > .friends-grid > div {
     height:100%;
-    background-color:#f0f2f7;
 }
 #managefriends > .friend-requests > div {
-    margin-bottom:30px;
     min-height:50px;
-    background-color:#f0f2f7;
 }
 
 
@@ -46,7 +43,7 @@
 }
 
 #managefriends > .friend-requests h4 {
-    background-color:#315682;
+    background-color:#232429;
     padding:0.5em;
     color:#fff;
 }
@@ -84,120 +81,3 @@
 #managefriends ul.friends-list li.played-with h2 {
     color:#888;
 }
-/*
-#managefriends {
-    box-sizing: border-box;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    user-select:none;
-}
-h2{
-    margin:0;
-}
-.friends-grid{
-    display: grid;
-    grid-template-columns: 1fr;
-    width:50%;
-   grid-gap:20px;
-    }
-.friends-grid ul{margin:0;
-padding: 0;}
-
-
-.friends-grid ul li{
-  display: grid;
-    grid-template-columns:auto 1fr;
-    background-color:#00e1ff; margin-bottom: 2px;
-    padding: 10px;:aut
-    }
-.friends-grid ul li h2 {
-    padding-left:30px;
-    position:relative;
-    top:50%;
-    transform:translateY(-50%);
-  }
-
-.friends-grid ul li img {
-    margin-top:0;
-}
-.friends-grid h1{
-    text-align: center;
-   padding: 10px;
-    margin: 0;
-    }
-.friends-grid h1{
-    background-color:#00ffffc0 ;
-}
-   
-.online-list ul li{
-background-color:#5390D9 ;
-    }  
-   
-.invited-list ul li{
-   background-color:#48BFE3  ;
-}
-
-
-.friends-grid li img{
-    width:50px;
-    height:50px;
-    border-radius:100%;
-    object-fit:cover;
-   }
-
- .drop-area{
- border:1px solid
-}
-
-#dragging-container{
-    
-}
-
-#dragging-container li img{
-   width:50px;
-   height:50px;
-   object-fit:cover;
-}
-
-
-
-#managefriends ul {margin:0;padding:0px;width:100%;}
-
-      #online-lists {
-        display:grid;
-        grid-template-columns:1fr 1fr 1fr;
-        grid-gap:20px;
-      }
-
-      #dragging-container .item {
-        display:block;
-        border:1px dotted  #666;
-        background-color:lightskyblue; 
-        padding:1em;
-        margin:5px;
-        user-select:none;
-
-        display:grid;
-        grid-template-columns:auto 1fr;
-        width:300px;
-            
-    
-      }
-        #dragging-container {
-            position:fixed;
-            pointer-events:none;
-           
-        }
-       
-        #dragging-container > * {
-            transform:translate(-50%,-50%);
-        }
-      
-        @media only screen and (min-width:780px) {
-            .friends-grid {
-               grid-template-columns:1fr 1fr 1fr;
-               width:100%;
-            }
-        }
-*/
