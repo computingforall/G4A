@@ -23,7 +23,6 @@ $(document).ready(
                 e.preventDefault();
                 const displayname = $('#displayname').val();
                 const password = $('#password').val();
-                // eat@eat.com aA1!bB
                 axios.post('/profile', {
                     displayname,
                     password,
