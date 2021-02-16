@@ -3,7 +3,7 @@ $(document).ready(
 
         let session_data = undefined;
         
-        async function checkSession() {
+        async function loggedIn() {
             try {
                 await axios.post('/')
                 .then((response) => {
@@ -14,7 +14,7 @@ $(document).ready(
                 
             }
         }
-        checkSession();
+        loggedIn();
         
         
 
