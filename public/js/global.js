@@ -38,32 +38,34 @@ $(document).ready(
                 let text = $('#comment-text').val();
                 var commentTemplate =
                 `
-
                 <div class="post">
-
                     <div class="user-pro"> 
                         <div><img src='${localStorage.getItem('image')}'></div>
                         <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
                     </div>
-                    <div><p class="comment">` + text + `</p></div>
-                    <div class="pointButton likeButton">
-                        <div class="pointButtonG like unliked checkLike">
-                            <i class="fas fa-thumbs-up"></i>
-                            <p class="likeCount">0</p>
+                    <div>
+                        <p class="comment">` + text + `</p>
+                        <div class="pointButton likeButton">
+                            <div class="pointButtonG like unliked checkLike">
+                                <i class="fas fa-thumbs-up"></i>
+                                <p class="likeCount">0</p>
+                            </div>
+                            <div class="pointButtonG dislike undisliked checkDislike">
+                                <i class="fas fa-thumbs-down"></i>
+                                <p class="dislikeCount">0</p>
+                            </div>
                         </div>
-                        <div class="pointButtonG dislike undisliked checkDislike">
-                            <i class="fas fa-thumbs-down"></i>
-                            <p class="dislikeCount">0</p>
+                        <button class="reply-button">Reply</button>
+                        <div id=${commentId} class="reply-box"></div>
+                        <div class="reply-field">
+                            <button class="reply-submit">Submit</button>
+                            <textarea class="reply-text txtarea" placeholder="Leave a comment..."></textarea>
                         </div>
-                    </div>
-                    <div id=${commentId} class="reply-box"></div>
-                    <button class="reply-button">Reply</button>
-                    <div class="reply-field">
-                        <button class="reply-submit">Submit</button>
-                        <textarea class="reply-text"></textarea>
                     </div>
                 </div>
                 `
+                // fix the submit/reply button so it's even with the comment bar
+
                 $('.posts').append(commentTemplate);
                 $('#comment-text').val('');
 
@@ -93,29 +95,39 @@ $(document).ready(
                       
                         var replyTemplate = 
                         `
-                        <div><p>` + reply + `</p></div>
+                        <div>
+                          <p>` + reply + `</p>
+                        </div>
                         <div class="pointButton likeButton">
-                        <div class="pointButtonG like unliked checkLike">
-                            <i class="fas fa-thumbs-up"></i>
-                            <p class="likeCount">0</p>
+                            <div class="pointButtonG like unliked checkLike">
+                                <i class="fas fa-thumbs-up"></i>
+                                <p class="likeCount">0</p>
+                            </div>
+                            <div class="pointButtonG dislike undisliked checkDislike">
+                                <i class="fas fa-thumbs-down"></i>
+                                <p class="dislikeCount">0</p>
+                            </div>
+                            <button class="reply-button">Reply</button>
+                            <div class="reply-field">
+                                <button class="reply-submit">Submit</button>
+                                <textarea class="reply-text txtarea" placeholder="Leave a comment..."></textarea>
+                            </div>
                         </div>
-                        <div class="pointButtonG dislike undisliked checkDislike">
-                            <i class="fas fa-thumbs-down"></i>
-                            <p class="dislikeCount">0</p>
-                        </div>
-                    </div>
                         `
 
                         $('#' + replyId).append(replyTemplate);
-
+                        
                         $('.reply-text').val('');
                         $(this).parent().hide();
-
+                        
                     }
-
                 );
 
         });
+
+        /*
+          
+        */
 
         //Like Dislike Buttons
         // Create value and add to element, function updates value, updates element
