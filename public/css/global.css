@@ -28,12 +28,12 @@ main {
 }
 
 .overlay {
-    background-color:#f0f2f7dd;
+    background-color:#f0f2f7cc;
     width:100%;
 }
 
 #page {
-    background-color:#f0f2f799;
+    background-color:#f0f2f7cc;
     width:100%;
     max-width:900px;
     margin:auto;
@@ -41,8 +41,8 @@ main {
     box-sizing: border-box;
 }
 
-section {
-    margin-bottom:6em;
+section ~ section {
+    margin-top:6em;
 }
 
 /* FONTS */
@@ -50,7 +50,7 @@ h1 {font-weight:300;font-size:2.4em;}
 h2 {}
 h3 {font-weight:600;}
 h4 {font-weight:800;font-size:1.2em;color:#315682;text-transform:uppercase;}
-h6 {font-weight:800;color:#666;text-transform:uppercase;}
+h6 {font-weight:800;color:#666;text-transform:uppercase;font-size:0.8em;}
 p{line-height: 1.8em;}
 section > h1 {margin-bottom:1em;}
 section > h2 {

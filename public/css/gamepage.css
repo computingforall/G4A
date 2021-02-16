@@ -18,10 +18,9 @@
     color:#232429;
     background-color:#f0f2f7;
     border:1px solid #999;
-    border-bottom:1px solid #000;
     cursor: pointer;
     margin-right:-6px;
-    margin-bottom:-2px;
+    margin-bottom:-1px;
 }
 
 .tab.inactive {
@@ -39,7 +38,6 @@
 /*NewsFeed starts*/
 
 #newsfeed{
-    min-height:300px;
     margin-bottom:2vh;
 }
 
