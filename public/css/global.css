@@ -42,7 +42,7 @@ main {
 }
 
 section {
-    margin-bottom:30px;
+    margin-bottom:6em;
 }
 
 /* FONTS */
@@ -52,7 +52,8 @@ h3 {font-weight:600;}
 h4 {font-weight:800;font-size:1.2em;color:#315682;text-transform:uppercase;}
 h6 {font-weight:800;color:#666;text-transform:uppercase;}
 p{line-height: 1.8em;}
-section > h2{
+section > h1 {margin-bottom:1em;}
+section > h2 {
     margin-bottom:1em;
     border-bottom:1px solid; border-color: #bec0c4;
     padding-bottom:10px;
@@ -149,7 +150,7 @@ footer nav a:hover {color:#fff;}
     height:60px;
     border-radius:100%;
     object-fit:cover;
-    border:1px solid #ccc;
+    border:2px solid #ccc;
    }
 
 .user-pro div h2, .user-pro div h3 {
