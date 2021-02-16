@@ -28,12 +28,12 @@ main {
 }
 
 .overlay {
-    background-color:#f0f2f7dd;
+    background-color:#f0f2f7cc;
     width:100%;
 }
 
 #page {
-    background-color:#f0f2f799;
+    background-color:#f0f2f7cc;
     width:100%;
     max-width:900px;
     margin:auto;
@@ -41,8 +41,8 @@ main {
     box-sizing: border-box;
 }
 
-section {
-    margin-bottom:6em;
+section ~ section {
+    margin-top:6em;
 }
 
 /* FONTS */
