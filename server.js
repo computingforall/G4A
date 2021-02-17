@@ -77,7 +77,7 @@ app.post('/register', (req, res) => {
 });
 
 app.post('/profile', function(req, res) {
-  if(req.session.user) {
+  if (req.session.user) {
     let userID = req.session.user;
     // TODO: Implementation
   } else {
