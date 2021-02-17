@@ -91,6 +91,7 @@
 .pointButtonG p {
     line-height:0;
     width:15px;
+    text-align: left;
 }
 
 .like.checked i, .dislike.checked i {
@@ -121,10 +122,16 @@
 }
 
 .post > div > p {
-    margin-left:27px;
-    padding:0.5em 2em;
+    margin:0 0 0 27px;
+    padding:0.5em 2em 1em 2.75em;
     border-left:2px solid #5c88bd;
     font-size:1.2em;
+}
+
+.reply-post > div > p {
+    margin:0 0 0 21px;
+    padding:0.5em 2em 1em 2.75em;
+    border-left:1px solid #5c88bd;
 }
 
 .reply-box {
@@ -136,8 +143,8 @@
     padding:1em 0 0;
 }
 
+
 .reply-box .user-pro {
-    margin-left:-21px;
 }
 
 .reply-box .user-pro img {
