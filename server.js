@@ -66,8 +66,9 @@ app.post('/register', (req, res) => {
     if (found.length === 0) {
       new_user.save(function (err) {
         if (err) return console.error(err);
-       console.log("DB saved");
-       res.end();
+        req.session.user = new_user.id;
+        console.log("New user registered");
+        res.end();
       });
     } else {
       res.send('Email already in use');
@@ -76,9 +77,9 @@ app.post('/register', (req, res) => {
 });
 
 app.post('/profile', function(req, res) {
-  if(req.session.user) {
+  if (req.session.user) {
     let userID = req.session.user;
-
+    // TODO: Implementation
   } else {
     res.sendStatus(404);
   }
