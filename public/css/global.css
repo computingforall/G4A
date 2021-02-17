@@ -20,7 +20,7 @@ html, body {
 
 
 main {
-    height: 88vh;
+    min-height: 88vh;
     width:100%;
     background-color:#f0f2f7;
     background-image: url(../images/bg-main.jpg);
