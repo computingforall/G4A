@@ -48,7 +48,7 @@ $(document).ready(
                 nav_items.clone().appendTo('nav').attr('href','/profile.html').html('Profile');
                 nav_items.clone().appendTo('nav').attr('href','').attr('id', 'logout').html('Logout');
             } else {
-                nav_items.clone().appendTo('nav').attr('href','/widgets/login.html').html('Login');
+                nav_items.clone().appendTo('nav').attr('href','/login.html').html('Login');
             }
         }
 
