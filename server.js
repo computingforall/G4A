@@ -50,7 +50,6 @@ app.post('/login', (req, res) => {
   })
 });
 
-
 app.post('/register', (req, res) => {
    let password_hash =  bcrypt.hashSync(req.body.password, saltNumber, function(err, hash) {
     return hash;

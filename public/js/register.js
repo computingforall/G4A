@@ -18,9 +18,9 @@ $(document).ready(
             <input type="submit" id="submit-registration">
         </form>
         `
-        $(registrationTemplate).prependTo('body');
+        $(registrationTemplate).appendTo('#register');
 
-        
+
         $('#register-form').on('submit', function(e) {
             e.preventDefault();
             const displayname = $('#displayname').val();
