@@ -15,7 +15,7 @@ html, body {
     color:#232429;
     background-color:#232429;
     font-size:14px;
-    font-family: "Montserrat", "PT Sans", Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
@@ -44,6 +44,23 @@ main {
 
 section ~ section {
     margin-top:6em;
+}
+
+button {
+    background-color:#315682;
+    border:1px solid #999;
+    border-radius:4px;
+    padding:0.5em 1em;
+    cursor:pointer;
+    color:#fff;
+}
+
+button:hover {
+    background-color:#1e2f63;
+}
+
+textarea, button {
+    font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* FONTS */
@@ -147,8 +164,8 @@ footer nav a:hover {color:#fff;}
 }
 
 .user-pro img {
-    width:60px;
-    height:60px;
+    width:50px;
+    height:50px;
     border-radius:100%;
     object-fit:cover;
     border:2px solid #ccc;

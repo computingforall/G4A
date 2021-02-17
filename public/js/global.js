@@ -78,7 +78,7 @@ $(document).ready(
 
                     <div class="user-pro"> 
                         <div><img src='${localStorage.getItem('image')}'></div>
-                        <div><h2>`+ session_data + ` </h2></div>
+                        <div><h2>` + session_data + ` </h2></div>
                     </div>
                     <div><p class="comment">` + text + `</p></div>
                     <div class="pointButton likeButton">
@@ -92,10 +92,10 @@ $(document).ready(
                         </div>
                     </div>
                     <div id=${commentId} class="reply-box"></div>
-                    <button class="reply-button">Reply</button>
+                    <div class="reply-button-container"><button class="reply-button">Reply</button></div>
                     <div class="reply-field">
+                        <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
                         <button class="reply-submit">Submit</button>
-                        <textarea class="reply-text"></textarea>
                     </div>
                 </div>
                 `
@@ -107,7 +107,7 @@ $(document).ready(
                 $('.reply-field').eq(commentId -1).hide();
                 $('.reply-button').click(
                     function () {
-                        $(this).siblings('.reply-field').show();
+                        $(this).parent().siblings('.reply-field').show();
                     }
                 );
                 
@@ -128,17 +128,23 @@ $(document).ready(
                       
                         var replyTemplate = 
                         `
-                        <div><p>` + reply + `</p></div>
-                        <div class="pointButton likeButton">
-                        <div class="pointButtonG like unliked checkLike">
-                            <i class="fas fa-thumbs-up"></i>
-                            <p class="likeCount">0</p>
+                        <div class="reply-post">
+                            <div class="user-pro"> 
+                                <div><img src='${localStorage.getItem('image')}'></div>
+                                <div><h2>` + session_data + ` </h2></div>
+                            </div>
+                            <div><p>` + reply + `</p></div>
+                            <div class="pointButton likeButton">
+                                <div class="pointButtonG like unliked checkLike">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    <p class="likeCount">0</p>
+                                </div>
+                                <div class="pointButtonG dislike undisliked checkDislike">
+                                    <i class="fas fa-thumbs-down"></i>
+                                    <p class="dislikeCount">0</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="pointButtonG dislike undisliked checkDislike">
-                            <i class="fas fa-thumbs-down"></i>
-                            <p class="dislikeCount">0</p>
-                        </div>
-                    </div>
                         `
 
                         $('#' + replyId).append(replyTemplate);
@@ -171,10 +177,11 @@ $(document).ready(
                 let shareTemplate = 
                 `
                 <div class="post">
-                   <div><h2>Player 1</h2></div>
-                </div>
+                    <div class="user-pro"> 
+                        <div><img src='${localStorage.getItem('image')}'></div>
+                        <div><h2>` + session_data + ` </h2></div>
+                    </div>
                    <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
-                   <div></div>
                    <div class="pointButton likeButton">
                         <div class="pointButtonG like unliked checkLike">
                             <i class="fas fa-thumbs-up"></i>
