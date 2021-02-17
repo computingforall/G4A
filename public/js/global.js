@@ -78,7 +78,7 @@ $(document).ready(
 
                     <div class="user-pro"> 
                         <div><img src='${localStorage.getItem('image')}'></div>
-                        <div><h2>`+ session_data + ` </h2></div>
+                        <div><h2>` + session_data + ` </h2></div>
                     </div>
                     <div><p class="comment">` + text + `</p></div>
                     <div class="pointButton likeButton">
@@ -131,7 +131,7 @@ $(document).ready(
                         <div class="reply-post">
                             <div class="user-pro"> 
                                 <div><img src='${localStorage.getItem('image')}'></div>
-                                <div><h2>`+ session_data + ` </h2></div>
+                                <div><h2>` + session_data + ` </h2></div>
                             </div>
                             <div><p>` + reply + `</p></div>
                             <div class="pointButton likeButton">
@@ -177,10 +177,11 @@ $(document).ready(
                 let shareTemplate = 
                 `
                 <div class="post">
-                   <div><h2>Player 1</h2></div>
-                </div>
+                    <div class="user-pro"> 
+                        <div><img src='${localStorage.getItem('image')}'></div>
+                        <div><h2>` + session_data + ` </h2></div>
+                    </div>
                    <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
-                   <div></div>
                    <div class="pointButton likeButton">
                         <div class="pointButtonG like unliked checkLike">
                             <i class="fas fa-thumbs-up"></i>
