@@ -32,6 +32,7 @@ $(document).ready(
             } else if (password_regex.exec(password) === null) {
                 alert('bad password');
             } else {
+                $('#login-form')[0].reset();
                 axios.post('/login', {
                     email,
                     password
@@ -40,7 +41,6 @@ $(document).ready(
                     window.location = '/';
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             }
         });
@@ -80,16 +80,16 @@ $(document).ready(
             } else if (displayname_regex.exec(displayname) === null) {
                 alert('bad display name');
             } else {
+                $('#register-form')[0].reset();
                 axios.post('/register', {
                     displayname,
                     email,
                     password
                 })
                 .then((response) => {
-                    console.log(response);
+                    window.location = '/';
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
             } 
         });

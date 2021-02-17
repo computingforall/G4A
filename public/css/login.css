@@ -1,10 +1,12 @@
 .twoby {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 .twoby h1 {
     margin-bottom: .5em;
+    margin-top: .5em;
 }
 
 label {
