@@ -15,8 +15,13 @@
     object-fit:cover;
 }
 .game-grid h4{
-    padding:1em;
+    padding: 1em;
 }
+.game-grid > div:hover{
+    background-color:#bbb8b8;
+}
+
+
 /*SLIDES*/
 .slider .slider-main{
     display:grid;
@@ -44,6 +49,10 @@
     transform:translateY(-50%);
     font-size:2em;
     padding:0.5em;
+}
+.slider .slider-main i:hover{
+     background-color:#bbb8b8;
+   
 }
 
 .slider .slider-preview {
@@ -78,7 +87,7 @@
 .slider .slider-pages > div{
     width:12px;
     height:12px;
-    background-color:#aaa;
+    background-color:rgb(105, 96, 96);
     border-radius:100%;
     display:inline-block;
     margin:0px 5px;
