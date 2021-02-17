@@ -3,34 +3,39 @@
 /* TABS */
 
 #tabs-content {
-    padding:0px 0;
+    padding:0;
 }
 
 #tabs {
-    padding-left:20px;
     border-bottom:1px solid #999;
 }
 
 .tab {
     display:inline-block;
     padding:1em 2em;
-    font-size:0.8em;
-    color:#fff;
-    background-color:#667;
+    font-size:0.9em;
+    font-weight:600;
+    color:#232429;
+    background-color:#f0f2f7;
     border:1px solid #999;
-    border-bottom:1px solid #000;
     cursor: pointer;
     margin-right:-6px;
-    margin-bottom:-2px;
+    margin-bottom:-1px;
+}
+
+.tab:hover, .tab.inactive:hover {
+    background-color:#315682;
+    color:#f0f2f7;
 }
 
 .tab.inactive {
-    background-color:#000;
-    border-bottom:1px solid #000;
+    background-color:#c7cbd6;
+    color:#666;
+    border-bottom:1px solid #999;
 }
 
 .tab-container {
-    padding:3em;
+    padding:3em 0;
     height:100%;
 }
 
@@ -38,30 +43,140 @@
 /*NewsFeed starts*/
 
 #newsfeed{
-    min-height:300px;
-    margin-bottom:2vh;
+
 }
 
+#newsfeed .text-area textarea, .reply-field textarea {
+    resize:none;
+    width:100%;
+    background-color:#f0f2f7;
+    border:1px solid #999;
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    padding:1em;
+    margin-bottom:5px;
+}
+
+#newsfeed .text-area textarea {
+    min-height:100px;
+}
+
+.reply-field textarea {
+    min-height:50px;
+}
+
+
+.pointButton {
+    position:relative;
+    text-align: right;
+    bottom:35px;
+    height:0;
+}
+
+.pointButtonG {
+    display: inline-block;
+    margin:0 0.5em;
+    color:#999;
+    font-weight: 700;
+}
+
+.like.checked {
+    color:#315682;
+}
+
+.dislike.checked {
+    color:#db1626;
+}
+
+.pointButtonG p {
+    line-height:0;
+    width:15px;
+}
+
+.like.checked i, .dislike.checked i {
+    animation: icon-pulse 0.5s;
+}
+
+@keyframes icon-pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.5);}
+    100% {transform: scale(1);}
+}
+
+.pointButtonG i {
+    cursor:pointer;
+}
+
+.pointButtonG > * {
+    display: inline-block;
+    margin-left:0.25em;
+}
 .post {
-    margin-bottom:0em;
+    border-bottom:1px solid #999;
+}
+.post {
+    padding-bottom:1em;
+    margin-bottom:3em;
+    border-bottom:1px solid #999;
 }
 
-.post p {
+.post > div > p {
     margin-left:27px;
     padding:0.5em 2em;
     border-left:2px solid #5c88bd;
     font-size:1.2em;
 }
 
+.reply-box {
+    margin-left:27px;
+}
+
+.reply-post, .reply-button-container {
+    border-top:1px dotted #5c88bd;
+    padding:1em 0 0;
+}
+
+.reply-box .user-pro {
+    margin-left:-21px;
+}
+
+.reply-box .user-pro img {
+    width:40px;
+    height:40px;
+}
+
+.reply-box .user-pro h2 {
+    font-size:1em;
+}
+
+.reply-box > div > p {
+    padding:0.5em 0em;
+}
+
+.reply-box > div + div {
+    
+}
+
+.comment, .reply-post p {
+    max-width:75%;
+}
+
+.reply-button {
+}
+
+.text-area, .reply-field {
+    text-align: right;
+}
+
+
 /*NewsFeed ends*/
 /*Leader board starts */
-#leaderboard{
-}
 
 .top-player-container {
     box-sizing: border-box;
     margin:0;
     padding:0;
+    background-color:#cdd0d8;
 }
 
 .top-player-bar {
@@ -69,9 +184,14 @@
     display:grid;
     grid-template-columns: auto auto;
     padding:10px;
+    background-color:#315682;
+    margin-bottom:1px;
+    min-width:40%;
 }
 
-.top-player-bar .high-score h2 {
+.top-player-bar h3 {color:#f0f2f7;}
+
+.top-player-bar .high-score h3 {
     position:relative;
     top:50%;
     transform: translateY(-50%);
@@ -79,26 +199,50 @@
 }
 
 .top-player-container:nth-child(1) .top-player-bar {
-    background-color:#12203b;
+    background-color:#5e8cc4;
 }
 
 .top-player-container:nth-child(2) .top-player-bar {
-    background-color:#315682;
+    background-color:#4c76aa;
 }
 
 .top-player-container:nth-child(3) .top-player-bar {
-    background-color:#0156be;
+    background-color:#3c6494;
 }
 
-.top-player-container:nth-child(4) .top-player-bar {
-    background-color:#5390D9;
-}
-
-.top-player-container:nth-child(5) .top-player-bar {
-    background-color:#97bff0;
-}
 
 /*Leader board ends */
+
+/* Game Details */
+
+#game-details {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    border:1px solid #999;
+}
+
+#game-details > div:last-child {
+    padding:1em 2em;
+    background-color:#f0f2f7;
+}
+
+#game-details > div:first-child {
+    background-color:#232429;
+}
+
+#game-details > div:first-child img {
+    width:100%;
+    height:300px;
+    object-fit: cover;
+}
+
+#game-about img {
+    width:100%;
+    height:250px;
+    object-fit: cover;
+}
+
+#game-about p {margin:2em 0;}
 
 /*Game Detail*/
 
@@ -141,3 +285,4 @@
     color:rgb(201, 212, 41);
 }
 
+/* END -- Game Details */
