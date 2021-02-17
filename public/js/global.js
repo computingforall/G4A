@@ -1,11 +1,28 @@
 $(document).ready(
     function() {
 
+        let session_data = undefined;
+        
+        async function loggedIn() {
+            try {
+                await axios.post('/')
+                .then((response) => {
+                    session_data = response.data;
+                    navBar();
+                })
+            } catch (error) {
+                
+            }
+        }
+        loggedIn();
+        
+        
+
         // Main Navigation Bar
         var nav_html =
         `
         <header>
-            <div><div class="nav-logo">Games For All</div></div>
+            <div><div class="nav-logo"><a href="/index.html">Games For All</a></div></div>
             <nav>
                 <a></a>
             </nav>
@@ -24,9 +41,27 @@ $(document).ready(
         $('body').append(footer_html);
 
         let nav_items = $('nav').find('a').first();
-        nav_items.clone().appendTo('nav').attr('href','#').html('Home');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Games');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Profile & Settings');
+        nav_items.clone().appendTo('nav').attr('href','/index.html').html('Home');
+        function navBar() {
+            if (session_data) {
+                nav_items.clone().appendTo('nav').attr('href','/friends.html').html('Friends');
+                nav_items.clone().appendTo('nav').attr('href','/profile.html').html('Profile');
+                nav_items.clone().appendTo('nav').attr('href','').attr('id', 'logout').html('Logout');
+            } else {
+                nav_items.clone().appendTo('nav').attr('href','/login.html').html('Login');
+            }
+        }
+
+        $(document).on('click', '#logout', function(e) {
+            axios.get('/logout', {})
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        });
+        
         $('nav').find('a').first().remove();
 
         var commentId = 0;
@@ -43,16 +78,25 @@ $(document).ready(
 
                     <div class="user-pro"> 
                         <div><img src='${localStorage.getItem('image')}'></div>
-                        <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
+                        <div><h2>` + session_data + ` </h2></div>
                     </div>
                     <div><p class="comment">` + text + `</p></div>
-                    <div id=${commentId} class="reply-box"></div>
-                    <button class="reply-button">Reply</button>
-                    <div class="reply-field">
-                        <button class="reply-submit">Submit</button>
-                        <textarea class="reply-text"></textarea>
+                    <div class="pointButton likeButton">
+                        <div class="pointButtonG like unliked checkLike">
+                            <i class="fas fa-thumbs-up"></i>
+                            <p class="likeCount">0</p>
+                        </div>
+                        <div class="pointButtonG dislike undisliked checkDislike">
+                            <i class="fas fa-thumbs-down"></i>
+                            <p class="dislikeCount">0</p>
+                        </div>
                     </div>
-                    <div class="likeButton"></div>
+                    <div id=${commentId} class="reply-box"></div>
+                    <div class="reply-button-container"><button class="reply-button">Reply</button></div>
+                    <div class="reply-field">
+                        <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
+                        <button class="reply-submit">Submit</button>
+                    </div>
                 </div>
                 `
                 $('.posts').append(commentTemplate);
@@ -61,9 +105,9 @@ $(document).ready(
 
                 //Reply Button
                 $('.reply-field').eq(commentId -1).hide();
-                $('.reply-button').eq(commentId -1).click(
+                $('.reply-button').click(
                     function () {
-                        $('.reply-field').eq(commentId -1).show();
+                        $(this).parent().siblings('.reply-field').show();
                     }
                 );
                 
@@ -84,13 +128,29 @@ $(document).ready(
                       
                         var replyTemplate = 
                         `
-                        <div>` + reply + `</div>
+                        <div class="reply-post">
+                            <div class="user-pro"> 
+                                <div><img src='${localStorage.getItem('image')}'></div>
+                                <div><h2>` + session_data + ` </h2></div>
+                            </div>
+                            <div><p>` + reply + `</p></div>
+                            <div class="pointButton likeButton">
+                                <div class="pointButtonG like unliked checkLike">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    <p class="likeCount">0</p>
+                                </div>
+                                <div class="pointButtonG dislike undisliked checkDislike">
+                                    <i class="fas fa-thumbs-down"></i>
+                                    <p class="dislikeCount">0</p>
+                                </div>
+                            </div>
+                        </div>
                         `
 
                         $('#' + replyId).append(replyTemplate);
 
                         $('.reply-text').val('');
-                        $('.reply-field').eq(commentId -1).hide();
+                        $(this).parent().hide();
 
                     }
 
@@ -115,13 +175,23 @@ $(document).ready(
             function(){
                 let score = Math.ceil(Math.random() * (10000 - 1000) + 1000);
                 let shareTemplate = 
-                ` 
+                `
                 <div class="post">
-                   <div><h2>Player 1</h2></div>
-               </div>
+                    <div class="user-pro"> 
+                        <div><img src='${localStorage.getItem('image')}'></div>
+                        <div><h2>` + session_data + ` </h2></div>
+                    </div>
                    <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
-                   <div></div>
-                   <div class="likeButton"></div>
+                   <div class="pointButton likeButton">
+                        <div class="pointButtonG like unliked checkLike">
+                            <i class="fas fa-thumbs-up"></i>
+                            <p class="likeCount">0</p>
+                        </div>
+                        <div class="pointButtonG dislike undisliked checkDislike">
+                            <i class="fas fa-thumbs-down"></i>
+                            <p class="dislikeCount">0</p>
+                        </div>
+                    </div>
                 </div>
                 `
                 $('.posts').append(shareTemplate);
@@ -129,6 +199,43 @@ $(document).ready(
             }
         );
 
+        //Game Preview Slider
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = $(".slider-preview");
+            var dots = $(".dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides.eq(i).hide();
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots.eq(i).removeClass('active');
+            }
+            slides.eq(slideIndex-1).fadeIn(1000);
+            dots.eq(slideIndex-1).addClass('active');
+          }
+
+        $('.slide-left').click(
+            function(){
+              plusSlides(-1);
+            }
+        
+        );
+        $('.slide-right').click(
+            function(){
+                plusSlides(1);
+            }
+        );
+
+        //Like and dislike buttons
         $(document).on('click', '.like', function() {
             let currentVal = $(this).children().last().html();
             let siblingVal = $(this).siblings().first().children().last().html();

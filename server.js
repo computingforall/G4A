@@ -1,34 +1,63 @@
+require('dotenv').config();
+
 const express = require("express");
 const path = require("path");
-const app = express();
-const port = 3000;
 const bodyParser = require("body-parser");
 const Users = require("./database/db.js");
-
+const axios = require("axios")
 const bcrypt = require("bcrypt");
-const salt = 15;
+const session = require('express-session');
+var uid = require('uid-safe')
+const app = express();
 
+const {PORT, SECRET} = process.env;
+
+const saltNumber = Number(process.env.SALT);
 app.use(express.static(path.join(__dirname, "./public")));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(session({
+  secret: SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {}
+}))
 
-app.get("/login", (req, res) => {
-  const email = req.query.email;
-  const pass = req.query.password;
+
+
+app.post('/', function(req, res) {
+  if(req.session.user) {
+    res.send(true);
+  } else {
+    res.send(false);
+  }
+});
+
+app.post('/login', (req, res) => {
+  const email = req.body.email;
+  const pass = req.body.password;
   
   Users.find({email: email}, (err, found) => {
-    if (found[0].password === pass) {
-      res.send('Success').status(200);
-    } else {
+    if (found.length === 1) {
+      if (bcrypt.compareSync(pass, found[0].password)) {
+        req.session.user = found[0].id;                   // We are only storing the objects id, all info still comes from database.
+        res.send('Success').status(200);
+      }
+    }
+     else {
       res.send('Failed Login').status(401);
     }
   })
 });
 
-
 app.post('/register', (req, res) => {
+   let password_hash =  bcrypt.hashSync(req.body.password, saltNumber, function(err, hash) {
+    return hash;
+  });
+
   const new_user = new Users({
     name: req.body.displayname,
-    password: req.body.password,
+    password: password_hash,
     email: req.body.email,
     comments: [],
   });
@@ -46,6 +75,21 @@ app.post('/register', (req, res) => {
   })
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.post('/profile', function(req, res) {
+  if(req.session.user) {
+    let userID = req.session.user;
+
+  } else {
+    res.sendStatus(404);
+  }
+});
+
+app.get('/logout', function(req, res) {
+  req.session.destroy(function() {
+    console.log('user logged out of account');
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Example app listening at http://localhost:${PORT}`);
 });
