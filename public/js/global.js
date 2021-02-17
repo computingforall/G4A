@@ -22,7 +22,7 @@ $(document).ready(
         var nav_html =
         `
         <header>
-            <div><div class="nav-logo"><a href="index.html">Games For All</a></div></div>
+            <div><div class="nav-logo"><a href="/index.html">Games For All</a></div></div>
             <nav>
                 <a></a>
             </nav>
