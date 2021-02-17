@@ -4,9 +4,11 @@
     grid-template-columns:1fr 1fr 1fr;
     grid-gap:20px;
 }
+
 .game-grid > div{
     background-color:#f0f2f7;
     border:1px solid #bec0c4;
+    position: relative;
 }
 
 .game-grid img{
@@ -21,6 +23,24 @@
     background-color:#bbb8b8;
 }
 
+.hit-area {
+    width:100%;
+    height:100%;
+    position:absolute;
+}
+
+.hit-area a{
+    width:100%;
+    height:100%;
+    display:block;
+    background-color: #f0f2f7;
+    opacity: 0;
+    transition:all 0.5s;
+
+}
+.hit-area a:hover{
+    opacity:0.8;
+}
 
 /*SLIDES*/
 .slider .slider-main{
