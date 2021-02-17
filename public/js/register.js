@@ -2,15 +2,15 @@ $(document).ready(
     function() {
         var registrationTemplate =
         `
-        <form name="form" id="form">
+        <form name="form" id="register-form">
             <label for="displayname">Display Name: </label><br>
             <input type="text" name="displayname" id="displayname" required><br>
 
             <label for="email">Email: </label><br>
-            <input type="text" name="email" id="email" required><br>
+            <input type="text" name="email" id="new-email" required><br>
 
             <label for="password">Password: </label><br>
-            <input type="password" name="password" id="password" required><br>
+            <input type="password" name="password" id="new-password" required><br>
 
             <label for="tos">Agree to Terms of Service: </label><br>
             <input type="checkbox" name="tos" id="tos" required>
@@ -21,11 +21,11 @@ $(document).ready(
         $(registrationTemplate).prependTo('body');
 
         
-        $('form').on('submit', function(e) {
+        $('#register-form').on('submit', function(e) {
             e.preventDefault();
             const displayname = $('#displayname').val();
-            const email = $('#email').val();
-            const password = $('#password').val();
+            const email = $('#new-email').val();
+            const password = $('#new-password').val();
 
             const displayname_regex = /^(?=.*[\w!@#$%^&*()_-]).{4,16}$/;
             const email_regex = /^(("[\w\d-.!%+ ]{1,64}")|^([\w\d-.!%+]{1,64}))(@[a-zA-Z0-9-.]+)(.[\w\d]+)?$/;

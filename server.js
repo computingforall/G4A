@@ -25,8 +25,12 @@ app.use(session({
 
 
 
-app.get('/', function(req, res) {
-  
+app.post('/', function(req, res) {
+  if(req.session.user) {
+    res.send(true);
+  } else {
+    res.send(false);
+  }
 });
 
 app.post('/login', (req, res) => {
@@ -34,10 +38,13 @@ app.post('/login', (req, res) => {
   const pass = req.body.password;
   
   Users.find({email: email}, (err, found) => {
-    if (bcrypt.compareSync(pass, found[0].password)) {
-      req.session.user = found;
-      res.send('Success').status(200);
-    } else {
+    if (found.length === 1) {
+      if (bcrypt.compareSync(pass, found[0].password)) {
+        req.session.user = found[0].id;                   // We are only storing the objects id, all info still comes from database.
+        res.send('Success').status(200);
+      }
+    }
+     else {
       res.send('Failed Login').status(401);
     }
   })
@@ -69,11 +76,20 @@ app.post('/register', (req, res) => {
   })
 });
 
+app.post('/profile', function(req, res) {
+  if(req.session.user) {
+    let userID = req.session.user;
+
+  } else {
+    res.sendStatus(404);
+  }
+});
+
 app.get('/logout', function(req, res) {
   req.session.destroy(function() {
     console.log('user logged out of account');
   });
-})
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
