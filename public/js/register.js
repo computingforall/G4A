@@ -20,7 +20,7 @@ $(document).ready(
         `
         $(registrationTemplate).prependTo('body');
 
-        
+
         $('#register-form').on('submit', function(e) {
             e.preventDefault();
             const displayname = $('#displayname').val();
