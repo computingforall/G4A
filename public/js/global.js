@@ -22,7 +22,7 @@ $(document).ready(
         var nav_html =
         `
         <header>
-            <div><div class="nav-logo"><a href="index.html">Games For All</a></div></div>
+            <div><div class="nav-logo"><a href="/index.html">Games For All</a></div></div>
             <nav>
                 <a></a>
             </nav>
@@ -41,14 +41,14 @@ $(document).ready(
         $('body').append(footer_html);
 
         let nav_items = $('nav').find('a').first();
-        nav_items.clone().appendTo('nav').attr('href','index.html').html('Home');
-        nav_items.clone().appendTo('nav').attr('href','friends.html').html('Friends');
+        nav_items.clone().appendTo('nav').attr('href','/index.html').html('Home');
         function navBar() {
             if (session_data) {
-                nav_items.clone().appendTo('nav').attr('href','widgets/profile.html').html('Profile');
+                nav_items.clone().appendTo('nav').attr('href','/friends.html').html('Friends');
+                nav_items.clone().appendTo('nav').attr('href','/profile.html').html('Profile');
                 nav_items.clone().appendTo('nav').attr('href','').attr('id', 'logout').html('Logout');
             } else {
-                nav_items.clone().appendTo('nav').attr('href','widgets/login.html').html('Login');
+                nav_items.clone().appendTo('nav').attr('href','/login.html').html('Login');
             }
         }
 

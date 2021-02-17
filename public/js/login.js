@@ -13,7 +13,7 @@ $(document).ready(
         </form>
         `;
 
-        $(loginTemplate).prependTo('body');
+        $(loginTemplate).appendTo('#login');
 
         $('#login-form').on('submit', function(e) {
             e.preventDefault();
