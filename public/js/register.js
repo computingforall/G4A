@@ -18,7 +18,7 @@ $(document).ready(
             <input type="submit" id="submit-registration">
         </form>
         `
-        $(registrationTemplate).prependTo('body');
+        $(registrationTemplate).prependTo('#page');
 
 
         $('#register-form').on('submit', function(e) {
