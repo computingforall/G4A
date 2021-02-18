@@ -42,9 +42,9 @@ $(document).ready(
 
         let nav_items = $('nav').find('a').first();
         nav_items.clone().appendTo('nav').attr('href','/index.html').html('Home');
+        nav_items.clone().appendTo('nav').attr('href','/friends.html').html('Friends');
         function navBar() {
             if (session_data) {
-                nav_items.clone().appendTo('nav').attr('href','/friends.html').html('Friends');
                 nav_items.clone().appendTo('nav').attr('href','/profile.html').html('Profile');
                 nav_items.clone().appendTo('nav').attr('href','').attr('id', 'logout').html('Logout');
             } else {

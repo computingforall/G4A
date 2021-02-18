@@ -91,6 +91,7 @@
 .pointButtonG p {
     line-height:0;
     width:15px;
+    text-align: left;
 }
 
 .like.checked i, .dislike.checked i {
@@ -121,10 +122,16 @@
 }
 
 .post > div > p {
-    margin-left:27px;
-    padding:0.5em 2em;
+    margin:0 0 0 27px;
+    padding:0.5em 2em 1em 2.75em;
     border-left:2px solid #5c88bd;
     font-size:1.2em;
+}
+
+.reply-post > div > p {
+    margin:0 0 0 21px;
+    padding:0.5em 2em 1em 2.75em;
+    border-left:1px solid #5c88bd;
 }
 
 .reply-box {
@@ -136,8 +143,8 @@
     padding:1em 0 0;
 }
 
+
 .reply-box .user-pro {
-    margin-left:-21px;
 }
 
 .reply-box .user-pro img {
@@ -243,5 +250,60 @@
 }
 
 #game-about p {margin:2em 0;}
+
+/*Game Detail*/
+
+#game-detail-block{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    border:1px solid #999;
+    background-color:#f0f2f7;
+}
+#game-detail-block div img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    
+}
+
+#game-detail-block >div:last-child{
+    padding:2em;
+
+}
+#game-detail-block >div:first-child{
+    background-color:#232429;
+}
+
+/*game preview more*/
+
+#game-preview-more {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap:20px;
+}
+
+#game-preview-more h4 {
+    margin-bottom:0.5em;
+}
+
+#game-preview-more div img{
+    width:100%;
+    height:150px;
+    object-fit: cover;
+}
+/*star rating*/
+
+
+.star-rating {
+    background-color:#232429;
+    padding:1em;
+}
+.star-rating .stars span{
+    color:#999;
+}
+.star-rating .stars span.checked{
+    color:gold;
+
+}
 
 /* END -- Game Details */
