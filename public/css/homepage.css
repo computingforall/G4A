@@ -70,10 +70,7 @@
     font-size:2em;
     padding:0.5em;
 }
-.slider .slider-main i:hover{
-     background-color:#bbb8b8;
-   
-}
+
 
 .slider .slider-preview {
     display:grid;
