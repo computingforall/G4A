@@ -93,7 +93,7 @@ $(document).ready(
                               <div class="reply-field">
                                   <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
                                   <button class="reply-submit">Submit</button>
-                                  <button class="cancel-submit">Cancel</button>
+                                  <button class="cancel-submit ghost">Cancel</button>
                               </div>
                               <div class="replied-comment"></div>
                           </div>
