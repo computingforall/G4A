@@ -64,8 +64,6 @@ $(document).ready(
         
         $('nav').find('a').first().remove();
 
-        var commentId = 0;
-
         //Comments Field 
         $('.comment-submit').click(
             function () {
@@ -104,7 +102,7 @@ $(document).ready(
                 </div>
                 `
                 $('.posts').append(commentTemplate);
-                $('#comment-text').val();
+                $('#comment-text').val('');
 
                 /*
                 Hide reply field when document is ready
@@ -169,6 +167,7 @@ $(document).ready(
                 // );
                 $('.reply-field').hide();
                 $('.reply-button').show();
+                $('.reply-text').val('');
 
         });
 
@@ -199,7 +198,7 @@ $(document).ready(
                 <div><h2>Player ` + num + `</h2></div>
             </div>
             <div>
-                <p>` + replyVal + `</p>
+                <p class="reply-post">` + replyVal + `</p>
                 <div class="pointButton likeButton">
                     <div class="pointButtonG like unliked checkLike">
                         <i class="fas fa-thumbs-up"></i>
