@@ -69,106 +69,156 @@ $(document).ready(
         //Comments Field 
         $('.comment-submit').click(
             function () {
-                commentId++
                 let text = $('#comment-text').val();
                 var commentTemplate =
                 `
-
                 <div class="post">
-
                     <div class="user-pro"> 
-                        <div><img src='${localStorage.getItem('image')}'></div>
-                        <div><h2>` + session_data + ` </h2></div>
+                        <div><img src='./images/avatars/default.jpg'></div>
+                        <div><h2>Player 1</h2></div>
                     </div>
-                    <div><p class="comment">` + text + `</p></div>
-                    <div class="pointButton likeButton">
-                        <div class="pointButtonG like unliked checkLike">
-                            <i class="fas fa-thumbs-up"></i>
-                            <p class="likeCount">0</p>
+                    <div>
+                        <p class="comment">` + text + `</p>
+                        <div class="pointButton likeButton">
+                            <div class="pointButtonG like unliked checkLike">
+                                <i class="fas fa-thumbs-up"></i>
+                                <p class="likeCount">0</p>
+                            </div>
+                            <div class="pointButtonG dislike undisliked checkDislike">
+                                <i class="fas fa-thumbs-down"></i>
+                                <p class="dislikeCount">0</p>
+                            </div>
                         </div>
-                        <div class="pointButtonG dislike undisliked checkDislike">
-                            <i class="fas fa-thumbs-down"></i>
-                            <p class="dislikeCount">0</p>
+                        <div>
+                        <div class="reply-button-container"><button class="reply-button">Reply</button></div>
+                        <div>
+                            <div class="reply-field">
+                                <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
+                                <button class="reply-submit">Submit</button>
+                                <button class="cancel-submit">Cancel</button>
+                            </div>
+                            <div class="replied-comment"></div>
                         </div>
-                    </div>
-                    <div id=${commentId} class="reply-box"></div>
-                    <div class="reply-button-container"><button class="reply-button">Reply</button></div>
-                    <div class="reply-field">
-                        <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
-                        <button class="reply-submit">Submit</button>
+                        </div>
                     </div>
                 </div>
                 `
                 $('.posts').append(commentTemplate);
-                $('#comment-text').val('');
+                $('#comment-text').val();
 
+                /*
+                Hide reply field when document is ready
+                Hide reply button on click
+                Show text field submit and cancel button on reply click
+                Create reply template used for replied comment
+                Append as child replied comment when submit is clicked
+                Show reply button again
+                Create a cancel button
+                */
 
-                //Reply Button
-                $('.reply-field').eq(commentId -1).hide();
-                $('.reply-button').click(
-                    function () {
-                        $(this).parent().siblings('.reply-field').show();
-                    }
-                );
+                // $('.reply-field').eq(commentId -1).hide();
+                // $('.reply-button').click(
+                //     function () {
+                //         $(this).parent().siblings('.reply-field').show();
+                //     }
+                // );
                 
-                var reply;
+                // var reply;
 
-                $('.reply-text').eq(commentId -1).keyup(
-                    function() {
-                        reply = $(this).val();
+                // $('.reply-text').eq(commentId -1).keyup(
+                //     function() {
+                //         reply = $(this).val();
                         
-                    }
-                );
+                //     }
+                // );
 
-                $('.reply-submit').eq(commentId -1).click(
-                    function () {
+                // $('.reply-submit').eq(commentId -1).click(
+                //     function () {
 
-                        let replyId = $(this).parent().parent().find('.reply-box').attr('id');
-                        console.log(replyId);
+                //         let replyId = $(this).parent().parent().find('.reply-box').attr('id');
+                //         console.log(replyId);
                       
-                        var replyTemplate = 
-                        `
-                        <div class="reply-post">
-                            <div class="user-pro"> 
-                                <div><img src='${localStorage.getItem('image')}'></div>
-                                <div><h2>` + session_data + ` </h2></div>
-                            </div>
-                            <div><p>` + reply + `</p></div>
-                            <div class="pointButton likeButton">
-                                <div class="pointButtonG like unliked checkLike">
-                                    <i class="fas fa-thumbs-up"></i>
-                                    <p class="likeCount">0</p>
-                                </div>
-                                <div class="pointButtonG dislike undisliked checkDislike">
-                                    <i class="fas fa-thumbs-down"></i>
-                                    <p class="dislikeCount">0</p>
-                                </div>
-                            </div>
-                        </div>
-                        `
+                //         var replyTemplate = 
+                //         `
+                //         <div class="reply-post">
+                            // <div class="user-pro"> 
+                            //     <div><img src='${localStorage.getItem('image')}'></div>
+                            //     <div><h2>` + session_data + ` </h2></div>
+                            // </div>
+                            // <div><p>` + reply + `</p></div>
+                            // <div class="pointButton likeButton">
+                            //     <div class="pointButtonG like unliked checkLike">
+                            //         <i class="fas fa-thumbs-up"></i>
+                            //         <p class="likeCount">0</p>
+                            //     </div>
+                            //     <div class="pointButtonG dislike undisliked checkDislike">
+                            //         <i class="fas fa-thumbs-down"></i>
+                            //         <p class="dislikeCount">0</p>
+                            //     </div>
+                            // </div>
+                //         </div>
+                //         `
 
-                        $('#' + replyId).append(replyTemplate);
+                //         $('#' + replyId).append(replyTemplate);
 
-                        $('.reply-text').val('');
-                        $(this).parent().hide();
+                //         $('.reply-text').val('');
+                //         $(this).parent().hide();
 
-                    }
+                //     }
 
-                );
+                // );
+                $('.reply-field').hide();
+                $('.reply-button').show();
 
         });
 
-        //Like Dislike Buttons
-        // Create value and add to element, function updates value, updates element
-        $('.like').click(
-            function() {
-            // console.log(typeof $('.like').html())
-                let likes = $('.like').text();
-                let likeCount = parseInt(likes);
-                likeCount++;
-                $('.like').html(likeCount);
-            }
-        )
+        //Reply Button
+                
+        $(document).on('click', '.reply-button', function(){
+            $(this).hide();
+            $(this).parent().siblings().last().children().show();
+        });
+
+        $(document).on('click', '.cancel-submit', function(){
+            $(this).parent().hide();
+            $('.reply-text').val('');
+            $(this).parent().parent().siblings('.reply-button-container').children().show();
+        });
+
+        
+        let num = 0;
+
+        $(document).on('click', '.reply-submit', function(){
+            let replyVal = $(this).siblings('.reply-text').val();
+            num++;
+            var replyTemplate =
+            `
+            <div>
+            <div class="user-pro">
+                <div><img src='./images/avatars/default.jpg'></div>
+                <div><h2>Player ` + num + `</h2></div>
+            </div>
+            <div>
+                <p>` + replyVal + `</p>
+                <div class="pointButton likeButton">
+                    <div class="pointButtonG like unliked checkLike">
+                        <i class="fas fa-thumbs-up"></i>
+                        <p class="likeCount">0</p>
+                    </div>
+                    <div class="pointButtonG dislike undisliked checkDislike">
+                        <i class="fas fa-thumbs-down"></i>
+                        <p class="dislikeCount">0</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            `
+            $(this).parent().siblings('.replied-comment').append(replyTemplate);
+            $(this).parent().hide();
+            $(this).parent().parent().siblings('.reply-button-container').children().show();
+            $('.reply-text').val('');
+            $('.reply-field').hide();
+        });
 
         //Share Button
         $('.share-button').click(
