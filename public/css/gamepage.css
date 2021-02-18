@@ -61,6 +61,8 @@
     min-height:100px;
 }
 
+.reply-field 
+
 .reply-field textarea {
     min-height:50px;
 }
@@ -134,7 +136,7 @@
     border-left:1px solid #5c88bd;
 }
 
-.reply-box {
+.reply-field {
     margin-left:27px;
 }
 
@@ -156,8 +158,6 @@
 }
 
 
-.reply-box .user-pro {
-}
 
 .replied-comment .user-pro img {
     width:40px;
@@ -168,13 +168,6 @@
     font-size:1em;
 }
 
-.reply-box > div > p {
-    padding:0.5em 0em;
-}
-
-.reply-box > div + div {
-    
-}
 
 .comment, .reply-post p {
     max-width:75%;
@@ -293,6 +286,11 @@
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap:20px;
+    position: relative;
+}
+
+#game-preview-more > div {
+    position: relative;
 }
 
 #game-preview-more h4 {
