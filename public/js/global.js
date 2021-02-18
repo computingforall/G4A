@@ -77,8 +77,8 @@ $(document).ready(
                 <div class="post">
 
                     <div class="user-pro"> 
-                        <div><img src='${localStorage.getItem('image')}'></div>
-                        <div><h2>` + session_data + ` </h2></div>
+                        <div><img src='./images/avatars/shiggy.jpg'></div>
+                        <div><h2>shiggy</h2></div>
                     </div>
                     <div><p class="comment">` + text + `</p></div>
                     <div class="pointButton likeButton">
@@ -96,6 +96,7 @@ $(document).ready(
                     <div class="reply-field">
                         <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
                         <button class="reply-submit">Submit</button>
+                        <button class="reply-cancel">Cancel</button>
                     </div>
                 </div>
                 `
@@ -108,6 +109,7 @@ $(document).ready(
                 $('.reply-button').click(
                     function () {
                         $(this).parent().siblings('.reply-field').show();
+                        $(this).hide();
                     }
                 );
                 
@@ -130,8 +132,8 @@ $(document).ready(
                         `
                         <div class="reply-post">
                             <div class="user-pro"> 
-                                <div><img src='${localStorage.getItem('image')}'></div>
-                                <div><h2>` + session_data + ` </h2></div>
+                                <div><img src='./images/avatars/default.jpg'></div>
+                                <div><h2>Player 2</h2></div>
                             </div>
                             <div><p>` + reply + `</p></div>
                             <div class="pointButton likeButton">
@@ -151,10 +153,17 @@ $(document).ready(
 
                         $('.reply-text').val('');
                         $(this).parent().hide();
+                        $(this).parent().siblings('.reply-button-container').find('.reply-button').show();
 
                     }
 
                 );
+
+                $('.reply-cancel').click(function () {
+                    $(this).parent().hide();
+                    $('.reply-text').val('');
+                    $(this).parent().siblings('.reply-button-container').find('.reply-button').show();
+                });
 
         });
 
@@ -178,10 +187,10 @@ $(document).ready(
                 `
                 <div class="post">
                     <div class="user-pro"> 
-                        <div><img src='${localStorage.getItem('image')}'></div>
-                        <div><h2>` + session_data + ` </h2></div>
+                        <div><img src='./images/avatars/shiggy.jpg'></div>
+                        <div><h2>shiggy</h2></div>
                     </div>
-                   <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
+                   <div><p class="comment">shiggy scored  `+score+`  points!</p></div>
                    <div class="pointButton likeButton">
                         <div class="pointButtonG like unliked checkLike">
                             <i class="fas fa-thumbs-up"></i>
