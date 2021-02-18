@@ -72,8 +72,8 @@ $(document).ready(
                 `
                 <div class="post">
                     <div class="user-pro"> 
-                        <div><img src='./images/avatars/default.jpg'></div>
-                        <div><h2>Player 1</h2></div>
+                        <div><img src='./images/avatars/shiggy.jpg'></div>
+                        <div><h2>shiggy</h2></div>
                     </div>
                     <div>
                         <p class="comment">` + text + `</p>
@@ -88,15 +88,15 @@ $(document).ready(
                             </div>
                         </div>
                         <div>
-                        <div class="reply-button-container"><button class="reply-button">Reply</button></div>
-                        <div>
-                            <div class="reply-field">
-                                <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
-                                <button class="reply-submit">Submit</button>
-                                <button class="cancel-submit">Cancel</button>
-                            </div>
-                            <div class="replied-comment"></div>
-                        </div>
+                          <div class="reply-button-container"><button class="reply-button">Reply</button></div>
+                          <div>
+                              <div class="reply-field">
+                                  <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
+                                  <button class="reply-submit">Submit</button>
+                                  <button class="cancel-submit">Cancel</button>
+                              </div>
+                              <div class="replied-comment"></div>
+                          </div>
                         </div>
                     </div>
                 </div>
@@ -113,6 +113,7 @@ $(document).ready(
                 Show reply button again
                 Create a cancel button
                 */
+
 
                 // $('.reply-field').eq(commentId -1).hide();
                 // $('.reply-button').click(
@@ -136,6 +137,7 @@ $(document).ready(
                 //         let replyId = $(this).parent().parent().find('.reply-box').attr('id');
                 //         console.log(replyId);
                       
+
                 //         var replyTemplate = 
                 //         `
                 //         <div class="reply-post">
@@ -159,8 +161,10 @@ $(document).ready(
 
                 //         $('#' + replyId).append(replyTemplate);
 
+
                 //         $('.reply-text').val('');
                 //         $(this).parent().hide();
+
 
                 //     }
 
@@ -168,6 +172,12 @@ $(document).ready(
                 $('.reply-field').hide();
                 $('.reply-button').show();
                 $('.reply-text').val('');
+
+                $('.reply-cancel').click(function () {
+                    $(this).parent().hide();
+                    $('.reply-text').val('');
+                    $(this).parent().siblings('.reply-button-container').find('.reply-button').show();
+                });
 
         });
 
@@ -227,10 +237,10 @@ $(document).ready(
                 `
                 <div class="post">
                     <div class="user-pro"> 
-                        <div><img src='${localStorage.getItem('image')}'></div>
-                        <div><h2>` + session_data + ` </h2></div>
+                        <div><img src='./images/avatars/shiggy.jpg'></div>
+                        <div><h2>shiggy</h2></div>
                     </div>
-                   <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
+                   <div><p class="comment">shiggy scored  `+score+`  points!</p></div>
                    <div class="pointButton likeButton">
                         <div class="pointButtonG like unliked checkLike">
                             <i class="fas fa-thumbs-up"></i>
