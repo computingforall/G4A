@@ -76,10 +76,25 @@ app.post('/register', (req, res) => {
   })
 });
 
-app.post('/profile', function(req, res) {
+app.get('/profile', function(req, res) {
+  let userID = req.session.user;
+  Users.find({_id: userID}, (err, found) => {
+    res.send([found[0].name, found[0].email]);
+    res.end();
+  })
+});
+
+app.post('/settings', function(req, res) {
   if (req.session.user) {
     let userID = req.session.user;
-    // TODO: Implementation
+    Users.find({_id: userID}, (err, found) => {
+      found[0].name = req.body.displayname
+      found[0].save(function (err) {
+          if (err) return console.error(err);
+          console.log("User info updated");
+          res.end();
+        });
+    })
   } else {
     res.sendStatus(404);
   }
