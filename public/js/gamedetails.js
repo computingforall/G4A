@@ -49,6 +49,70 @@ function gameDetails() {
         <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
         `
     }
+    if(gameId['gm'] === 'galaxy'){
+        gameTitle = 'Galaxy';
+        gameBackground = 'images/games/galaxy-bg.jpg';
+        gameCover = '<img src="images/games/galaxy-cover.jpg">';
+        gameThumb1 = '<img src="images/games/galaxy-thumb1.jpg">';
+        gameThumb2 = '<img src="images/games/galaxy-thumb2.jpg">';
+        gamePlayer = '<img src="images/games/galaxy-cover.jpg">';
+        gameDescription = 'Galaxy is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        gamePublishedBy = 'Galaxy Studios';
+        gameAbout = 
+        `
+        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
+        <div><img src="images/games/galaxy-thumb1.jpg"></div>
+        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
+        `
+    }
+    if(gameId['gm'] === 'dressup'){
+        gameTitle = 'Dressup';
+        gameBackground = 'images/games/dressup-bg.jpg';
+        gameCover = '<img src="images/games/dressup-cover.jpg">';
+        gameThumb1 = '<img src="images/games/dressup-thumb1.jpg">';
+        gameThumb2 = '<img src="images/games/dressup-thumb2.jpg">';
+        gamePlayer = '<img src="images/games/dressup-cover.jpg">';
+        gameDescription = 'Dressup is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        gamePublishedBy = 'Dressup Studios';
+        gameAbout = 
+        `
+        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
+        <div><img src="images/games/dressup-thumb1.jpg"></div>
+        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
+        `
+    }
+    if(gameId['gm'] === 'trivia'){
+        gameTitle = 'Trivia';
+        gameBackground = 'images/games/trivia-bg.jpg';
+        gameCover = '<img src="images/games/trivia-cover.jpg">';
+        gameThumb1 = '<img src="images/games/trivia-thumb1.jpg">';
+        gameThumb2 = '<img src="images/games/trivia-thumb2.jpg">';
+        gamePlayer = '<img src="images/games/trivia-cover.jpg">';
+        gameDescription = 'Trivia is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        gamePublishedBy = 'Trivia Studios';
+        gameAbout = 
+        `
+        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
+        <div><img src="images/games/trivia-thumb1.jpg"></div>
+        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
+        `
+    }
+    if(gameId['gm'] === 'mixmatch'){
+        gameTitle = 'MixMatch';
+        gameBackground = 'images/games/mixmatch-bg.jpg';
+        gameCover = '<img src="images/games/mixmatch-cover.jpg">';
+        gameThumb1 = '<img src="images/games/mixmatch-thumb1.jpg">';
+        gameThumb2 = '<img src="images/games/mixmatch-thumb2.jpg">';
+        gamePlayer = '<img src="images/games/mixmatch-cover.jpg">';
+        gameDescription = 'MixMatch is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        gamePublishedBy = 'MixMatch Studios';
+        gameAbout = 
+        `
+        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
+        <div><img src="images/games/mixmatch-thumb1.jpg"></div>
+        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
+        `
+    }
 
 }
 

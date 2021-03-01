@@ -17,7 +17,7 @@ $(document).ready(
             <button type="submit" class="apply-settings">Test</button> 
         </form>
         `;
-        $(profile_settings).prependTo('#page');
+        $(profile_settings).appendTo('#page');
 
         $('#apply-settings-form').on('submit', function(e) {
                 e.preventDefault();

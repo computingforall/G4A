@@ -4,9 +4,11 @@
     grid-template-columns:1fr 1fr 1fr;
     grid-gap:20px;
 }
-.game-grid > div{
+
+.game-grid > div {
     background-color:#f0f2f7;
     border:1px solid #bec0c4;
+    position: relative;
 }
 
 .game-grid img{
@@ -15,8 +17,10 @@
     object-fit:cover;
 }
 .game-grid h4{
-    padding:1em;
+    padding: 1em;
 }
+
+
 /*SLIDES*/
 .slider .slider-main{
     display:grid;
@@ -45,6 +49,7 @@
     font-size:2em;
     padding:0.5em;
 }
+
 
 .slider .slider-preview {
     display:grid;
