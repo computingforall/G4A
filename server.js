@@ -7,7 +7,8 @@ const Users = require("./database/db.js");
 const axios = require("axios")
 const bcrypt = require("bcrypt");
 const session = require('express-session');
-var uid = require('uid-safe')
+var uid = require('uid-safe');
+const { updateOne, db } = require('./database/db.js');
 const app = express();
 
 const {PORT, SECRET} = process.env;
@@ -87,14 +88,17 @@ app.get('/profile', function(req, res) {
 app.post('/settings', function(req, res) {
   if (req.session.user) {
     let userID = req.session.user;
-    Users.find({_id: userID}, (err, found) => {
-      found[0].name = req.body.displayname
-      found[0].save(function (err) {
-          if (err) return console.error(err);
-          console.log("User info updated");
-          res.end();
-        });
+
+    const query = { "_id": userID };
+    const update = { "$set": { "name": req.body.displayname } };
+    const options = { "upsert": false };
+
+    Users.updateOne(query, update, options)
+    .then(result => {
     })
+    .catch(err => console.error(`Failed to update user: ${err}`))
+
+    res.end();
   } else {
     res.sendStatus(404);
   }
