@@ -87,13 +87,6 @@ $(document).ready(
                                 <p class="dislikeCount">0</p>
                             </div>
                         </div>
-<<<<<<< HEAD
-                        <button class="reply-button">Reply</button>
-                        <div id=${commentId} class="reply-box"></div>
-                        <div class="reply-field">
-                            <button class="reply-submit">Submit</button>
-                            <textarea class="reply-text txtarea" placeholder="Leave a comment..."></textarea>
-=======
                         <div>
                           <div class="reply-button-container"><button class="reply-button">Reply</button></div>
                           <div>
@@ -104,7 +97,6 @@ $(document).ready(
                               </div>
                               <div class="replied-comment"></div>
                           </div>
->>>>>>> staging
                         </div>
                     </div>
                 </div>
@@ -148,33 +140,6 @@ $(document).ready(
                 //         console.log(replyId);
                       
 
-<<<<<<< HEAD
-                        $('#' + replyId).append(replyTemplate);
-                        
-                        $('.reply-text').val('');
-                        $(this).parent().hide();
-                        
-                    }
-                );
-
-        });
-
-        /*
-          
-        */
-
-        //Like Dislike Buttons
-        // Create value and add to element, function updates value, updates element
-        $('.like').click(
-            function() {
-            // console.log(typeof $('.like').html())
-                let likes = $('.like').text();
-                let likeCount = parseInt(likes);
-                likeCount++;
-                $('.like').html(likeCount);
-            }
-        )
-=======
                 //         var replyTemplate = 
                 //         `
                 //         <div class="reply-post">
@@ -265,7 +230,6 @@ $(document).ready(
             $('.reply-text').val('');
             $('.reply-field').hide();
         });
->>>>>>> staging
 
         //Share Button
         $('.share-button').click(
