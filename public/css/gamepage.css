@@ -181,6 +181,11 @@
     padding: 0px 0px 1em;
 }
 
+.error-button {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.65;
+}
 
 /*NewsFeed ends*/
 /*Leader board starts */

@@ -64,10 +64,26 @@ $(document).ready(
         
         $('nav').find('a').first().remove();
 
+        $(document).on('mouseover', '.comment-submit', function(){
+            let text = $('#comment-text').val();
+            console.log(text.length)
+            if (text.length == 0){
+                $('.comment-submit').addClass('error-button');
+            }
+        });
+
+        $(document).on('mouseout', '.comment-submit', function(){
+            let text = $('#comment-text').val();
+            console.log(text.length)
+            if (text.length !== 0){
+                $('.comment-submit').removeClass('error-button');
+            }
+        });
+
         //Comments Field 
-        $('.comment-submit').click(
-            function () {
+        $(document).on('click', '.comment-submit', function(){
                 let text = $('#comment-text').val();
+
                 var commentTemplate =
                 `
                 <div class="post">
@@ -178,6 +194,7 @@ $(document).ready(
                     $('.reply-text').val('');
                     $(this).parent().siblings('.reply-button-container').find('.reply-button').show();
                 });
+                 
 
         });
 
