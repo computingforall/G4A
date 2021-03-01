@@ -18,10 +18,14 @@
     color:#232429;
     background-color:#f0f2f7;
     border:1px solid #999;
-    border-bottom:1px solid #000;
     cursor: pointer;
     margin-right:-6px;
-    margin-bottom:-2px;
+    margin-bottom:-1px;
+}
+
+.tab:hover, .tab.inactive:hover {
+    background-color:#315682;
+    color:#f0f2f7;
 }
 
 .tab.inactive {
@@ -31,7 +35,7 @@
 }
 
 .tab-container {
-    padding:3em;
+    padding:3em 0;
     height:100%;
 }
 
@@ -39,29 +43,83 @@
 /*NewsFeed starts*/
 
 #newsfeed{
-    min-height:300px;
-    margin-bottom:2vh;
+
 }
 
+#newsfeed .text-area textarea, .reply-field textarea {
+    resize:none;
+    width:100%;
+    background-color:#f0f2f7;
+    border:1px solid #999;
+    font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    padding:1em;
+    margin-bottom:5px;
+}
+
+#newsfeed .text-area textarea {
+    min-height:100px;
+}
+
+.reply-field textarea {
+    min-height:50px;
+}
+
+
 .pointButton {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 20%;
+    position:relative;
+    text-align: right;
+    bottom:35px;
+    height:0;
 }
 
 .pointButtonG {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: inline-block;
+    margin:0 0.5em;
+    color:#999;
+    font-weight: 700;
 }
 
-.pointButtonG > p {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 1% 0% 0% 0%;
+.like.checked {
+    color:#315682;
+}
+
+.dislike.checked {
+    color:#db1626;
+}
+
+.pointButtonG p {
+    line-height:0;
+    width:15px;
+}
+
+.like.checked i, .dislike.checked i {
+    animation: icon-pulse 0.5s;
+}
+
+@keyframes icon-pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.5);}
+    100% {transform: scale(1);}
+}
+
+.pointButtonG i {
+    cursor:pointer;
 }
 
 .post a {
     margin-bottom: 3em;
+.pointButtonG > * {
+    display: inline-block;
+    margin-left:0.25em;
+}
+.post {
+    border-bottom:1px solid #999;
+}
+.post {
+    padding-bottom:1em;
+    margin-bottom:3em;
+    border-bottom:1px solid #999;
 }
 
 .post > div > p {
@@ -71,18 +129,47 @@
     font-size:1.2em;
 }
 
-button {
-    border:1px solid #999;
-    border-radius:7px;
+.reply-box {
+    margin-left:27px;
+}
+
+.reply-post, .reply-button-container {
+    border-top:1px dotted #5c88bd;
+    padding:1em 0 0;
+}
+
+.reply-box .user-pro {
+    margin-left:-21px;
+}
+
+.reply-box .user-pro img {
+    width:40px;
+    height:40px;
+}
+
+.reply-box .user-pro h2 {
+    font-size:1em;
 }
 
 .reply-box > div > p {
     padding:1em 0em 0em 5em;
     
+    /* padding:0.5em 0em; */
 }
 
 .reply-box > div + div {
-    padding: 0em 0em 0em 5em;
+    
+}
+
+.comment, .reply-post p {
+    max-width:75%;
+}
+
+.reply-button {
+}
+
+.text-area, .reply-field {
+    text-align: right;
 }
 
 .txtarea {
@@ -100,6 +187,7 @@ button {
     box-sizing: border-box;
     margin:0;
     padding:0;
+    background-color:#cdd0d8;
 }
 
 .top-player-bar {

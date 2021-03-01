@@ -15,25 +15,25 @@ html, body {
     color:#232429;
     background-color:#232429;
     font-size:14px;
-    font-family: "Montserrat", "PT Sans", Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
 main {
     width:100%;
-    background-color:#00000033;
+    background-color:#f0f2f7;
     background-image: url(../images/bg-main.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
 
 .overlay {
-    background-color:#f0f2f7dd;
+    background-color:#f0f2f7cc;
     width:100%;
 }
 
 #page {
-    background-color:#f0f2f799;
+    background-color:#f0f2f7cc;
     width:100%;
     max-width:900px;
     margin:auto;
@@ -41,8 +41,26 @@ main {
     box-sizing: border-box;
 }
 
-section {
-    margin-bottom:6em;
+
+section ~ section {
+    margin-top:6em;
+}
+
+button {
+    background-color:#315682;
+    border:1px solid #999;
+    border-radius:4px;
+    padding:0.5em 1em;
+    cursor:pointer;
+    color:#fff;
+}
+
+button:hover {
+    background-color:#1e2f63;
+}
+
+textarea, button {
+    font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* FONTS */
@@ -50,7 +68,7 @@ h1 {font-weight:300;font-size:2.4em;}
 h2 {}
 h3 {font-weight:600;}
 h4 {font-weight:800;font-size:1.2em;color:#315682;text-transform:uppercase;}
-h6 {font-weight:800;color:#666;text-transform:uppercase;}
+h6 {font-weight:800;color:#666;text-transform:uppercase;font-size:0.8em;}
 p{line-height: 1.8em;}
 section > h1 {margin-bottom:1em;}
 section > h2 {
@@ -146,8 +164,8 @@ footer nav a:hover {color:#fff;}
 }
 
 .user-pro img {
-    width:60px;
-    height:60px;
+    width:50px;
+    height:50px;
     border-radius:100%;
     object-fit:cover;
     border:2px solid #ccc;
