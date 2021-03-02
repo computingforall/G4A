@@ -194,12 +194,10 @@
     padding: 0px 0px 1em;
 }
 
-.txtarea {
-    margin:1em 0em 0em 0em;
-    resize: none;
-    overflow: hidden;
-    width: 100%;
-    max-width: 500px;
+.error-button {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.65;
 }
 
 /*NewsFeed ends*/
