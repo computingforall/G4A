@@ -1,0 +1,21 @@
+
+#profile {
+    display: flex;
+    margin-bottom: 5em;
+}
+
+#user-info {
+    display: flex;
+    flex-flow: column wrap;
+    margin-left: 1em;
+}
+
+button.change-settings {
+    float: right;
+}
+
+img {
+    width: 12em;
+    height: 12em;
+    border-radius: 50em;
+}

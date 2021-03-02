@@ -60,6 +60,7 @@ app.post('/register', (req, res) => {
     name: req.body.displayname,
     password: password_hash,
     email: req.body.email,
+    image: './images/avatars/default.jpg',
     comments: [],
   });
 
@@ -80,7 +81,7 @@ app.post('/register', (req, res) => {
 app.get('/profile', function(req, res) {
   let userID = req.session.user;
   Users.find({_id: userID}, (err, found) => {
-    res.send([found[0].name, found[0].email]);
+    res.send([found[0].name, found[0].email, found[0].image]);
     res.end();
   })
 });
@@ -90,7 +91,7 @@ app.post('/settings', function(req, res) {
     let userID = req.session.user;
 
     const query = { "_id": userID };
-    const update = { "$set": { "name": req.body.displayname } };
+    const update = { "$set": { "name": req.body.displayname, "email": req.body.email, "image": req.body.image } };
     const options = { "upsert": false };
 
     Users.updateOne(query, update, options)

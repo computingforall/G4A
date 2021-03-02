@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
   name: String,
   password: String,
   email: String,
+  image: String,
   comments: [String],
   date: { type: Date, default: Date.now },
 });
