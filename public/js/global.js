@@ -154,7 +154,6 @@ $(document).ready(
 
         $(document).on('click', '.reply-submit', function(){
             let replyVal = $(this).siblings('.reply-text').val();
-            let replyTo = $(this).siblings('.replied-comment').append(replyTemplate);
             num++;
             var replyTemplate =
             `
@@ -178,14 +177,18 @@ $(document).ready(
             </div>
             </div>
             `
+            let replyText = function() {
+                $(this).parent().siblings('.replied-comment').append(replyTemplate);
+                $('.reply-text').val('');
+                $('.reply-field').hide();
+                $(this).parent().hide();
+                $(this).parent().parent().siblings('.reply-button-container').children().show();
+            }.bind(this);
 
             if (replyVal.length !== 0) {
-                replyTo
-                $('.reply-text').val('');
+                replyText();
             }
-            $(this).parent().hide();
-            $(this).parent().parent().siblings('.reply-button-container').children().show();
-            $('.reply-field').hide();
+            
         });
 
         //Share Button
