@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
 });
 
+const reviewSchema = new mongoose.Schema({
+  reviews: [Object, Number, String]
+});
+
 const Users = mongoose.model("Users", userSchema);
 
 module.exports = Users;
