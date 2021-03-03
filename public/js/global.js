@@ -82,17 +82,19 @@ $(document).ready(
 
         //Comments Field 
         $(document).on('click', '.comment-submit', function(){
-                let text = $('#comment-text').val();
+                let commentText = $('#comment-text').val();
+                const userName = 'shiggy';
+                const postDate = new Date().valueOf();
 
                 var commentTemplate =
                 `
                 <div class="post">
-                    <div class="user-pro"> 
-                        <div><img src='./images/avatars/shiggy.jpg'></div>
-                        <div><h2>shiggy</h2></div>
+                    <div class="user-pro">
+                        <div><img src='./images/avatars/${userName}.jpg'></div>
+                        <div><h2>${userName}</h2></div>
                     </div>
                     <div>
-                        <p class="comment">` + text + `</p>
+                        <p id="${userName}${postDate}" class="comment"></p>
                         <div class="pointButton likeButton">
                             <div class="pointButtonG like unliked checkLike">
                                 <i class="fas fa-thumbs-up"></i>
@@ -118,8 +120,9 @@ $(document).ready(
                 </div>
                 `
 
-                if (text.length !== 0) {
+                if (commentText.length !== 0) {
                     $('.posts').append(commentTemplate);
+                    $(`#${userName}${postDate}`).text(commentText);
                     $('#comment-text').val('');
                 }
 
@@ -153,17 +156,21 @@ $(document).ready(
         let num = 0;
 
         $(document).on('click', '.reply-submit', function(){
-            let replyVal = $(this).siblings('.reply-text').val();
+            let replyVal = $(this).siblings('.reply-text').val(); 
             num++;
+            const playNum = `Player ${num}`;
+            const postDate = new Date().valueOf();
+
+
             var replyTemplate =
             `
             <div>
             <div class="user-pro">
                 <div><img src='./images/avatars/default.jpg'></div>
-                <div><h2>Player ` + num + `</h2></div>
+                <div><h2>${playNum}</h2></div>
             </div>
             <div>
-                <p class="reply-post">` + replyVal + `</p>
+                <p id="${playNum.split(' ').join('')}${postDate}" class="reply-post"></p>
                 <div class="pointButton likeButton">
                     <div class="pointButtonG like unliked checkLike">
                         <i class="fas fa-thumbs-up"></i>
@@ -179,6 +186,7 @@ $(document).ready(
             `
             let replyText = function() {
                 $(this).parent().siblings('.replied-comment').append(replyTemplate);
+                $(`#${playNum.split(' ').join('')}${postDate}`).text(replyVal);
                 $('.reply-text').val('');
                 $('.reply-field').hide();
                 $(this).parent().hide();
