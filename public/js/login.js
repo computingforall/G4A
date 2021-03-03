@@ -57,6 +57,12 @@ $(document).ready(
 
             <label for="password">Password: </label><br>
             <input type="password" name="password" id="new-password" required><br>
+            <ul>
+                <li>1 special character</li>
+                <li>1 uppercase chracter</li>
+                <li>1 number</li>
+                <li>Minimum of 6 characters</li>
+            </ul
             <div>
             <label for="tos">Agree to <a href="#">Terms of Service</a>:</label>
             <input type="checkbox" name="tos" id="tos" required><br>

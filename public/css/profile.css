@@ -1,6 +1,28 @@
 
+h1 {
+    font-size: 3em;
+    font-weight: 500;
+}
+
+p {
+    font-size: 1.5em;
+}
+
+img {
+    width: 12em;
+    height: 12em;
+    border-radius: 50em;
+}
+
+hr {
+    /*border: .05em dashed;*/
+    margin-bottom: 1em;
+}
+
 #profile {
     display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
     margin-bottom: 5em;
 }
 
@@ -10,12 +32,32 @@
     margin-left: 1em;
 }
 
-button.change-settings {
+button#change-settings, button#cancel {
     float: right;
+    margin-top: 1.2em;
 }
 
-img {
-    width: 12em;
-    height: 12em;
-    border-radius: 50em;
+button#cancel {
+    background-color: brown;
+}
+
+#bio {
+    margin-bottom: 3em;
+}
+
+#bio h2 {
+    margin-bottom: 0;
+}
+
+#bio p {
+    margin: 0;
+}
+
+textarea {
+    width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
+    resize: none;
 }
