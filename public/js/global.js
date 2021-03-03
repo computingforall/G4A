@@ -64,21 +64,21 @@ $(document).ready(
         
         $('nav').find('a').first().remove();
 
-        $(document).on('mouseover', '.comment-submit', function(){
-            let text = $('#comment-text').val();
-            console.log(text.length)
-            if (text.length == 0){
-                $('.comment-submit').addClass('error-button');
-            }
-        });
+        // $(document).on('mouseover', '.comment-submit', function(){
+        //     let text = $('#comment-text').val();
+        //     console.log(text.length)
+        //     if (text.length == 0){
+        //         $('.comment-submit').addClass('error-button');
+        //     }
+        // });
 
-        $(document).on('mouseout', '.comment-submit', function(){
-            let text = $('#comment-text').val();
-            console.log(text.length)
-            if (text.length !== 0){
-                $('.comment-submit').removeClass('error-button');
-            }
-        });
+        // $(document).on('click', '.comment-submit', function(){
+        //     let text = $('#comment-text').val();
+        //     console.log(text.length)
+        //     if (text.length !== 0){
+        //         $('.comment-submit').removeClass('error-button');
+        //     }
+        // });
 
         //Comments Field 
         $(document).on('click', '.comment-submit', function(){
@@ -117,74 +117,12 @@ $(document).ready(
                     </div>
                 </div>
                 `
-                $('.posts').append(commentTemplate);
-                $('#comment-text').val('');
 
-                /*
-                Hide reply field when document is ready
-                Hide reply button on click
-                Show text field submit and cancel button on reply click
-                Create reply template used for replied comment
-                Append as child replied comment when submit is clicked
-                Show reply button again
-                Create a cancel button
-                */
+                if (text.length !== 0) {
+                    $('.posts').append(commentTemplate);
+                    $('#comment-text').val('');
+                }
 
-
-                // $('.reply-field').eq(commentId -1).hide();
-                // $('.reply-button').click(
-                //     function () {
-                //         $(this).parent().siblings('.reply-field').show();
-                //     }
-                // );
-                
-                // var reply;
-
-                // $('.reply-text').eq(commentId -1).keyup(
-                //     function() {
-                //         reply = $(this).val();
-                        
-                //     }
-                // );
-
-                // $('.reply-submit').eq(commentId -1).click(
-                //     function () {
-
-                //         let replyId = $(this).parent().parent().find('.reply-box').attr('id');
-                //         console.log(replyId);
-                      
-
-                //         var replyTemplate = 
-                //         `
-                //         <div class="reply-post">
-                            // <div class="user-pro"> 
-                            //     <div><img src='${localStorage.getItem('image')}'></div>
-                            //     <div><h2>` + session_data + ` </h2></div>
-                            // </div>
-                            // <div><p>` + reply + `</p></div>
-                            // <div class="pointButton likeButton">
-                            //     <div class="pointButtonG like unliked checkLike">
-                            //         <i class="fas fa-thumbs-up"></i>
-                            //         <p class="likeCount">0</p>
-                            //     </div>
-                            //     <div class="pointButtonG dislike undisliked checkDislike">
-                            //         <i class="fas fa-thumbs-down"></i>
-                            //         <p class="dislikeCount">0</p>
-                            //     </div>
-                            // </div>
-                //         </div>
-                //         `
-
-                //         $('#' + replyId).append(replyTemplate);
-
-
-                //         $('.reply-text').val('');
-                //         $(this).parent().hide();
-
-
-                //     }
-
-                // );
                 $('.reply-field').hide();
                 $('.reply-button').show();
                 $('.reply-text').val('');
@@ -216,6 +154,7 @@ $(document).ready(
 
         $(document).on('click', '.reply-submit', function(){
             let replyVal = $(this).siblings('.reply-text').val();
+            let replyTo = $(this).siblings('.replied-comment').append(replyTemplate);
             num++;
             var replyTemplate =
             `
@@ -239,10 +178,13 @@ $(document).ready(
             </div>
             </div>
             `
-            $(this).parent().siblings('.replied-comment').append(replyTemplate);
+
+            if (replyVal.length !== 0) {
+                replyTo
+                $('.reply-text').val('');
+            }
             $(this).parent().hide();
             $(this).parent().parent().siblings('.reply-button-container').children().show();
-            $('.reply-text').val('');
             $('.reply-field').hide();
         });
 
