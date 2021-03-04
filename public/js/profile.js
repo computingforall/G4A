@@ -11,10 +11,10 @@ $(document).ready(
             let email = response.data[1];
             let image = response.data[2];
             let biography = response.data[3];
-            $('.displayname').html("<b>Display Name:</b> " + name);
-            $('.email').html("<b>Email:</b> " + email);
+            $('.displayname').html("" + name);
+            $('.email').html("" + email);
             $('.user-image').attr('src', `${image}`);
-            $('#bio-text').html(biography);
+            $('#bio-text').text(biography);
         })
         .catch((error) => {
             console.log(error);
@@ -45,7 +45,43 @@ $(document).ready(
             </form>
         </div>
         `;
-        $('#change-settings').on('click', function() {
+
+
+        $('#change-name').on('click', function(e) {
+            let change_button = $(this);
+            e.preventDefault();
+            $(this).clone().attr('id', 'apply-settings').html('Apply Settings').appendTo('#page');
+            $(this).clone().attr('id', 'cancel').html('Cancel').appendTo('#page');
+            $(this).hide();
+
+            const current_name = $('.displayname').html();
+            $('.displayname').html(`<textarea>${current_name}</textarea>`);
+
+
+        $('#cancel').on('click', function() {
+                change_button.show();
+                $('.displayname').html(`${current_name}`);
+                $(this).remove();
+                $('#apply-settings').remove();
+            });
+
+
+            $('#apply-settings').on('click', function() {
+                const displayname = $('.displayname').find('textarea').val();
+
+                axios.post('/settings', {
+                    displayname,
+                })
+                  .then((response) => {
+                      location.reload();
+                  })
+                  .catch((error) => {
+                      console.log(error);
+                  });
+            });
+        });
+
+        /*$('#change-settings').on('click', function() {
             let change_settings_btn = $(this);
             $(this).clone().attr('id', 'cancel').html('Cancel').prependTo('#page');
             $(this).detach();
@@ -87,7 +123,7 @@ $(document).ready(
                   });
             });
 
-        });
+        });*/
 
         
 
