@@ -48,6 +48,7 @@ function fillSlider(){
 
 
 
+
 // CREATE GAME DETAILS
 var gameTitle, gameCover, gameThumb1, gameThumb2, gamePlayer, gameDescription, gamePublishedBy, gameAbout;
 
@@ -150,6 +151,23 @@ function gameDetails(gameCode) {
         <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
         `
     }
+
+
+    if(gameId['gm'] === 'seaturtles'){
+        gameTitle = 'Sea Turtles';
+        gameBackground = 'images/games/seaturtles-bg.jpg';
+        gameCover = '<img src="images/games/seaturtles-cover.jpg">';
+        gameThumb1 = '<img src="images/games/seaturtles-thumb1.jpg">';
+        gameThumb2 = '<img src="images/games/seaturtles-thumb2.jpg">';
+        gamePlayer = '<img src="images/games/seaturtles-cover.jpg">';
+        gameDescription = 'Trash in the ocean is having lasting effects on sea turtles and is a real big world problem going on today. Pick up the trash before any sea turtles get to it.'
+        gamePublishedBy = 'Sea Turtles Studios';
+        gameAbout = 
+        `
+        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
+        <div><img src="images/games/seaturtles-thumb1.jpg"></div>
+        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
+        `
 
     if(gameId['gm'] === 'watergame'){
         gameTitle = 'Water Game';
