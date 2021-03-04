@@ -10,13 +10,50 @@ if(q != undefined){
         gameId[hash[0]] = hash[1];
     }
 }
+// GAME LIBRARY
+let gameLibrary = ["adventure", "vesta", "blueoceans"];
+console.log(gameLibrary[1])
+
+
+function fillSlider(){
+    let sliderContainer = $(".slider-container");
+    let gameCode ;
+    for(let g = 0; g < gameLibrary.length && g < 5; g++ ){
+        gameCode = gameLibrary[g];
+        gameDetails(gameCode);
+        let sliderTemplate = 
+        `
+        <div class="slider-preview">
+            <div><h4>`+gameTitle+`</h4></div>
+            <div class="slider-preview-cover"><img src="images/games/`+gameCode+`-cover.jpg"></div>
+            <div class="slider-preview-thumbs">
+                <div><img src="images/games/`+gameCode+`-thumb1.jpg"></div>
+                <div><img src="images/games/`+gameCode+`-thumb2.jpg"></div>
+            </div>
+        </div>
+        `
+        sliderContainer.append(sliderTemplate);
+        $(".slider-pages").append('<div class="dot"></div>');
+        $(".slider-preview").eq(g).click(function(){
+            location.href="gamepage.html?gm="+gameCode;
+        })
+
+    }
+}
+
+
+
+
+
+
+
 
 // CREATE GAME DETAILS
 var gameTitle, gameCover, gameThumb1, gameThumb2, gamePlayer, gameDescription, gamePublishedBy, gameAbout;
 
-function gameDetails() {
+function gameDetails(gameCode) {
 
-    if(gameId['gm'] === 'vesta'){
+    if(gameId['gm'] === 'vesta'|| gameCode === "vesta" ){
         gameTitle = 'Vesta';
         gameBackground = 'images/games/vesta-bg.jpg';
         gameCover = '<img src="images/games/vesta-cover.jpg">';
@@ -33,7 +70,7 @@ function gameDetails() {
         `
     }
     
-    if(gameId['gm'] === 'blueoceans'){
+    if(gameId['gm'] === 'blueoceans'|| gameCode === "blueoceans" ){
         gameTitle = 'Blue Oceans';
         gameBackground = 'images/games/blueoceans-bg.jpg';
         gameCover = '<img src="images/games/blueoceans-cover.jpg">';
@@ -113,7 +150,7 @@ function gameDetails() {
         <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
         `
     }
-    if(gameId['gm'] === 'adventure'){
+    if(gameId['gm'] === 'adventure' || gameCode === "adventure"){
         gameTitle = 'The Educated Gamer';
         gameBackground = 'images/games/adventure-bg.jpg';
         gameCover = '<img src="images/games/adventure-cover.jpg">';
