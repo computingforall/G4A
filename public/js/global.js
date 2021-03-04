@@ -64,22 +64,6 @@ $(document).ready(
         
         $('nav').find('a').first().remove();
 
-        // $(document).on('mouseover', '.comment-submit', function(){
-        //     let text = $('#comment-text').val();
-        //     console.log(text.length)
-        //     if (text.length == 0){
-        //         $('.comment-submit').addClass('error-button');
-        //     }
-        // });
-
-        // $(document).on('click', '.comment-submit', function(){
-        //     let text = $('#comment-text').val();
-        //     console.log(text.length)
-        //     if (text.length !== 0){
-        //         $('.comment-submit').removeClass('error-button');
-        //     }
-        // });
-
         //Comments Field 
         $(document).on('click', '.comment-submit', function(){
                 let commentText = $('#comment-text').val();
