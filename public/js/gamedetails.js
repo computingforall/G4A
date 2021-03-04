@@ -169,6 +169,7 @@ function gameDetails(gameCode) {
         <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
         `
 
+    }
     if(gameId['gm'] === 'watergame'){
         gameTitle = 'Water Game';
         gameBackground = 'images/games/watergame-bg.jpg';
@@ -328,8 +329,8 @@ function gameDetails(gameCode) {
         <div><img src="images/games/carbonmonsters-thumb1.jpg"></div>
         <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
         `
-    
-    if(gameId['gm'] === 'adventure'){
+    }
+    if(gameId['gm'] === 'adventure' || gameCode === 'adventure'){
         gameTitle = 'The Educated Gamer';
         gameBackground = 'images/games/adventure-bg.jpg';
         gameCover = '<img src="images/games/adventure-cover.jpg">';
@@ -346,7 +347,7 @@ function gameDetails(gameCode) {
         `
     }
 
-}
+};
 
 
 //RUN THIS FUNCTION ON GAME PAGE
@@ -358,5 +359,4 @@ function fillGameDetails(){
     $('.game-info').find('p').html(gameDescription);
     $('.game-info').find('h6').first().find('span').html(gamePublishedBy);
     $('#game-about').find('div').first().html(gameAbout);
-}
-
+};
