@@ -113,6 +113,22 @@ function gameDetails() {
         <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
         `
     }
+    if(gameId['gm'] === 'adventure'){
+        gameTitle = 'The Educated Gamer';
+        gameBackground = 'images/games/adventure-bg.jpg';
+        gameCover = '<img src="images/games/adventure-cover.jpg">';
+        gameThumb1 = '<img src="images/games/adventure-thumb1.jpg">';
+        gameThumb2 = '<img src="images/games/adventure-thumb2.jpg">';
+        gamePlayer = '<img src="images/games/adventure-cover.jpg">';
+        gameDescription = 'The Educated Gamer Game that sheds light about the microaggressions and institutionalized racism that our country has been influenced by over the years.'
+        gamePublishedBy = 'The Educated Gamer studios';
+        gameAbout = 
+        `
+        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
+        <div><img src="images/games/adventure-thumb1.jpg"></div>
+        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
+        `
+    }
 
 }
 
