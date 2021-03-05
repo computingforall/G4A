@@ -63,12 +63,12 @@ $(document).ready(
         });
         
         $('nav').find('a').first().remove();
+        const userName = 'shiggy';
+        const postDate = new Date().valueOf();
 
         //Comments Field 
         $(document).on('click', '.comment-submit', function(){
                 let commentText = $('#comment-text').val();
-                const userName = 'shiggy';
-                const postDate = new Date().valueOf();
 
                 var commentTemplate =
                 `
@@ -79,6 +79,11 @@ $(document).ready(
                     </div>
                     <div>
                         <p id="${userName}${postDate}" class="comment"></p>
+                        <div class="edit-area">
+                            <textarea class="edit-comment"></textarea>
+                            <button class="edit-confirm">Confirm</button>
+                            <button class="cancel-edit ghost">Cancel</button>
+                        </div>
                         <div class="pointButton likeButton">
                             <div class="pointButtonG like unliked checkLike">
                                 <i class="fas fa-thumbs-up"></i>
@@ -89,8 +94,11 @@ $(document).ready(
                                 <p class="dislikeCount">0</p>
                             </div>
                         </div>
-                        <div>
-                          <div class="reply-button-container"><button class="reply-button">Reply</button></div>
+                        <div class="user-buttons">
+                          <div class="comment-button-container">
+                            <button class="reply-button">Reply</button>
+                            <button class="edit-button">Edit</button>
+                          </div>
                           <div>
                               <div class="reply-field">
                                   <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
@@ -111,6 +119,7 @@ $(document).ready(
                 }
 
                 $('.reply-field').hide();
+                $('.edit-area').hide();
                 $('.reply-button').show();
                 $('.reply-text').val('');
 
@@ -123,8 +132,23 @@ $(document).ready(
 
         });
 
-        //Reply Button
-                
+        //Edit Buttons
+        $(document).on('click', '.edit-button', function(){
+            let toEdit = $(this).parent().parent().siblings().first().text();
+            $(this).parent().parent().siblings('.edit-area').children('.edit-comment').append(toEdit);
+            $(this).parent().parent().siblings('.edit-area').show();
+            $(this).parent().hide();
+        });
+
+        $(document).on('click', '.edit-confirm', function() {
+            let editVal = $(this).siblings('.edit-comment').val();
+            $(`#${userName}${postDate}`).text(editVal);
+            $(this).parent().hide();
+            $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
+        });
+
+        //Reply Buttons
+
         $(document).on('click', '.reply-button', function(){
             $(this).hide();
             $(this).parent().siblings().last().children().show();
@@ -133,7 +157,7 @@ $(document).ready(
         $(document).on('click', '.cancel-submit', function(){
             $(this).parent().hide();
             $('.reply-text').val('');
-            $(this).parent().parent().siblings('.reply-button-container').children().show();
+            $(this).parent().parent().siblings('.comment-button-container').show();
         });
 
         
@@ -174,7 +198,7 @@ $(document).ready(
                 $('.reply-text').val('');
                 $('.reply-field').hide();
                 $(this).parent().hide();
-                $(this).parent().parent().siblings('.reply-button-container').children().show();
+                // $(this).parent().parent().siblings().first().show();
             }.bind(this);
 
             if (replyVal.length !== 0) {
@@ -194,8 +218,9 @@ $(document).ready(
                         <div><img src='./images/avatars/shiggy.jpg'></div>
                         <div><h2>shiggy</h2></div>
                     </div>
-                   <div><p class="comment">shiggy scored  `+score+`  points!</p></div>
-                   <div class="pointButton likeButton">
+                    <div><p class="comment">shiggy scored  `+score+`  points!</p></div>
+                    <button class="edit-button">Edit</button>
+                    <div class="pointButton likeButton">
                         <div class="pointButtonG like unliked checkLike">
                             <i class="fas fa-thumbs-up"></i>
                             <p class="likeCount">0</p>
@@ -293,4 +318,3 @@ $(document).ready(
 });
 
 //Game Review Comment Field
-
