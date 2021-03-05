@@ -95,18 +95,18 @@ $(document).ready(
                             </div>
                         </div>
                         <div class="user-buttons">
-                          <div class="comment-button-container">
-                            <button class="reply-button">Reply</button>
-                            <button class="edit-button">Edit</button>
-                          </div>
-                          <div>
-                              <div class="reply-field">
-                                  <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
-                                  <button class="reply-submit">Submit</button>
-                                  <button class="cancel-submit ghost">Cancel</button>
-                              </div>
-                              <div class="replied-comment"></div>
-                          </div>
+                            <div class="comment-button-container">
+                                <button class="reply-button">Reply</button>
+                                <button class="edit-button">Edit</button>
+                            </div>
+                            <div>
+                                <div class="reply-field">
+                                    <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
+                                    <button class="reply-submit">Submit</button>
+                                    <button class="cancel-submit ghost">Cancel</button>
+                                </div>
+                                <div class="replied-comment"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,7 +135,9 @@ $(document).ready(
         //Edit Buttons
         $(document).on('click', '.edit-button', function(){
             let toEdit = $(this).parent().parent().siblings().first().text();
-            $(this).parent().parent().siblings('.edit-area').children('.edit-comment').append(toEdit);
+            console.log(toEdit);
+            $(this).parent().parent().siblings('.edit-area').children('.edit-comment').text(toEdit);
+            console.log(toEdit);
             $(this).parent().parent().siblings('.edit-area').show();
             $(this).parent().hide();
         });
@@ -147,10 +149,17 @@ $(document).ready(
             $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
         });
 
+        $(document).on('click', '.cancel-edit', function() {
+            $(this).parent().hide();
+            $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
+            console.log($('.edit-comment').text());
+            $('.edit-comment').val('');
+        });
+
         //Reply Buttons
 
         $(document).on('click', '.reply-button', function(){
-            $(this).hide();
+            $(this).parent().hide();
             $(this).parent().siblings().last().children().show();
         });
 
@@ -164,7 +173,7 @@ $(document).ready(
         let num = 0;
 
         $(document).on('click', '.reply-submit', function(){
-            let replyVal = $(this).siblings('.reply-text').val(); 
+            let replyVal = $(this).siblings('.reply-text').val();
             num++;
             const playNum = `Player ${num}`;
             const postDate = new Date().valueOf();
@@ -197,8 +206,8 @@ $(document).ready(
                 $(`#${playNum.split(' ').join('')}${postDate}`).text(replyVal);
                 $('.reply-text').val('');
                 $('.reply-field').hide();
+                $(this).parent().parent().siblings().first().show();
                 $(this).parent().hide();
-                // $(this).parent().parent().siblings().first().show();
             }.bind(this);
 
             if (replyVal.length !== 0) {
