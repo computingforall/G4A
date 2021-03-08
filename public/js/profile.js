@@ -18,84 +18,55 @@ $(document).ready(
         })
         .catch((error) => {
             console.log(error);
-        });
-
+        });  
+        
         let profile_settings = 
         `
-        <div id="settings">
-            <h1>Change Profile Settings</h1>
-            <form name="apply-settings-form" id="apply-settings-form">
-                <label for="displayname">Display Name: </label><br>
-                <input type="text" name="displayname" id="displayname" required><br>
+        <div class="modal">
+            <div id="settings">
+                <h1>Change Profile Settings</h1>
+                <form name="apply-settings-form" id="apply-settings-form">
+                    <label for="displayname">Display Name: </label><br>
+                    <input type="text" name="displayname" id="displayname" required><br>
 
-                <label for="email">Email: </label><br>
-                <input type="text" name="email" id="email" required><br>
+                    <label for="email">Email: </label><br>
+                    <input type="text" name="email" id="email" required><br>
 
-                <label for="password">Password: </label><br>
-                <input type="text" name="password" id="password" required><br>
+                    <label for="password">Password: </label><br>
+                    <input type="text" name="password" id="password" required><br>
 
-                <label for="image">Image: </label><br>
-                <input type="text" name="image" id="image"><br>
+                    <label for="image">Image: </label><br>
+                    <input type="text" name="image" id="image"><br>
 
+                    
+                    <label for="biography">Biography: </label><br>
+                    <textarea id="bio" rows="5" cols="100"></textarea><br>
 
-                <label for="password">Verify Password: </label><br>
-                <input type="text" name="verify-password" id="verify-password" required><br><br>
+                    <label for="password">Verify Password: </label><br>
+                    <input type="text" name="verify-password" id="verify-password" required><br><br>
 
-                <button type="submit" class="apply-settings">Apply Changes</button> 
-            </form>
+                    <button type="submit" class="apply-settings">Apply Changes</button> 
+                </form>
+            </div>
         </div>
         `;
+        
 
-
-        $('#change-name').on('click', function(e) {
-            let change_button = $(this);
-            e.preventDefault();
-            $(this).clone().attr('id', 'apply-settings').html('Apply Settings').appendTo('#page');
-            $(this).clone().attr('id', 'cancel').html('Cancel').appendTo('#page');
-            $(this).hide();
-
-            const current_name = $('.displayname').html();
-            $('.displayname').html(`<textarea>${current_name}</textarea>`);
-
-
-        $('#cancel').on('click', function() {
-                change_button.show();
-                $('.displayname').html(`${current_name}`);
-                $(this).remove();
-                $('#apply-settings').remove();
-            });
-
-
-            $('#apply-settings').on('click', function() {
-                const displayname = $('.displayname').find('textarea').val();
-
-                axios.post('/settings', {
-                    displayname,
-                })
-                  .then((response) => {
-                      location.reload();
-                  })
-                  .catch((error) => {
-                      console.log(error);
-                  });
-            });
-        });
-
-        /*$('#change-settings').on('click', function() {
+        
+        $('#change-settings').on('click', function() {
             let change_settings_btn = $(this);
-            $(this).clone().attr('id', 'cancel').html('Cancel').prependTo('#page');
             $(this).detach();
             $(profile_settings).appendTo('#page');
+            $(this).clone().attr('id', 'cancel').html('Cancel').appendTo('#apply-settings-form');
 
 
             let current_bio = $('#bio-text').html();
-            $('#bio-text').html(`<textarea rows="5" cols="100">${current_bio}</textarea>`);
+            $('#bio').val(current_bio);
 
             $('#cancel').on('click', function() {
                 change_settings_btn.prependTo('#page');
-                $('#bio-text').html(`${current_bio}`);
                 $(this).remove();
-                $('#settings').remove();
+                $('.modal').remove();
             });
 
             $('#apply-settings-form').on('submit', function(e) {
@@ -104,8 +75,7 @@ $(document).ready(
                 const password = $('#password').val();
                 const email = $('#email').val();
                 const image = $('#image').val();
-
-                let biography = $('#bio-text').find('textarea').val();
+                const biography = $('#bio').val();
 
 
                 axios.post('/settings', {
@@ -123,7 +93,7 @@ $(document).ready(
                   });
             });
 
-        });*/
+        });
 
         
 
