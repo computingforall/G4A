@@ -72,11 +72,17 @@
                                     <form action="" method="get" class="form-example">
                                         <div class="form-example">
                                           <label for="rating">Rate the game: </label>
-                                          <input type="text" name="rating" id="rating" required>
+                                          <div class="star-background-1 star-rate-group">
+                                            <span value="1" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="2" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="3" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="4" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="5" class="fas fa-star star-grade star-padd"></span>
+                                          </div>
                                         </div>
                                         <div class="form-example">
                                           <label for="review">Write a review: </label>
-                                          <input type="text" name="review" id="review" required>
+                                          <textarea type="text" name="review" id="review" placeholder="Leave a review..." required></textarea>
                                         </div>
                                         <div class="form-example">
                                           <input type="submit" value="Submit">

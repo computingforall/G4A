@@ -290,6 +290,16 @@ $(document).ready(
               $(this).children().last().html(currentVal);        
             }
           });
+        
+          $('.star-grade').addClass('star-rating-1');
+
+          $(document).on('click', '.star-grade', function(){
+            $('.star-rate-group').children().removeClass('star-rating-checked-1');
+            for (let i = 0; i < $(this).attr('value'); i++) {
+                $('.star-rate-group').children().eq(i).addClass('star-rating-checked-1');
+            };
+          });
 });
 
-//Game Review Comment Field
+
+
