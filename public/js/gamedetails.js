@@ -1,4 +1,6 @@
-
+$(document).ready(function(){
+    fillGameGrid()       
+});
 // GET URL QUERY
 let gameId = [], hash;
 let q = document.URL.split('?')[1];
@@ -11,8 +13,30 @@ if(q != undefined){
     }
 }
 // GAME LIBRARY
-let gameLibrary = ["adventure", "seaturtles"];
+let gameLibrary = ["adventure", "seaturtles", "watergame", "trees", "treestory", "monsanto", "thwi", "trashdash", "tjhm", "boxexplorer", "divein", "carbonmonsters"];
 
+
+function fillGameGrid() {
+    let gameGridContainer = $(".game-grid");
+    let gameCode;
+    for(let g = 0; g < gameLibrary.length; g += 1) {
+      gameCode = gameLibrary[g];
+      gameDetails(gameCode);
+      let gameGridTemplate = 
+      `
+      <div>
+        <div class="hit-area">
+            <a href="./gamepage.html?gm=`+gameCode+`"><i class="far fa-arrow-alt-circle-right"></i></a>
+        </div>
+        <div> 
+            <img src="images/games/`+gameCode+`-cover.jpg">
+        </div>
+        <h4>`+gameTitle+`</h4>
+    </div>
+      `
+      gameGridContainer.append(gameGridTemplate);
+    }
+}
 
 
 // CREATE GAME DETAILS
