@@ -92,12 +92,12 @@ button#cancel {
 }
 
 #apply-settings-form {
-    margin: 5% 25%;
+    margin: 5% 15%;
 }
 
 textarea {
-    width: 200px;
-	height: 20px;
+    width: 100%;
+	height: 100%;
 	border: 3px solid #cccccc;
 	padding: 5px;
 	font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;

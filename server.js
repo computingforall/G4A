@@ -9,6 +9,7 @@ const bcrypt = require("bcrypt");
 const session = require('express-session');
 var uid = require('uid-safe');
 const { updateOne, db } = require('./database/db.js');
+const { nextTick } = require('process');
 const app = express();
 
 const {PORT, SECRET} = process.env;
@@ -80,27 +81,39 @@ app.post('/register', (req, res) => {
 });
 
 app.get('/profile', function(req, res) {
-  let userID = req.session.user;
+  const userID = req.session.user;
   Users.find({_id: userID}, (err, found) => {
-    res.send([found[0].name, found[0].email, found[0].image, found[0].biography]);
-    res.end();
-  })
+    try {
+      res.send([found[0].name, found[0].email, found[0].image, found[0].biography]);
+      res.end();
+    } catch (err) {
+      res.sendStatus(401);
+    }
+  });
 });
 
 app.post('/settings', function(req, res) {
   if (req.session.user) {
-    let userID = req.session.user;
+    const userID = req.session.user;
+    const verify_password = req.body.verify_password;
 
-    const query = { "_id": userID };
-    const update = { "$set": { "name": req.body.displayname, "email": req.body.email, "image": req.body.image, "biography": req.body.biography } };
-    const options = { "upsert": false };
+    Users.find({_id: userID}, (err, found) => {
+      console.log(found[0]);
+      console.log(verify_password);
+        if (bcrypt.compareSync(verify_password, found[0].password)) {
+          const query = { "_id": userID };
+          const update = { "$set": { "name": req.body.displayname, "email": req.body.email, "image": req.body.image, "biography": req.body.biography } };
+          const options = { "upsert": false };
 
-    Users.updateOne(query, update, options)
-    .then(result => {
-    })
-    .catch(err => console.error(`Failed to update user: ${err}`))
-
-    res.end();
+          Users.updateOne(query, update, options)
+          .then(result => {
+          })
+          .catch(err => console.error(`Failed to update user: ${err}`));
+          res.end();
+      } else {
+        res.sendStatus(404);
+      }
+    });
   } else {
     res.sendStatus(404);
   }

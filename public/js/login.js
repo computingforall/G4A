@@ -14,7 +14,7 @@ $(document).ready(
             <input type="text" name="email" id="email" required><br>
 
             <label for="password">Password: </label><br>
-            <input type="password" name="password" id="password" required><br>
+            <input type="password" name="password" id="password" autocomplete="current-password" required><br>
 
             <input type="submit" value="Login" id="submit-login">
         </form>
@@ -53,7 +53,7 @@ $(document).ready(
             <input type="text" name="displayname" id="displayname" required><br>
 
             <label for="email">Email: </label><br>
-            <input type="text" name="email" id="new-email" required><br>
+            <input type="email" name="email" id="new-email" required><br>
 
             <label for="password">Password: </label><br>
             <input type="password" name="password" id="new-password" required><br>

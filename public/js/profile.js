@@ -11,13 +11,14 @@ $(document).ready(
             let email = response.data[1];
             let image = response.data[2];
             let biography = response.data[3];
-            $('.displayname').html("" + name);
-            $('.email').html("" + email);
+            $('.displayname').html(name);
+            $('.email').html(email);
             $('.user-image').attr('src', `${image}`);
             $('#bio-text').text(biography);
         })
         .catch((error) => {
-            console.log(error);
+            alert('Not logged in.');
+            location.href="/";
         });  
         
         let profile_settings = 
@@ -30,10 +31,10 @@ $(document).ready(
                     <input type="text" name="displayname" id="displayname" required><br>
 
                     <label for="email">Email: </label><br>
-                    <input type="text" name="email" id="email" required><br>
+                    <input type="email" name="email" id="email" required><br>
 
                     <label for="password">Password: </label><br>
-                    <input type="text" name="password" id="password" required><br>
+                    <input type="password" name="password" id="password" required><br>
 
                     <label for="image">Image: </label><br>
                     <input type="text" name="image" id="image"><br>
@@ -42,8 +43,8 @@ $(document).ready(
                     <label for="biography">Biography: </label><br>
                     <textarea id="bio" rows="5" cols="100"></textarea><br>
 
-                    <label for="password">Verify Password: </label><br>
-                    <input type="text" name="verify-password" id="verify-password" required><br><br>
+                    <label for="verify-password">Verify Password: </label><br>
+                    <input type="password" name="verify-password" id="verify-password" required><br><br>
 
                     <button type="submit" class="apply-settings">Apply Changes</button> 
                 </form>
@@ -60,8 +61,11 @@ $(document).ready(
             $(this).clone().attr('id', 'cancel').html('Cancel').appendTo('#apply-settings-form');
 
 
-            let current_bio = $('#bio-text').html();
-            $('#bio').val(current_bio);
+            $('#displayname').val($('.displayname').html());
+            $('#email').val($('.email').html());
+            $('#bio').val($('#bio-text').html());
+            $('#image').val($('.user-image').attr('src'))
+
 
             $('#cancel').on('click', function() {
                 change_settings_btn.prependTo('#page');
@@ -76,14 +80,15 @@ $(document).ready(
                 const email = $('#email').val();
                 const image = $('#image').val();
                 const biography = $('#bio').val();
-
+                const verify_password = $('#verify-password').val();
 
                 axios.post('/settings', {
                     displayname,
                     email,
                     password,
                     image,
-                    biography
+                    biography,
+                    verify_password
                 })
                   .then((response) => {
                       location.reload();
