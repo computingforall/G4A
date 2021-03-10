@@ -202,6 +202,61 @@
 
 /*NewsFeed ends*/
 /*Leader board starts */
+<<<<<<< HEAD
+#leaderboard{
+}
+
+.top-player-container {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+.top-player-bar {
+    box-sizing: border-box;
+    display:grid;
+    grid-template-columns: auto auto;
+    padding:10px;
+    background-color:#315682;
+    margin-bottom:1px;
+    min-width:40%;
+}
+
+.top-player-bar h3 {color:#f0f2f7;}
+
+.top-player-bar .high-score h3 {
+    position:relative;
+    top:50%;
+    transform: translateY(-50%);
+    text-align: right;
+}
+
+.top-player-container:nth-child(1) .top-player-bar {
+    background-color:#5e8cc4;
+}
+
+.top-player-container:nth-child(2) .top-player-bar {
+    background-color:#4c76aa;
+}
+
+.top-player-container:nth-child(3) .top-player-bar {
+    background-color:#3c6494;
+}
+
+
+/*Leader board ends */
+
+/* Game Details */
+#game-details img {
+    width:100%;
+    height:250px;
+    object-fit: cover;
+}
+
+#game-details p {margin:2em 0;}
+
+/* END -- Game Details */
+=======
 
 .top-player-container {
   box-sizing: border-box;
@@ -352,3 +407,4 @@
 .star-rating-checked-1 {
     color:#ffd700;
 }
+>>>>>>> staging
