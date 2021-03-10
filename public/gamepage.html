@@ -6,22 +6,21 @@
         
         <!-- SCRIPTS -->
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
         <script src="js/global.js"></script>
         <script src="js/tabnavbars.js"></script>
-
-        <script></script>
+        <script src="js/topplayers.js"></script>
+        <script src="js/gamedetails.js"></script>
+        <script>
+        $(document).ready(function(){
+            fillGameDetails();
+        });
+        </script>
         
         <!-- STYLES -->
         <link rel="stylesheet" href="css/global.css">
-
-        <style></style>
-
         <link rel="stylesheet" href="css/gamepage.css">
-        
-        <style>
-            
-        </style>
+
     </head>
         
     <body>
@@ -30,18 +29,33 @@
 
             <div class="overlay">
                 <div id="page">
+
+                    <section>
+                        <h1 class="game-title">GAME NOT FOUND</h1>
+                        <div id="game-details">
+                            <div class="game-cover"></div>
+                            <div class="game-info">
+                                <p></p>
+                                <h6>Published By: <span></span></h6>
+                            </div>
+                        </div>
+                    </section>
+
                     <section id="tabs-content">
                         <ul id="tabs">
                             <li class="tab" id="tab1"><a>Newsfeed</a></li>
                             <li class="tab" id="tab2"><a>Top Players</a></li>
+                            <li class="tab" id="tab3"><a>Reviews</a></li> 
                         </ul>
                         
                         <div id="tabs-containers">
                             <div class="tab-container" id="tab1container">
                                 <div id="newsfeed">
                                     <div class="posts"></div>
+
+
                                     <div class="text-area">
-                                        <textarea id="comment-text"></textarea>
+                                        <textarea id="comment-text" placeholder="Leave a comment..."></textarea>
                                         <button class="comment-submit">Submit</button>
                                         <button class="share-button">Share</button>
                                     </div>
@@ -49,72 +63,116 @@
                             </div> 
                             <div class="tab-container top-players-container" id="tab2container">
                                 <div id="leaderboard">
-                                  
-                                    <div class="top-player-container">
-                                        <div class="top-player-bar">
-                                            <div class="user-pro"> 
-                                                <div><img src="./widgets/img/shiggy.jpg"></div>
-                                                <div><h3>Player 1</h3></div>
-                                            </div>
-                                            <div class="high-score"><h3>6055</h3></div>
-                                        </div>
+                                
+
+                                </div>
+                            </div>
+                            <div class="tab-container" id="tab3container">
+                                <div class="review-border">
+                                    <div class="posted-reviews">
+
                                     </div>
-                                    <div class="top-player-container">
-                                        <div class="top-player-bar">
-                                            <div class="user-pro"> 
-                                                <div><img src="./widgets/img/shiggy.jpg"></div>
-                                                <div><h3>Player 2</h3></div>
-                                            </div>
-                                            <div class="high-score"><h3>6055</h3></div>
+                                </div>
+                                <div id="reviews">
+                                    <form action="" method="get" class="review-form">
+                                        <div>
+                                          <label for="rating">Rate the game: </label>
+                                          <div class="star-background-1 star-rate-group">
+                                            <span value="1" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="2" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="3" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="4" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="5" class="fas fa-star star-grade star-padd"></span>
+                                          </div>    
                                         </div>
-                                    </div>
-                                    <div class="top-player-container">
-                                        <div class="top-player-bar">
-                                            <div class="user-pro"> 
-                                                <div><img src="./widgets/img/shiggy.jpg"></div>
-                                                <div><h3>Player 3</h3></div>
-                                            </div>
-                                            <div class="high-score"><h3>6055</h3></div>
+                                        <div>
+                                            <label for="review">Write a review: </label>
+                                          <textarea type="text" name="review" id="review" placeholder="Leave a review..." required></textarea>
                                         </div>
-                                    </div>
-                                    <div class="top-player-container">
-                                        <div class="top-player-bar">
-                                            <div class="user-pro"> 
-                                                <div><img src="./widgets/img/shiggy.jpg"></div>
-                                                <div><h3>Player 4</h3></div>
-                                            </div>
-                                            <div class="high-score"><h3>6055</h3></div>
+                                        <div>
+                                            <input type="submit" class="submit-review" onSubmit="">Submit</input>
                                         </div>
-                                    </div>
-                                    <div class="top-player-container">
-                                        <div class="top-player-bar">
-                                            <div class="user-pro"> 
-                                                <div><img src="./widgets/img/shiggy.jpg"></div>
-                                                <div><h3>Player 5</h3></div>
-                                            </div>
-                                            <div class="high-score"><h3>6055</h3></div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-
-
-                    <section id="game-details">
+                    <section id="game-about">
                         <h2>About This Game</h2>
                         <div>                      
-                            <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
-                            <div><img src="images/games/placeholder3.jpg"></div>
-                            <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
+                            
                         </div>
                     </section>
+
+                    <section id="game-preview">
+                        <h2>More Games Like This</h2>
+                        <div id="game-preview-more">
+                            <div>
+                                <div class="hit-area">
+                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i></a>
+                                </div>
+                                <h4>Arcade</h4>
+                                <div>
+                                    <img src="images/games/placeholder8.jpg">
+                                </div>
+                                <div class="star-rating">
+                                    <div class="stars">
+                                        <div>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div>
+                                <div class="hit-area">
+                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i></a>
+                                </div>
+                                <h4>Billiards</h4>
+                                <div><img src="images/games/placeholder9.jpg"></div>
+                                <div class="star-rating">
+                                    <div class="stars">
+                                        <div>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div>
+                                <div class="hit-area">
+                                    <a href="#"><i class="far fa-arrow-alt-circle-right"></i></a>
+                                </div>
+                                <h4>Poker Favz</h4>
+                                <div><img src="images/games/placeholder10.jpg"></div>
+                                <div class="star-rating">
+                                    <div class="stars">
+                                        <div>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                 </div>
             </div>
         </main>
 
-        <table id="leader-details">
+
+        <table id="leader-details" style="display:none;">
             <tr>
                 <td><img src="images/avatars/shiggy.jpg"></td>
                 <td>shiggy</td>
@@ -163,10 +221,13 @@
             <tr>
                 <td><img src="images/avatars/default.jpg"></td>
                 <td>Player 10</td>
-                <td>5320</td>
+                <td>120</td>
             </tr>
         </table>
+
         
+
+
     </body>
     
 </html>

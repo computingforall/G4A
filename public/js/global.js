@@ -1,11 +1,28 @@
 $(document).ready(
     function() {
 
+        let session_data = undefined;
+        
+        async function loggedIn() {
+            try {
+                await axios.post('/')
+                .then((response) => {
+                    session_data = response.data;
+                    navBar();
+                })
+            } catch (error) {
+                
+            }
+        }
+        loggedIn();
+        
+        
+
         // Main Navigation Bar
         var nav_html =
         `
         <header>
-            <div><div class="nav-logo"><a href="index.html">Games For All</a></div></div>
+            <div><div class="nav-logo"><a href="./index.html">Games For All</a></div></div>
             <nav>
                 <a></a>
             </nav>
@@ -24,113 +41,203 @@ $(document).ready(
         $('body').append(footer_html);
 
         let nav_items = $('nav').find('a').first();
-        nav_items.clone().appendTo('nav').attr('href','#').html('Home');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Friends');
-        nav_items.clone().appendTo('nav').attr('href','#').html('Profile');
-        $('nav').find('a').first().remove();
+        nav_items.clone().appendTo('nav').attr('href','./index.html').html('Home');
+        nav_items.clone().appendTo('nav').attr('href','./friends.html').html('Friends');
+        function navBar() {
+            if (session_data) {
+                nav_items.clone().appendTo('nav').attr('href','/profile.html').html('Profile');
+                nav_items.clone().appendTo('nav').attr('href','').attr('id', 'logout').html('Logout');
+            } else {
+                nav_items.clone().appendTo('nav').attr('href','/login.html').html('Login');
+            }
+        }
 
-        var commentId = 0;
+        $(document).on('click', '#logout', function(e) {
+            axios.get('/logout', {})
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        });
+        
+        $('nav').find('a').first().remove();
+        const userName = 'shiggy';
+        const postDate = new Date().valueOf();
 
         //Comments Field 
-        $('.comment-submit').click(
-            function () {
-                commentId++
-                let text = $('#comment-text').val();
+        $(document).on('click', '.comment-submit', function(){
+                let commentText = $('#comment-text').val();
+
                 var commentTemplate =
                 `
-
                 <div class="post">
-
-                    <div class="user-pro"> 
-                        <div><img src='${localStorage.getItem('image')}'></div>
-                        <div><h2>`+ localStorage.getItem('username') + ` </h2></div>
+                    <div class="user-pro">
+                        <div><img src='./images/avatars/${userName}.jpg'></div>
+                        <div><h2>${userName}</h2></div>
                     </div>
-                    <div><p class="comment">` + text + `</p></div>
-                    <div id=${commentId} class="reply-box"></div>
-                    <button class="reply-button">Reply</button>
-                    <div class="reply-field">
-                        <button class="reply-submit">Submit</button>
-                        <textarea class="reply-text"></textarea>
-                    </div>
-                    <div class="likeButton">
-                        <div class="like unliked checkLike">
-                            <i class='far fa-heart'></i>
-                            <p class="likeCount">0</p>
+                    <div>
+                        <p id="${userName}${postDate}" class="comment"></p>
+                        <div class="edit-area">
+                            <textarea class="edit-comment"></textarea>
+                            <button class="edit-confirm">Confirm</button>
+                            <button class="cancel-edit ghost">Cancel</button>
                         </div>
-                        <div class="dislike undisliked checkDislike">
-                            <i class="fas fa-heart-broken"></i>
-                            <p class="dislikeCount">0</p>
+                        <div class="pointButton likeButton">
+                            <div class="pointButtonG like unliked checkLike">
+                                <i class="fas fa-thumbs-up"></i>
+                                <p class="likeCount">0</p>
+                            </div>
+                            <div class="pointButtonG dislike undisliked checkDislike">
+                                <i class="fas fa-thumbs-down"></i>
+                                <p class="dislikeCount">0</p>
+                            </div>
+                        </div>
+                        <div class="user-buttons">
+                            <div class="comment-button-container">
+                                <button class="reply-button">Reply</button>
+                                <button class="edit-button">Edit</button>
+                            </div>
+                            <div>
+                                <div class="reply-field">
+                                    <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
+                                    <button class="reply-submit">Submit</button>
+                                    <button class="cancel-submit ghost">Cancel</button>
+                                </div>
+                                <div class="replied-comment"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 `
-                $('.posts').append(commentTemplate);
-                $('#comment-text').val('');
 
+                if (commentText.length !== 0) {
+                    $('.posts').append(commentTemplate);
+                    $(`#${userName}${postDate}`).text(commentText);
+                    $('#comment-text').val('');
+                }
+                // fix the connection between the comment submit and the main submit button
+                $('.reply-field').hide();
+                $('.edit-area').hide();
+                $('.reply-button').show();
+                $('.reply-text').val('');
 
-                //Reply Button
-                $('.reply-field').eq(commentId -1).hide();
-                $('.reply-button').eq(commentId -1).click(
-                    function () {
-                        $('.reply-field').eq(commentId -1).show();
-                    }
-                );
-                
-                var reply;
-
-                $('.reply-text').eq(commentId -1).keyup(
-                    function() {
-                        reply = $(this).val();
-                        
-                    }
-                );
-
-                $('.reply-submit').eq(commentId -1).click(
-                    function () {
-
-                        let replyId = $(this).parent().parent().find('.reply-box').attr('id');
-                        console.log(replyId);
-                      
-                        var replyTemplate = 
-                        `
-                        <div>` + reply + `</div>
-                        `
-
-                        $('#' + replyId).append(replyTemplate);
-
-                        $('.reply-text').val('');
-                        $('.reply-field').eq(commentId -1).hide();
-
-                    }
-
-                );
+                $('.reply-cancel').click(function () {
+                    $(this).parent().hide();
+                    $('.reply-text').val('');
+                    $(this).parent().siblings('.reply-button-container').find('.reply-button').show();
+                });
+                 
 
         });
 
-        //Like Dislike Buttons
-        // Create value and add to element, function updates value, updates element
-        $('.like').click(
-            function() {
-            // console.log(typeof $('.like').html())
-                let likes = $('.like').text();
-                let likeCount = parseInt(likes);
-                likeCount++;
-                $('.like').html(likeCount);
+        //Edit Buttons
+        $(document).on('click', '.edit-button', function(){
+            let toEdit = $(this).parent().parent().siblings().first().text();
+            console.log(toEdit);
+            $(this).parent().parent().siblings('.edit-area').children('.edit-comment').text(toEdit);
+            console.log(toEdit);
+            $(this).parent().parent().siblings('.edit-area').show();
+            $(this).parent().hide();
+        });
+
+        $(document).on('click', '.edit-confirm', function() {
+            let editVal = $(this).siblings('.edit-comment').val();
+            $(`#${userName}${postDate}`).text(editVal);
+            $(this).parent().hide();
+            $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
+        });
+
+        $(document).on('click', '.cancel-edit', function() {
+            $(this).parent().hide();
+            $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
+            console.log($('.edit-comment').text());
+            $('.edit-comment').val('');
+        });
+
+        //Reply Buttons
+
+        $(document).on('click', '.reply-button', function(){
+            $(this).parent().hide();
+            $(this).parent().siblings().last().children().show();
+        });
+
+        $(document).on('click', '.cancel-submit', function(){
+            $(this).parent().hide();
+            $('.reply-text').val('');
+            $(this).parent().parent().siblings('.comment-button-container').show();
+        });
+
+        
+        let num = 0;
+
+        $(document).on('click', '.reply-submit', function(){
+            let replyVal = $(this).siblings('.reply-text').val();
+            num++;
+            const postDate = new Date().valueOf();
+            const playNum = `Player ${num}`;
+
+            var replyTemplate =
+            `
+            <div>
+            <div class="user-pro">
+                <div><img src='./images/avatars/default.jpg'></div>
+                <div><h2>${playNum}</h2></div>
+            </div>
+            <div>
+                <p id="${playNum.split(' ').join('')}${postDate}" class="reply-post"></p>
+                <div class="pointButton likeButton">
+                    <div class="pointButtonG like unliked checkLike">
+                        <i class="fas fa-thumbs-up"></i>
+                        <p class="likeCount">0</p>
+                    </div>
+                    <div class="pointButtonG dislike undisliked checkDislike">
+                        <i class="fas fa-thumbs-down"></i>
+                        <p class="dislikeCount">0</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            `
+            let replyText = function() {
+                $(this).parent().siblings('.replied-comment').append(replyTemplate);
+                $(`#${playNum.split(' ').join('')}${postDate}`).text(replyVal);
+                $('.reply-text').val('');
+                $('.reply-field').hide();
+                $(this).parent().parent().siblings().first().show();
+                $(this).parent().hide();
+            }.bind(this);
+
+            if (replyVal.length !== 0) {
+                replyText();
             }
-        )
+            
+        });
 
         //Share Button
         $('.share-button').click(
             function(){
                 let score = Math.ceil(Math.random() * (10000 - 1000) + 1000);
                 let shareTemplate = 
-                ` 
+                `
                 <div class="post">
-                   <div><h2>Player 1</h2></div>
-               </div>
-                   <div><p class="comment">Player 1 scored  `+score+`  points!</p></div>
-                   <div></div>
-                   <div class="likeButton"></div>
+                    <div class="user-pro"> 
+                        <div><img src='./images/avatars/shiggy.jpg'></div>
+                        <div><h2>shiggy</h2></div>
+                    </div>
+                    <div><p class="comment">shiggy scored  `+score+`  points!</p></div>
+                    <button class="edit-button">Edit</button>
+                    <div class="pointButton likeButton">
+                        <div class="pointButtonG like unliked checkLike">
+                            <i class="fas fa-thumbs-up"></i>
+                            <p class="likeCount">0</p>
+                        </div>
+                        <div class="pointButtonG dislike undisliked checkDislike">
+                            <i class="fas fa-thumbs-down"></i>
+                            <p class="dislikeCount">0</p>
+                        </div>
+                    </div>
                 </div>
                 `
                 $('.posts').append(shareTemplate);
@@ -138,6 +245,9 @@ $(document).ready(
             }
         );
 
+    
+
+        //Like and dislike buttons
         $(document).on('click', '.like', function() {
             let currentVal = $(this).children().last().html();
             let siblingVal = $(this).siblings().first().children().last().html();
@@ -179,6 +289,33 @@ $(document).ready(
               $(this).children().last().html(currentVal);        
             }
           });
+        
+
+          //Star rating
+          $('.star-grade').addClass('star-rating-1');
+
+          let starRating;
+
+          $(document).on('click', '.star-grade', function(){
+            $('.star-rate-group').children().removeClass('star-rating-checked-1');
+            for (let i = 0; i < $(this).attr('value'); i++) {
+                $('.star-rate-group').children().eq(i).addClass('star-rating-checked-1');
+            };
+            starRating = $(this).attr('value');
+          });
+
+          //Submit review
+          $('.review-form').on('submit', function(e){
+              e.preventDefault();
+              let rating = starRating;
+              let comment = $('#review').val();
+              let data = {
+                  "rating": rating,
+                  "comment": comment,
+              };
+              fetch('/review', {
+                  method: 'POST',
+                  body: JSON.stringify(data)
+              });
+          })
 });
-
-
