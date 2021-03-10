@@ -1,62 +1,56 @@
 $(document).ready(
-    function() {
-
-        // Drag & Drop (This is taken from the Blue Oceans project.)
-
-        var friendsTemplate = // Do not use this atm, very borked.
-        `
-        <li class="item">
-            <div class="user-pro"> 
-                <div><img src=""></div>
-    
-                <div><h2>Name 1</h2></div>
-            </div>
-        </li>
-        `
-
-        $("html").on("drop", function(event) { event.preventDefault(); event.stopPropagation(); });
-
+    function(){
+       
         let dragging;
-        $('.item').mousedown(
-            function(event) {
+        
+        function draggingItem(){
+            $('.item').mousedown(function (){
                 dragging = $(this).detach();
-                dragging.appendTo('.dragging-area');
-            }
-        );
+                dragging.appendTo('#dragging-container');
+            });
+        }
+        
+        draggingItem();
 
-        $(document).mousemove(
-            function(e) {
-              let x = e.pageX - window.pageXOffset; // Makes it so scrolling left/right effects position of element.
-              let y = e.pageY - window.pageYOffset; // Makes it so scrolling up/down effects position of element.
-
-              $('.dragging-area').css({
-              'left':x,
-              'top':y
-              });
-
-            }
-        );
-
-
-        $('.f-grid').mouseup(
-            function() {
-                console.log($(this));
-                dragging.appendTo($(this));
-                dragging = null;
-            }
-        );
-
-        $('.f-grid').mousedown(
-            function() {
-                $(this).addClass('redrop');
+        $('.drop-area').mousedown(function(){
+            $(this).addClass('redrop');
         });
-
-        $(document).mouseup(
-            function() {
-                dragging = $('.dragging-area').children().detach();
-                dragging.appendTo('.redrop');
-                dragging = null;
-                $('.f-grid').removeClass('redrop');
-            }
-        );
-});
+          
+        
+         
+        $('.drop-area').mouseup(
+                function(){ 
+                    dragging = $('#dragging-container').children().detach();
+                    dragging.appendTo($(this));
+                    dragging = null;
+                    if($(this).hasClass('friends-list')){
+                        $(this).find('li').removeClass('item').unbind();
+                    }
+                    draggingItem();
+                });
+                   
+        $(document).mouseup(function(){
+            dragging = $('#dragging-container').children().detach();
+            dragging.appendTo('.redrop');
+            dragging = undefined;
+            $('.drop-area').removeClass('redrop')
+        });
+        
+        $(document).mousemove(
+                function(e){
+                     let x = e.clientX,
+                         y = e.clientY;
+                   
+                    $('#dragging-container').css({
+                        'left':x,
+                         'top':y
+                    });
+                   
+                   
+                }
+         
+         );
+       
+     }
+   
+ );
