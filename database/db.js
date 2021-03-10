@@ -14,9 +14,15 @@ db.once("open", function () {
 const userSchema = new mongoose.Schema({
   name: String,
   password: String,
-  email: String,
+  email: {type: String, unique: true},
+  image: String,
+  biography: String,
   comments: [String],
   date: { type: Date, default: Date.now },
+});
+
+const reviewSchema = new mongoose.Schema({
+  reviews: [Object, Number, String]
 });
 
 const Users = mongoose.model("Users", userSchema);
