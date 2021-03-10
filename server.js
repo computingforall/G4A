@@ -125,6 +125,11 @@ app.get('/logout', function(req, res) {
   });
 });
 
+app.post('/review', function(req, res) {
+  console.log(req.body);
+  res.sendStatus(100);
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
 });
