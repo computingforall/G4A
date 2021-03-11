@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const express = require("express");
 const path = require("path");
-const bodyParser = require("body-parser");
 const Users = require("./database/db.js");
 const axios = require("axios")
 const bcrypt = require("bcrypt");
@@ -16,14 +15,14 @@ const {PORT, SECRET} = process.env;
 
 const saltNumber = Number(process.env.SALT);
 app.use(express.static(path.join(__dirname, "./public")));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(session({
   secret: SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {}
-}))
+}));
 
 
 
@@ -127,7 +126,7 @@ app.get('/logout', function(req, res) {
 
 app.post('/review', function(req, res) {
   console.log(req.body);
-  res.sendStatus(100);
+  res.sendStatus(200);
 });
 
 app.listen(PORT, () => {

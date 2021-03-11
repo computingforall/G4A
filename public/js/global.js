@@ -320,5 +320,5 @@ $(document).ready(
                   },
                   body: JSON.stringify(data)
               });
-          })
+          });
 });
