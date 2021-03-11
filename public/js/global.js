@@ -117,7 +117,7 @@ $(document).ready(
                     $(`#${userName}${postDate}`).text(commentText);
                     $('#comment-text').val('');
                 }
-
+                // fix the connection between the comment submit and the main submit button
                 $('.reply-field').hide();
                 $('.edit-area').hide();
                 $('.reply-button').show();
@@ -175,9 +175,8 @@ $(document).ready(
         $(document).on('click', '.reply-submit', function(){
             let replyVal = $(this).siblings('.reply-text').val();
             num++;
-            const playNum = `Player ${num}`;
             const postDate = new Date().valueOf();
-
+            const playNum = `Player ${num}`;
 
             var replyTemplate =
             `
@@ -290,6 +289,36 @@ $(document).ready(
               $(this).children().last().html(currentVal);        
             }
           });
-});
+        
 
-//Game Review Comment Field
+          //Star rating
+          $('.star-grade').addClass('star-rating-1');
+
+          let starRating;
+
+          $(document).on('click', '.star-grade', function(){
+            $('.star-rate-group').children().removeClass('star-rating-checked-1');
+            for (let i = 0; i < $(this).attr('value'); i++) {
+                $('.star-rate-group').children().eq(i).addClass('star-rating-checked-1');
+            };
+            starRating = $(this).attr('value');
+          });
+
+          //Submit review
+          $('.review-form').on('submit', function(e){
+              e.preventDefault();
+              let rating = starRating;
+              let comment = $('#review').val();
+              let data = {
+                  "rating": rating,
+                  "comment": comment,
+              };
+              fetch('/review', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+              });
+          })
+});
