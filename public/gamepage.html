@@ -69,21 +69,31 @@
                                 </div>
                             </div>
                             <div class="tab-container" id="tab3container">
-                                <div id="reviews">
-                                    <form action="" method="get" class="form-example">
-                                        <div class="form-example">
-                                          <label for="rating">Rate the game: </label>
-                                          <input type="text" name="rating" id="rating" required>
-                                        </div>
-                                        <div class="form-example">
-                                          <label for="review">Write a review: </label>
-                                          <input type="text" name="review" id="review" required>
-                                        </div>
-                                        <div class="form-example">
-                                          <input type="submit" value="Submit">
-                                        </div>
-                                      </form>
+                                <div class="review-border">
+                                    <div class="posted-reviews">
 
+                                    </div>
+                                </div>
+                                <div id="reviews">
+                                    <form action="" method="get" class="review-form">
+                                        <div>
+                                          <label for="rating">Rate the game: </label>
+                                          <div class="star-background-1 star-rate-group">
+                                            <span value="1" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="2" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="3" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="4" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="5" class="fas fa-star star-grade star-padd"></span>
+                                          </div>    
+                                        </div>
+                                        <div>
+                                            <label for="review">Write a review: </label>
+                                          <textarea type="text" name="review" id="review" placeholder="Leave a review..." required></textarea>
+                                        </div>
+                                        <div>
+                                            <input type="submit" class="submit-review" onSubmit="">Submit</input>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

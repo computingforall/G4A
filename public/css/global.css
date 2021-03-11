@@ -225,3 +225,8 @@ footer nav a:hover {color:#fff;}
     transform: translate(-50%, -50%);
     
 }
+
+/* Review CSS */
+.review-border {
+    border: solid 1px #000000;
+}
