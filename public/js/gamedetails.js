@@ -62,7 +62,8 @@ function fillGameGrid() {
 
 
 // CREATE GAME DETAILS
-var gameEmbed, gameTitle, gameCover, gameThumb1, gameThumb2, gamePlayer, gameDescription, gamePublishedBy, gameAbout;
+var gameEmbed, gameTitle, gameCover, gameThumb1, gameThumb2, gamePlayer, gameDescription, gamePublishedBy, gameAbout, gameProgrammedBy;
+
 
 function gameDetails(gameCode) {
 
@@ -108,6 +109,7 @@ function gameDetails(gameCode) {
         gamePlayer = '<img src="images/games/galaxy-cover.jpg">';
         gameDescription = 'Galaxy is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         gamePublishedBy = 'Galaxy Studios';
+        gameProgrammedBy = ''
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -124,6 +126,7 @@ function gameDetails(gameCode) {
         gamePlayer = '<img src="images/games/dressup-cover.jpg">';
         gameDescription = 'Dressup is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         gamePublishedBy = 'Dressup Studios';
+        gameprogrammedby = ''
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -173,7 +176,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/adventure-thumb2.jpg">';
         gamePlayer = '<img src="images/games/adventure-cover.jpg">';
         gameDescription = 'The Educated Gamer Game that sheds light about the microaggressions and institutionalized racism that our country has been influenced by over the years.'
-        gamePublishedBy = 'The Educated Gamer studios';
+        gamePublishedBy = 'Victoria Ulm & Rebecca Paez';
+        gameProgrammedBy = 'Makecode';
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -191,7 +195,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/seaturtles-thumb2.jpg">';
         gamePlayer = '<img src="images/games/seaturtles-cover.jpg">';
         gameDescription = 'Trash in the ocean is having lasting effects on sea turtles and is a real big world problem going on today. Pick up the trash before any sea turtles get to it.'
-        gamePublishedBy = 'Sea Turtles Studios';
+        gamePublishedBy = 'Yusuf Adem & Jasmine Navarro';
+        gameProgrammedBy = 'Makecode';
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -209,7 +214,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/watergame-thumb2.jpg">';
         gamePlayer = '<img src="images/games/watergame-cover.jpg">';
         gameDescription = 'Keep our water clean and your player alive.'
-        gamePublishedBy = 'Water Game';
+        gamePublishedBy = 'Jesse Rivas';
+        gameProgrammedBy ='Makecode'
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -226,7 +232,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/trees-thumb2.jpg">';
         gamePlayer = '<img src="images/games/trees-cover.jpg">';
         gameDescription = 'Plant as many trees as you can before time runs out and the tree chopping villain cuts them all down.'
-        gamePublishedBy = 'Trees';
+        gamePublishedBy = 'Mohamed Muse & Sham Tsegay';
+        gameProgrammedBy = 'Makecode';
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -243,7 +250,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/treestory-thumb2.jpg">';
         gamePlayer = '<img src="images/games/treestory-cover.jpg">';
         gameDescription = 'Tap enemies repeatedly to kill them and protect the forest.'
-        gamePublishedBy = 'Tree Story';
+        gamePublishedBy = 'Nolan Barham, William Henke, Henry Nguyen & Jhisberlly Pineda.  ';
+        gameProgrammedBy = 'Scratch'
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -260,7 +268,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/monsanto-thumb2.jpg">';
         gamePlayer = '<img src="images/games/monsanto-cover.jpg">';
         gameDescription = 'Take over the world in totally legal ways as the pharmaceutical giant Monsanto.'
-        gamePublishedBy = 'Monsanto';
+        gamePublishedBy = 'Nolan Barham, William Henke, Nuh Mukhtar & Nhat Phan ';
+        gameProgrammedBy = 'Javascript';
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -277,7 +286,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/thwi-thumb2.jpg">';
         gamePlayer = '<img src="images/games/thwi-cover.jpg">';
         gameDescription = 'A game about Islamophobia.'
-        gamePublishedBy = 'The Hate We Ignore';
+        gamePublishedBy = 'William Hanke, Lukas Chapmen & Nasro Yusuf. ';
+        gameProgrammedBy = 'Scratch';
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -294,7 +304,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/trashdash-thumb2.jpg">';
         gamePlayer = '<img src="images/games/trashdash-cover.jpg">';
         gameDescription = 'Take the garbage to the bin and learn to make the world a cleaner place!'
-        gamePublishedBy = 'Trash Dash';
+        gamePublishedBy = 'Anthony Bechara & Jhisberlly Pineda ';
+        gameProgrammedBy = 'Scratch';
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -311,7 +322,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/tjhm-thumb2.jpg">';
         gamePlayer = '<img src="images/games/tjhm-cover.jpg">';
         gameDescription = 'This is a game about the daily life of a homeless man. '
-        gamePublishedBy = 'The Journey of the Homeless Man';
+        gamePublishedBy = 'Mohammed Hilfi & Albiona Uka';
+        gameProgrammedBy = 'Scratch';
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -328,7 +340,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/boxexplorer-thumb2.jpg">';
         gamePlayer = '<img src="images/games/boxexplorer-cover.jpg">';
         gameDescription = 'Hardcore parkore as a box.'
-        gamePublishedBy = 'Box Explorer';
+        gamePublishedBy = 'Anthony Bechara';
+        gameProgrammedBy = 'Unity';
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -345,7 +358,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/divein-thumb2.jpg">';
         gamePlayer = '<img src="images/games/divein-cover.jpg">';
         gameDescription = 'Adventures of a reincarnated Muslim.'
-        gamePublishedBy = 'DiveIn';
+        gamePublishedBy = 'Nafiso Mukhtar';
+        gameProgrammedBy = 'HTML';
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -362,7 +376,8 @@ function gameDetails(gameCode) {
         gameThumb2 = '<img src="images/games/carbonmonsters-thumb2.jpg">';
         gamePlayer = '<img src="images/games/carbonmonsters-cover.jpg">';
         gameDescription = 'Plant trees to protect yourself from monsters.'
-        gamePublishedBy = 'Carbon Monsters';
+        gamePublishedBy = 'Nhat Phan';
+        gameProgrammedBy = 'Scratch';
         gameAbout = 
         `
         <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
@@ -384,4 +399,6 @@ function fillGameDetails(){
     $('.game-info').find('p').html(gameDescription);
     $('.game-info').find('h6').first().find('span').html(gamePublishedBy);
     $('#game-about').find('div').first().html(gameAbout);
+    $('.game-info').find('h6').eq(1).find('span').html(gameProgrammedBy);
 };
+ 
