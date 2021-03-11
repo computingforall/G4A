@@ -97,8 +97,6 @@ app.post('/settings', function(req, res) {
     const verify_password = req.body.verify_password;
 
     Users.find({_id: userID}, (err, found) => {
-      console.log(found[0]);
-      console.log(verify_password);
         if (bcrypt.compareSync(verify_password, found[0].password)) {
           const query = { "_id": userID };
           const update = { "$set": { "name": req.body.displayname, "email": req.body.email, "image": req.body.image, "biography": req.body.biography } };
