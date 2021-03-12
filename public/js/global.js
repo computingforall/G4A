@@ -63,36 +63,27 @@ $(document).ready(
         });
         
         $('nav').find('a').first().remove();
-
-        // $(document).on('mouseover', '.comment-submit', function(){
-        //     let text = $('#comment-text').val();
-        //     console.log(text.length)
-        //     if (text.length == 0){
-        //         $('.comment-submit').addClass('error-button');
-        //     }
-        // });
-
-        // $(document).on('click', '.comment-submit', function(){
-        //     let text = $('#comment-text').val();
-        //     console.log(text.length)
-        //     if (text.length !== 0){
-        //         $('.comment-submit').removeClass('error-button');
-        //     }
-        // });
+        const userName = 'shiggy';
+        const postDate = new Date().valueOf();
 
         //Comments Field 
         $(document).on('click', '.comment-submit', function(){
-                let text = $('#comment-text').val();
+                let commentText = $('#comment-text').val();
 
                 var commentTemplate =
                 `
                 <div class="post">
-                    <div class="user-pro"> 
-                        <div><img src='./images/avatars/shiggy.jpg'></div>
-                        <div><h2>shiggy</h2></div>
+                    <div class="user-pro">
+                        <div><img src='./images/avatars/${userName}.jpg'></div>
+                        <div><h2>${userName}</h2></div>
                     </div>
                     <div>
-                        <p class="comment">` + text + `</p>
+                        <p id="${userName}${postDate}" class="comment"></p>
+                        <div class="edit-area">
+                            <textarea class="edit-comment"></textarea>
+                            <button class="edit-confirm">Confirm</button>
+                            <button class="cancel-edit ghost">Cancel</button>
+                        </div>
                         <div class="pointButton likeButton">
                             <div class="pointButtonG like unliked checkLike">
                                 <i class="fas fa-thumbs-up"></i>
@@ -103,27 +94,32 @@ $(document).ready(
                                 <p class="dislikeCount">0</p>
                             </div>
                         </div>
-                        <div>
-                          <div class="reply-button-container"><button class="reply-button">Reply</button></div>
-                          <div>
-                              <div class="reply-field">
-                                  <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
-                                  <button class="reply-submit">Submit</button>
-                                  <button class="cancel-submit ghost">Cancel</button>
-                              </div>
-                              <div class="replied-comment"></div>
-                          </div>
+                        <div class="user-buttons">
+                            <div class="comment-button-container">
+                                <button class="reply-button">Reply</button>
+                                <button class="edit-button">Edit</button>
+                            </div>
+                            <div>
+                                <div class="reply-field">
+                                    <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
+                                    <button class="reply-submit">Submit</button>
+                                    <button class="cancel-submit ghost">Cancel</button>
+                                </div>
+                                <div class="replied-comment"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 `
 
-                if (text.length !== 0) {
+                if (commentText.length !== 0) {
                     $('.posts').append(commentTemplate);
+                    $(`#${userName}${postDate}`).text(commentText);
                     $('#comment-text').val('');
                 }
-
+                // fix the connection between the comment submit and the main submit button
                 $('.reply-field').hide();
+                $('.edit-area').hide();
                 $('.reply-button').show();
                 $('.reply-text').val('');
 
@@ -136,17 +132,41 @@ $(document).ready(
 
         });
 
-        //Reply Button
-                
+        //Edit Buttons
+        $(document).on('click', '.edit-button', function(){
+            let toEdit = $(this).parent().parent().siblings().first().text();
+            console.log(toEdit);
+            $(this).parent().parent().siblings('.edit-area').children('.edit-comment').text(toEdit);
+            console.log(toEdit);
+            $(this).parent().parent().siblings('.edit-area').show();
+            $(this).parent().hide();
+        });
+
+        $(document).on('click', '.edit-confirm', function() {
+            let editVal = $(this).siblings('.edit-comment').val();
+            $(`#${userName}${postDate}`).text(editVal);
+            $(this).parent().hide();
+            $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
+        });
+
+        $(document).on('click', '.cancel-edit', function() {
+            $(this).parent().hide();
+            $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
+            console.log($('.edit-comment').text());
+            $('.edit-comment').val('');
+        });
+
+        //Reply Buttons
+
         $(document).on('click', '.reply-button', function(){
-            $(this).hide();
+            $(this).parent().hide();
             $(this).parent().siblings().last().children().show();
         });
 
         $(document).on('click', '.cancel-submit', function(){
             $(this).parent().hide();
             $('.reply-text').val('');
-            $(this).parent().parent().siblings('.reply-button-container').children().show();
+            $(this).parent().parent().siblings('.comment-button-container').show();
         });
 
         
@@ -154,17 +174,19 @@ $(document).ready(
 
         $(document).on('click', '.reply-submit', function(){
             let replyVal = $(this).siblings('.reply-text').val();
-            let replyTo = $(this).siblings('.replied-comment').append(replyTemplate);
             num++;
+            const postDate = new Date().valueOf();
+            const playNum = `Player ${num}`;
+
             var replyTemplate =
             `
             <div>
             <div class="user-pro">
                 <div><img src='./images/avatars/default.jpg'></div>
-                <div><h2>Player ` + num + `</h2></div>
+                <div><h2>${playNum}</h2></div>
             </div>
             <div>
-                <p class="reply-post">` + replyVal + `</p>
+                <p id="${playNum.split(' ').join('')}${postDate}" class="reply-post"></p>
                 <div class="pointButton likeButton">
                     <div class="pointButtonG like unliked checkLike">
                         <i class="fas fa-thumbs-up"></i>
@@ -178,14 +200,19 @@ $(document).ready(
             </div>
             </div>
             `
+            let replyText = function() {
+                $(this).parent().siblings('.replied-comment').append(replyTemplate);
+                $(`#${playNum.split(' ').join('')}${postDate}`).text(replyVal);
+                $('.reply-text').val('');
+                $('.reply-field').hide();
+                $(this).parent().parent().siblings().first().show();
+                $(this).parent().hide();
+            }.bind(this);
 
             if (replyVal.length !== 0) {
-                replyTo
-                $('.reply-text').val('');
+                replyText();
             }
-            $(this).parent().hide();
-            $(this).parent().parent().siblings('.reply-button-container').children().show();
-            $('.reply-field').hide();
+            
         });
 
         //Share Button
@@ -199,8 +226,9 @@ $(document).ready(
                         <div><img src='./images/avatars/shiggy.jpg'></div>
                         <div><h2>shiggy</h2></div>
                     </div>
-                   <div><p class="comment">shiggy scored  `+score+`  points!</p></div>
-                   <div class="pointButton likeButton">
+                    <div><p class="comment">shiggy scored  `+score+`  points!</p></div>
+                    <button class="edit-button">Edit</button>
+                    <div class="pointButton likeButton">
                         <div class="pointButtonG like unliked checkLike">
                             <i class="fas fa-thumbs-up"></i>
                             <p class="likeCount">0</p>
@@ -217,41 +245,7 @@ $(document).ready(
             }
         );
 
-        //Game Preview Slider
-        var slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function showSlides(n) {
-            var i;
-            var slides = $(".slider-preview");
-            var dots = $(".dot");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides.eq(i).hide();
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots.eq(i).removeClass('active');
-            }
-            slides.eq(slideIndex-1).fadeIn(1000);
-            dots.eq(slideIndex-1).addClass('active');
-          }
-
-        $('.slide-left').click(
-            function(){
-              plusSlides(-1);
-            }
-        
-        );
-        $('.slide-right').click(
-            function(){
-                plusSlides(1);
-            }
-        );
+    
 
         //Like and dislike buttons
         $(document).on('click', '.like', function() {
@@ -295,6 +289,36 @@ $(document).ready(
               $(this).children().last().html(currentVal);        
             }
           });
+        
+
+          //Star rating
+          $('.star-grade').addClass('star-rating-1');
+
+          let starRating;
+
+          $(document).on('click', '.star-grade', function(){
+            $('.star-rate-group').children().removeClass('star-rating-checked-1');
+            for (let i = 0; i < $(this).attr('value'); i++) {
+                $('.star-rate-group').children().eq(i).addClass('star-rating-checked-1');
+            };
+            starRating = $(this).attr('value');
+          });
+
+          //Submit review
+          $('.review-form').on('submit', function(e){
+              e.preventDefault();
+              let rating = starRating;
+              let comment = $('#review').val();
+              let data = {
+                  "rating": rating,
+                  "comment": comment,
+              };
+              fetch('/review', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+              });
+          })
 });
-
-

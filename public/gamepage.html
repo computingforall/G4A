@@ -24,7 +24,14 @@
     </head>
         
     <body>
-   
+        <div class="pop-up"></div>
+            <div class="pop-up-container">
+                <div id="game-embed">
+                 
+                </div>
+            </div>
+
+    
         <main>
 
             <div class="overlay">
@@ -37,6 +44,7 @@
                             <div class="game-info">
                                 <p></p>
                                 <h6>Published By: <span></span></h6>
+                                <h6>Programmed In: <span></span></h6>
                             </div>
                         </div>
                     </section>
@@ -45,6 +53,7 @@
                         <ul id="tabs">
                             <li class="tab" id="tab1"><a>Newsfeed</a></li>
                             <li class="tab" id="tab2"><a>Top Players</a></li>
+                            <li class="tab" id="tab3"><a>Reviews</a></li> 
                         </ul>
                         
                         <div id="tabs-containers">
@@ -64,6 +73,34 @@
                                 <div id="leaderboard">
                                 
 
+                                </div>
+                            </div>
+                            <div class="tab-container" id="tab3container">
+                                <div class="review-border">
+                                    <div class="posted-reviews">
+
+                                    </div>
+                                </div>
+                                <div id="reviews">
+                                    <form action="" method="get" class="review-form">
+                                        <div>
+                                          <label for="rating">Rate the game: </label>
+                                          <div class="star-background-1 star-rate-group">
+                                            <span value="1" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="2" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="3" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="4" class="fas fa-star star-grade star-padd"></span>
+                                            <span value="5" class="fas fa-star star-grade star-padd"></span>
+                                          </div>    
+                                        </div>
+                                        <div>
+                                            <label for="review">Write a review: </label>
+                                          <textarea type="text" name="review" id="review" placeholder="Leave a review..." required></textarea>
+                                        </div>
+                                        <div>
+                                            <input type="submit" class="submit-review" onSubmit="">Submit</input>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -195,6 +232,7 @@
                 <td>120</td>
             </tr>
         </table>
+
         
 
 

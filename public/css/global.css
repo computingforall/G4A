@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://use.fontawesome.com/releases/v5.3.1/css/all.css');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=PT+Sans:wght@400;700&display=swap');
 
@@ -225,3 +226,237 @@ footer nav a:hover {color:#fff;}
     transform: translate(-50%, -50%);
     
 }
+=======
+@import url('https://use.fontawesome.com/releases/v5.3.1/css/all.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=PT+Sans:wght@400;700&display=swap');
+
+/* RESETS */
+h1,h2,h3,h4,h5,h6,ul,ol,li {margin:0;padding:0;}
+img{width:100%;margin-bottom:-4px;}
+
+
+/* MAIN ELEMENTS */
+html, body {
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    color:#232429;
+    background-color:#232429;
+    font-size:14px;
+    font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+main {
+    min-height: 88vh;
+    width:100%;
+    background-color:#f0f2f7;
+    background-image: url(../images/bg-main.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    padding-top:60px;
+}
+
+.overlay {
+    background-color:#f0f2f7cc;
+    width:100%;
+    height: 100%;
+}
+
+#page {
+    background-color:#f0f2f7cc;
+    min-height: 88vh;
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:3em;
+    box-sizing: border-box;
+}
+
+
+section ~ section {
+    margin-top:6em;
+}
+
+button {
+    background-color:#315682;
+    border:1px solid #999;
+    border-radius:4px;
+    padding:0.5em 1em;
+    cursor:pointer;
+    color:#fff;
+    transition: all 0.5s;
+}
+
+button:hover {
+    background-color:#1e2f63;
+}
+
+button.ghost {
+    background-color:#f0f2f7;
+    color:#666;
+}
+
+button.ghost:hover {
+    background-color:#ccc;
+}
+
+textarea, button {
+    font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* FONTS */
+h1 {font-weight:300;font-size:2.4em;}
+h2 {}
+h3 {font-weight:600;}
+h4 {font-weight:800;font-size:1.2em;color:#315682;text-transform:uppercase;}
+h6 {font-weight:800;color:#666;text-transform:uppercase;font-size:0.8em;}
+p{line-height: 1.8em;}
+section > h1 {margin-bottom:1em;}
+section > h2 {
+    margin-bottom:1em;
+    border-bottom:1px solid; border-color: #bec0c4;
+    padding-bottom:10px;
+}
+
+/* COLORS */
+.col-prime {color:#315682;}
+.bg-prime {background-color:#315682;}
+
+.col-second {color:#1e2f63;}
+.bg-second {color:#1e2f63;}
+
+.col-prime-lt {color:#41699b;}
+.bg-prime-lt {background-color:#41699b;}
+
+.col-white {color:#f0f2f7;}
+.bg-white {color:#f0f2f7;}
+
+.col-black {color:#232429;}
+.bg-black {color:#232429;}
+
+
+/* HEADER NAV */
+header {
+    background-color:#f0f2f7;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    box-shadow: 0px 1px 2px 0 #00000033;
+    position:fixed;
+    width:100%;
+    height:60px;
+    z-index: 100;
+}
+header nav {
+    text-align:right;
+}
+
+header a {
+    color:#232429;
+    text-decoration: none;
+}
+
+header nav a {
+    display:inline-block;
+    padding:2em;
+    background-color:transparent;
+    font-size:0.8em;
+    text-transform: uppercase;
+    transition: background-color 0.5s;
+}
+
+header nav a:hover {
+    background-color:#cbced4;
+}
+
+.nav-logo {
+    text-transform: uppercase;
+    color:#232429;
+    padding:0 2em;
+    position: relative;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+/* FOOTER */
+footer {
+    display:grid;
+    grid-template-columns:auto auto;
+    padding:2em;
+    color:#888;
+    font-size:0.7em;
+    text-transform: uppercase;
+}
+footer nav {
+    text-align: right;
+}
+
+footer nav a {
+    display:inline-block;
+    color:#bbb;
+    text-decoration: none;
+    margin:0 1em;
+}
+
+footer nav a:hover {color:#fff;}
+
+
+/* USER PROFILES */
+.user-pro {
+    position: relative;
+    display: grid;
+    grid-template-columns:auto 1fr;
+}
+
+.user-pro img {
+    width:50px;
+    height:50px;
+    border-radius:100%;
+    object-fit:cover;
+    border:2px solid #ccc;
+   }
+
+.user-pro div h2, .user-pro div h3 {
+    position: relative;
+    top:50%;
+    transform:translateY(-50%);
+    padding-left:1em;
+}
+
+/*  HIT AREA */
+.hit-area {
+    width:100%;
+    height:100%;
+    position:absolute;
+}
+
+.hit-area a{
+    width:100%;
+    height:100%;
+    display:block;
+    background-color: #f0f2f7;
+    opacity: 0;
+    transition:all 0.5s;
+
+}
+.hit-area a:hover{
+    opacity:0.8;
+}
+
+.hit-area i {
+    font-size:5em;
+    line-height:1;
+    color:#aaa;
+    position: relative;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    
+}
+
+/* Review CSS */
+.review-border {
+    border: solid 1px #000000;
+}
+>>>>>>> 0f15f1c17fd2a4a34f64ba7c5e37affe585ba634
