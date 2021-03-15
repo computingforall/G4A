@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require("express");
 const path = require("path");
 const Users = require("./database/db.js");
+const Games = require("./database/db.js");
 const axios = require("axios")
 const bcrypt = require("bcrypt");
 const session = require('express-session');
@@ -123,7 +124,14 @@ app.get('/logout', function(req, res) {
 });
 
 app.post('/review', function(req, res) {
-  console.log(req.body);
+  Games.find({gameTitle: req.body.game_title}, (err, found) => {
+    Games.updateOne(
+      {"_id": found[0].id},
+      {$push: {reviews: {userid: req.session.user, rating: parseInt(req.body.rating), comment: req.body.comment}}},
+    ).then(result => {
+      
+    });
+  });
   res.sendStatus(200);
 });
 
