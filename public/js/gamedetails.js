@@ -1,6 +1,7 @@
 $(document).ready(function(){
     fillGameGrid();
-    popContainer();       
+    popContainer(); 
+    moreLikeThis();      
 });
 // GET URL QUERY
 let gameId = [], hash;
@@ -60,114 +61,95 @@ function fillGameGrid() {
     }
 }
 
+function moreLikeThis() {
+    let gameContainerGrid = $("#game-preview-more");
+    let codeGame;
+    let loadedGame = gameId['gm'];
+    gameDetails(loadedGame);
+    let loadedGameKeywords = gameKeywords;
+    for(let k = 0; k < loadedGameKeywords.length; k += 1) {
+       let matchGame = loadedGameKeywords[k]; 
+
+    
+    for(let l = 0; l < gameLibrary.length; l += 1) {
+        codeGame = gameLibrary[l];
+        gameDetails(codeGame);
+        let matchGameKeywords = gameKeywords;
+    
+    for(let m = 0; m < matchGameKeywords.length; m += 1) {
+        let detailedGame = matchGameKeywords[m];
+        console.log(detailedGame, matchGame);
+         if (detailedGame === matchGame) {
+            let gameGridTemplate =
+        `
+        <div>
+            <div class="hit-area">
+                <a href="./gamepage.html?gm=${codeGame}"><i class="far fa-arrow-alt-circle-right"></i></a>
+            </div>
+
+            <h4>`+gameTitle+`</h4>
+            <div>
+                <img src="images/games/`+codeGame+`-cover.jpg">
+            </div>
+            <div class="star-rating">
+            <div class="stars">
+                <div>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+            </div> 
+         </div> 
+     </div>
+        `
+        gameContainerGrid.append(gameGridTemplate); 
+         }
+        }
+      }
+    }
+
+
+   /* for(let c = 0; c < gameLibrary.length && c < 3; c += 1) {
+        codeGame = gameLibrary[c];
+        gameDetails(codeGame);
+        let gameGridTemplate =
+        `
+        <div>
+            <div class="hit-area">
+                <a href="./gamepage.html?gm=`+codeGame+`"><i class="far fa-arrow-alt-circle-right"></i></a>
+            </div>
+
+            <h4>`+gameTitle+`</h4>
+            <div>
+                <img src="images/games/`+codeGame+`-cover.jpg">
+            </div>
+            <div class="star-rating">
+            <div class="stars">
+                <div>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </div>
+            </div> 
+         </div> 
+     </div>
+        `
+        gameContainerGrid.append(gameGridTemplate);
+    }*/
+}
 
 // CREATE GAME DETAILS
-var gameEmbed, gameTitle, gameCover, gameThumb1, gameThumb2, gamePlayer, gameDescription, gamePublishedBy, gameAbout, gameProgrammedBy;
+var gameKeywords, gameEmbed, gameTitle, gameCover, gameThumb1, gameThumb2, gamePlayer, gameDescription, gamePublishedBy, gameAbout, gameProgrammedBy;
 
 
 function gameDetails(gameCode) {
 
-    if(gameId['gm'] === 'vesta'|| gameCode === "vesta" ){
-        gameTitle = 'Vesta';
-        gameBackground = 'images/games/vesta-bg.jpg';
-        gameCover = '<img src="images/games/vesta-cover.jpg">';
-        gameThumb1 = '<img src="images/games/vesta-thumb1.jpg">';
-        gameThumb2 = '<img src="images/games/vesta-thumb2.jpg">';
-        gamePlayer = '<img src="images/games/vesta-cover.jpg">';
-        gameDescription = 'Vesta is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        gamePublishedBy = 'Vesta Studios';
-        gameAbout = 
-        `
-        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
-        <div><img src="images/games/vesta-thumb1.jpg"></div>
-        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
-        `
-    }
-    
-    if(gameId['gm'] === 'blueoceans'|| gameCode === "blueoceans" ){
-        gameTitle = 'Blue Oceans';
-        gameBackground = 'images/games/blueoceans-bg.jpg';
-        gameCover = '<img src="images/games/blueoceans-cover.jpg">';
-        gameThumb1 = '<img src="images/games/blueoceans-thumb1.jpg">';
-        gameThumb2 = '<img src="images/games/blueoceans-thumb2.jpg">';
-        gamePlayer = '<img src="images/games/blueoceans-cover.jpg">';
-        gameDescription = 'Blue Oceans is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        gamePublishedBy = 'The Anonymous';
-        gameAbout = 
-        `
-        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
-        <div><img src="images/games/blueoceans-thumb1.jpg"></div>
-        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
-        `
-    }
-    if(gameId['gm'] === 'galaxy' || gameCode === 'galaxy'){
-        gameTitle = 'Galaxy';
-        gameBackground = 'images/games/galaxy-bg.jpg';
-        gameCover = '<img src="images/games/galaxy-cover.jpg">';
-        gameThumb1 = '<img src="images/games/galaxy-thumb1.jpg">';
-        gameThumb2 = '<img src="images/games/galaxy-thumb2.jpg">';
-        gamePlayer = '<img src="images/games/galaxy-cover.jpg">';
-        gameDescription = 'Galaxy is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        gamePublishedBy = 'Galaxy Studios';
-        gameProgrammedBy = ''
-        gameAbout = 
-        `
-        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
-        <div><img src="images/games/galaxy-thumb1.jpg"></div>
-        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
-        `
-    }
-    if(gameId['gm'] === 'dressup' || gameCode === 'dressup'){
-        gameTitle = 'Dressup';
-        gameBackground = 'images/games/dressup-bg.jpg';
-        gameCover = '<img src="images/games/dressup-cover.jpg">';
-        gameThumb1 = '<img src="images/games/dressup-thumb1.jpg">';
-        gameThumb2 = '<img src="images/games/dressup-thumb2.jpg">';
-        gamePlayer = '<img src="images/games/dressup-cover.jpg">';
-        gameDescription = 'Dressup is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        gamePublishedBy = 'Dressup Studios';
-        gameprogrammedby = ''
-        gameAbout = 
-        `
-        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
-        <div><img src="images/games/dressup-thumb1.jpg"></div>
-        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
-        `
-    }
-    if(gameId['gm'] === 'trivia' || gameCode === 'trivia'){
-        gameTitle = 'Trivia';
-        gameBackground = 'images/games/trivia-bg.jpg';
-        gameCover = '<img src="images/games/trivia-cover.jpg">';
-        gameThumb1 = '<img src="images/games/trivia-thumb1.jpg">';
-        gameThumb2 = '<img src="images/games/trivia-thumb2.jpg">';
-        gamePlayer = '<img src="images/games/trivia-cover.jpg">';
-        gameDescription = 'Trivia is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        gamePublishedBy = 'Trivia Studios';
-        gameAbout = 
-        `
-        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
-        <div><img src="images/games/trivia-thumb1.jpg"></div>
-        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
-        `
-    }
-    if(gameId['gm'] === 'mixmatch' || gameCode === 'mixmatch'){
-        gameTitle = 'MixMatch';
-        gameBackground = 'images/games/mixmatch-bg.jpg';
-        gameCover = '<img src="images/games/mixmatch-cover.jpg">';
-        gameThumb1 = '<img src="images/games/mixmatch-thumb1.jpg">';
-        gameThumb2 = '<img src="images/games/mixmatch-thumb2.jpg">';
-        gamePlayer = '<img src="images/games/mixmatch-cover.jpg">';
-        gameDescription = 'MixMatch is lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        gamePublishedBy = 'MixMatch Studios';
-        gameAbout = 
-        `
-        <p>Gameplay features players understanding about sustainable goals and conserving and sustaining the use of environment resources.</p>
-        <div><img src="images/games/mixmatch-thumb1.jpg"></div>
-        <p>Within this game we will be able to understand that the world is being threatened and destroyed. This game also addresses the problems we are currently facing right now like <b>poverty, climate change, inequality</b> and more. It will also help us to promote success in our goals while taking care of the planet.</p>
-        `
-    }
-
     if(gameId['gm'] === 'adventure' || gameCode === 'adventure'){
+        gameKeywords = ["inequality"];
         gameEmbed = `<div style="position:relative;height:0;padding-bottom:117.6%;overflow:hidden;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://arcade.makecode.com/---run?id=_55e53gVHdJkg" allowfullscreen="allowfullscreen" sandbox="allow-popups allow-forms allow-scripts allow-same-origin" frameborder="0"></iframe></div>`
         gameTitle = 'The Educated Gamer';
         gameBackground = 'images/games/adventure-bg.jpg';
@@ -187,6 +169,7 @@ function gameDetails(gameCode) {
     }
 
     if(gameId['gm'] === 'seaturtles' || gameCode === 'seaturtles'){
+        gameKeywords = ["water"];
         gameEmbed = `<div style="position:relative;height:0;padding-bottom:117.6%;overflow:hidden;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://arcade.makecode.com/---run?id=_Ubc2iWKEzAuW" allowfullscreen="allowfullscreen" sandbox="allow-popups allow-forms allow-scripts allow-same-origin" frameborder="0"></iframe></div>`
         gameTitle = 'Sea Turtles';
         gameBackground = 'images/games/seaturtles-bg.jpg';
@@ -206,6 +189,7 @@ function gameDetails(gameCode) {
 
     }
     if(gameId['gm'] === 'watergame' || gameCode === 'watergame'){
+        gameKeywords = ["water"];
         gameEmbed = `<div style="position:relative;height:0;padding-bottom:117.6%;overflow:hidden;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://arcade.makecode.com/---run?id=_19o1ih96CT8H" allowfullscreen="allowfullscreen" sandbox="allow-popups allow-forms allow-scripts allow-same-origin" frameborder="0"></iframe></div>`
         gameTitle = 'Water Game';
         gameBackground = 'images/games/watergame-bg.jpg';
@@ -224,6 +208,7 @@ function gameDetails(gameCode) {
         `
     }
     if(gameId['gm'] === 'trees' || gameCode === 'trees'){
+        gameKeywords = ["trees"];
         gameEmbed =`<div style="position:relative;height:0;padding-bottom:117.6%;overflow:hidden;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://arcade.makecode.com/---run?id=_7aY2Wp2mMJap" allowfullscreen="allowfullscreen" sandbox="allow-popups allow-forms allow-scripts allow-same-origin" frameborder="0"></iframe></div>`
         gameTitle = 'Trees';
         gameBackground = 'images/games/trees-bg.jpg';
@@ -242,6 +227,7 @@ function gameDetails(gameCode) {
         `
     }
     if(gameId['gm'] === 'treestory' || gameCode === 'treestory'){
+        gameKeywords = ["trees"];
         gameEmbed = `<iframe src="https://scratch.mit.edu/projects/306677058/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>`
         gameTitle = 'Tree Story';
         gameBackground = 'images/games/treestory-bg.jpg';
@@ -260,6 +246,7 @@ function gameDetails(gameCode) {
         `
     }
     if(gameId['gm'] === 'monsanto' || gameCode === 'monsanto'){
+        gameKeywords = ["trees"];
         gameEmbed = `<a href="http://dsfastudents.org/projects/Monsanto/index.html"><img src="images/games/monsanto-cover.jpg"></a>`
         gameTitle = 'Monsanto';
         gameBackground = 'images/games/monsanto-bg.jpg';
@@ -278,6 +265,7 @@ function gameDetails(gameCode) {
         `
     }
     if(gameId['gm'] === 'thwi' || gameCode === 'thwi'){
+        gameKeywords = ["inequality"];
         gameEmbed = `<iframe src="https://scratch.mit.edu/projects/288022277/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>`
         gameTitle = 'The Hate We Ignore';
         gameBackground = 'images/games/thwi-bg.jpg';
@@ -296,6 +284,7 @@ function gameDetails(gameCode) {
         `
     }
     if(gameId['gm'] === 'trashdash' || gameCode === 'trashdash'){
+        gameKeywords = ["water"];
         gameEmbed = `<iframe src="https://scratch.mit.edu/projects/288018428/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>`
         gameTitle = 'Trash Dash';
         gameBackground = 'images/games/trashdash-bg.jpg';
@@ -314,6 +303,7 @@ function gameDetails(gameCode) {
         `
     }
     if(gameId['gm'] === 'tjhm' || gameCode === 'tjhm'){
+        gameKeywords = ["inequality"];
         gameEmbed = `<iframe src="https://scratch.mit.edu/projects/321363197/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>`
         gameTitle = 'The Journey of the Homeless Man';
         gameBackground = 'images/games/tjhm-bg.jpg';
@@ -332,6 +322,7 @@ function gameDetails(gameCode) {
         `
     }
     if(gameId['gm'] === 'boxexplorer' || gameCode === 'boxexplorer'){
+        gameKeywords = ["nothing"];
         gameEmbed = `<a href="http://dsfastudents.org/projects/BoxExplorer/index.html"><img src="images/games/boxexplorer-cover.jpg"></a>`
         gameTitle = 'Box Explorer';
         gameBackground = 'images/games/boxexplorer-bg.jpg';
@@ -350,6 +341,7 @@ function gameDetails(gameCode) {
         `
     }
     if(gameId['gm'] === 'divein' || gameCode === 'divein'){
+        gameKeywords = ["inequality"];
         gameEmbed = `<a href="http://dsfastudents.org/projects/DiveIn/DiveIn.html"><img src="images/games/divein-cover.jpg"></a>`
         gameTitle = 'DiveIn';
         gameBackground = 'images/games/divein-bg.jpg';
@@ -368,6 +360,7 @@ function gameDetails(gameCode) {
         `
     }
     if(gameId['gm'] === 'carbonmonsters' || gameCode === 'carbonmonsters'){
+        gameKeywords = ["trees"];
         gameEmbed =  `<iframe src="https://scratch.mit.edu/projects/321929757/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>`
         gameTitle = 'Carbon Monsters';
         gameBackground = 'images/games/carbonmonsters-bg.jpg';
