@@ -69,7 +69,6 @@ $(document).ready(
         //Comments Field 
         $(document).on('click', '.comment-submit', function(){
                 let commentText = $('#comment-text').val();
-
                 var commentTemplate =
                 `
                 <div class="post">
@@ -112,22 +111,35 @@ $(document).ready(
                 </div>
                 `
 
-                if (commentText.length !== 0) {
-                    $('.posts').append(commentTemplate);
-                    $(`#${userName}${postDate}`).text(commentText);
-                    $('#comment-text').val('');
+                let data = {
+                    "game_title": game_title,
+                    "comment": commentText,
                 }
-                // fix the connection between the comment submit and the main submit button
-                $('.reply-field').hide();
-                $('.edit-area').hide();
-                $('.reply-button').show();
-                $('.reply-text').val('');
 
-                $('.reply-cancel').click(function () {
-                    $(this).parent().hide();
-                    $('.reply-text').val('');
-                    $(this).parent().siblings('.reply-button-container').find('.reply-button').show();
+                fetch('/comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data),
                 });
+                
+                // if (commentText.length !== 0) {
+                //     $('.posts').append(commentTemplate);
+                //     $(`#${userName}${postDate}`).text(commentText);
+                //     $('#comment-text').val('');
+                // }
+                // // fix the connection between the comment submit and the main submit button
+                // $('.reply-field').hide();
+                // $('.edit-area').hide();
+                // $('.reply-button').show();
+                // $('.reply-text').val('');
+
+                // $('.reply-cancel').click(function () {
+                //     $(this).parent().hide();
+                //     $('.reply-text').val('');
+                //     $(this).parent().siblings('.reply-button-container').find('.reply-button').show();
+                // });
                  
 
         });
@@ -307,19 +319,11 @@ $(document).ready(
           //Submit review
           $('.review-form').on('submit', function(e){
               e.preventDefault();
-<<<<<<< HEAD
-              let game = $(".game-title").text();
-              let rating = starRating;
-              let comment = $('#review').val();
-              let data = {
-                  "game": game,
-=======
               let game_title = $(".game-title").text();
               let rating = starRating;
               let comment = $('#review').val();
               let data = {
                   "game_title": game_title,
->>>>>>> 0fb35581242ed3e1baec63281ffd65828cc390fd
                   "rating": rating,
                   "comment": comment,
               };

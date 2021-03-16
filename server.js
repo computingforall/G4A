@@ -135,6 +135,18 @@ app.post('/review', function(req, res) {
   res.sendStatus(200);
 });
 
+app.post('/comments', function(req, res) {
+  Games.find({gameTitle: req.body.game_title}, (err, found) => {
+    Games.updateOne(
+      {"_id": found[0].id},
+      {$push: {comments: {userid: req.session.user, comment: req.body.comment}}},
+    ).then(result => {
+      
+    });
+  });
+  res.sendStatus(200);
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
 });
