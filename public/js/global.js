@@ -307,9 +307,11 @@ $(document).ready(
           //Submit review
           $('.review-form').on('submit', function(e){
               e.preventDefault();
+              let game_title = $(".game-title").text();
               let rating = starRating;
               let comment = $('#review').val();
               let data = {
+                  "game_title": game_title,
                   "rating": rating,
                   "comment": comment,
               };
@@ -320,5 +322,5 @@ $(document).ready(
                   },
                   body: JSON.stringify(data)
               });
-          })
+          });
 });
