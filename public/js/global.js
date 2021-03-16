@@ -307,11 +307,19 @@ $(document).ready(
           //Submit review
           $('.review-form').on('submit', function(e){
               e.preventDefault();
+<<<<<<< HEAD
               let game = $(".game-title").text();
               let rating = starRating;
               let comment = $('#review').val();
               let data = {
                   "game": game,
+=======
+              let game_title = $(".game-title").text();
+              let rating = starRating;
+              let comment = $('#review').val();
+              let data = {
+                  "game_title": game_title,
+>>>>>>> 0fb35581242ed3e1baec63281ffd65828cc390fd
                   "rating": rating,
                   "comment": comment,
               };
