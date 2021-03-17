@@ -98,7 +98,6 @@ $(document).ready(
 
         $(document).on('click', '#login', function(e) {
             e.preventDefault();
-            console.log('why');
             $(loginTemplate).appendTo('#page');
         });
 

@@ -232,6 +232,10 @@ footer nav a:hover {color:#fff;}
 }
 
 /* Login  & Register */
+#login {
+    cursor:pointer;
+}
+
 #login-modal {
     margin: 15% auto;
     background-color: #fefefe;
