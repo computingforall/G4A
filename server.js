@@ -130,6 +130,9 @@ app.post('/review', function(req, res) {
       {$push: {reviews: {userid: req.session.user, rating: parseInt(req.body.rating), comment: req.body.comment}}},
     ).then(result => {
       
+    }).catch(error => {
+      console.log(error);
+      res.end();
     });
   });
   res.sendStatus(200);
@@ -149,4 +152,12 @@ app.post('/comments', function(req, res) {
 
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
+});
+
+app.get('/comments' ,function(req, res) {
+  const game_title = (req.headers.referer).split('=').pop();
+  Games.find({gameTitle: game_title}, (err, found) => {
+    console.log(found);
+    res.send(found[0].comments);
+  });
 });

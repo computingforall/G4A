@@ -69,6 +69,7 @@ $(document).ready(
         //Comments Field 
         $(document).on('click', '.comment-submit', function(){
                 let commentText = $('#comment-text').val();
+                // let game_title = $(".game-title").text();
                 var commentTemplate =
                 `
                 <div class="post">
@@ -112,7 +113,7 @@ $(document).ready(
                 `
 
                 let data = {
-                    "game_title": game_title,
+                    "gameTitle": game_title,
                     "comment": commentText,
                 }
 
@@ -334,5 +335,16 @@ $(document).ready(
                   },
                   body: JSON.stringify(data),
               });
+          });
+
+          // Get request for comments
+          fetch('/comments', {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+          }).then(response => {
+              console.log(response);
+              //Post request on line 115 has an undefined variable
           });
 });
