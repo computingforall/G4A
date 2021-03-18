@@ -8,8 +8,8 @@ const axios = require("axios")
 const bcrypt = require("bcrypt");
 const session = require('express-session');
 var uid = require('uid-safe');
-const { updateOne, db } = require('./database/db.js');
-const { nextTick } = require('process');
+// const { updateOne, db } = require('./database/db.js');
+// const { nextTick } = require('process');
 const app = express();
 
 const {PORT, SECRET} = process.env;
@@ -133,6 +133,16 @@ app.post('/review', function(req, res) {
     });
   });
   res.sendStatus(200);
+});
+
+app.get('/games', function(req, res) {
+  Games.find({}, function(err, found) {
+    if (!err) {
+      res.status(200).send(found);
+    } else {
+      res.status(500).send(err);
+    }
+  });
 });
 
 app.listen(PORT, () => {
