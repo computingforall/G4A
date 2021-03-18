@@ -389,7 +389,48 @@ $(document).ready(
           fetch('/comments',)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                foreach((data) => {
+                    let commentText = `
+                    <div class="post">
+                    <div class="user-pro">
+                        <div><img src='./images/avatars/${userName}.jpg'></div>
+                        <div><h2>${userName}</h2></div>
+                    </div>
+                    <div>
+                        <p id="${userName}${postDate}" class="comment"></p>
+                        <div class="edit-area">
+                            <textarea class="edit-comment"></textarea>
+                            <button class="edit-confirm">Confirm</button>
+                            <button class="cancel-edit ghost">Cancel</button>
+                        </div>
+                        <div class="pointButton likeButton">
+                            <div class="pointButtonG like unliked checkLike">
+                                <i class="fas fa-thumbs-up"></i>
+                                <p class="likeCount">0</p>
+                            </div>
+                            <div class="pointButtonG dislike undisliked checkDislike">
+                                <i class="fas fa-thumbs-down"></i>
+                                <p class="dislikeCount">0</p>
+                            </div>
+                        </div>
+                        <div class="user-buttons">
+                            <div class="comment-button-container">
+                                <button class="reply-button">Reply</button>
+                                <button class="edit-button">Edit</button>
+                            </div>
+                            <div>
+                                <div class="reply-field">
+                                    <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
+                                    <button class="reply-submit">Submit</button>
+                                    <button class="cancel-submit ghost">Cancel</button>
+                                </div>
+                                <div class="replied-comment"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+                $(`#${userName}${postDate}`).text(commentText)
+                });
             });
-              //Post request on line 115 has an undefined variable
 });

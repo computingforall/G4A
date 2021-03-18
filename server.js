@@ -138,19 +138,6 @@ app.post('/review', function(req, res) {
   res.sendStatus(200);
 });
 
-app.post('/comments', function(req, res) {
-  const game_title = (req.headers.referer).split('=').pop();
-  Games.find({gameTitle: game_title}, (err, found) => {
-    Games.updateOne(
-      {"_id": found[0].id},
-      {$push: {comments: {userid: req.session.user, comment: req.body.comment}}},
-    ).then(result => {
-      
-    });
-  });
-  res.sendStatus(200);
-});
-
 app.get('/games', function(req, res) {
   Games.find({}, function(err, found) {
     if (!err) {
@@ -161,14 +148,31 @@ app.get('/games', function(req, res) {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening at http://localhost:${PORT}`);
-});
-
 app.get('/comments' ,function(req, res) {
   const game_title = (req.headers.referer).split('=').pop();
-  Games.find({gameTitle: game_title}, (err, found) => {
-    res.send(found[0].comments);
+  Games.find({key: game_title}, (err, found) => {
+    try {
+      res.send(found[0].comments);
+    } catch(err) {
+
+    }
   }).catch(error => 
-    console.error(error)) ;
+    console.error(error));
+});
+
+app.post('/comments', function(req, res) {
+  const game_title = (req.headers.referer).split('=').pop();
+  Games.find({key: game_title}, (err, found) => {
+    Games.updateOne(
+      {"_id": found[0].id},
+      {$push: {comments: {userid: req.session.user, comment: req.body.comment}}},
+    ).then(result => {
+      
+    });
+  });
+  res.sendStatus(200);
+});
+
+app.listen(PORT, () => {
+  console.log(`Example app listening at http://localhost:${PORT}`);
 });
