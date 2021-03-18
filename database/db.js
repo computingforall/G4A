@@ -22,17 +22,21 @@ const userSchema = new mongoose.Schema({
 });
 
 const gameSchema = new mongoose.Schema({
-  gameTitle:        String,
-  gameBackground:   String,
-  gameCover:        String,
-  gameThumb1:       String,
-  gameThumb2:       String,
-  gamePlayer:       String,
-  gameDescription:  String,
-  gamePublishedBy:  String,
-  gameAbout:        String,
-  reviews:          [{userid: String, rating: Number, comment: String}],
-  comments:         [{userid: String, comment: String, subComment: {}, date: { type: Date, default: Date.now }}],
+  key: String,
+  gameKeywords: [String],
+  gameEmbed: String,
+  gameTitle: String,
+  gameBackground: String,
+  gameCover: String,
+  gameThumb1: String,
+  gameThumb2: String,
+  gamePlayer: String,
+  gameDescription: String,
+  gamePublishedBy: String,
+  gameAbout: String,
+  gameProgammedBy: String,
+  reviews: [{userid: String, rating: Number, comment: String}],
+  comments: [{userid: String, comment: String, subComment: {}, date: { type: Date, default: Date.now }}],
 });
 
 const Users = mongoose.model("Users", userSchema);
