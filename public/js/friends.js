@@ -22,8 +22,18 @@ $(document).ready(function(){
         dragging.appendTo($(this));
         dragging = null;
         if($(this).hasClass('friends-list')){
-            $(this).find('li').removeClass('item').unbind();
-        }
+            if($(this).find('li').hasClass('item')){  
+                $(this).children().last().children().first().append(
+                    `<div>
+                        <a class="remove-friend" href="#">
+                            <i class="fas fa-user-minus"></i>
+                        </a>
+                    </div>`
+                );
+                $(this).find('li').removeClass('item').unbind();
+            }
+        } 
+        
         draggingItem();
     });
                    
@@ -58,23 +68,17 @@ $(document).ready(function(){
         $('.delete-confirm').find('.yes').unbind();
         $('.delete-confirm').find('.no').unbind();
         $('.delete-confirm').find('.yes').click(function(){
-        $(this).parent().parent().parent().parent().remove();
+            $(this).parent().parent().parent().parent().remove();
         });
         $(document).on('click', '.no', function(){
-        $(this).parent().siblings('.remove-friend').show();
-        $(this).parent().remove(); 
- });
-       
-        //  let removedFriend = $(this).parent().parent().parent();
-     //   $(removedFriend).children().first().children().last().remove();
-    //  $(removedFriend).detach().appendTo("drop-area online-list");
-    //$(removedFriend).addClass('item').addClass('played-with').remove('.item');
-         
+            $(this).parent().siblings('.remove-friend').show();
+            $(this).parent().remove(); 
+        });   
     });
-    $(document).on('mouseover', '.delete-friend', function(){
-        $(this).parent().parent().css('pointer-events', 'none');
-        $(this).css('pointer-events', 'all');
-        });
+    //$(document).on('mouseover', '.delete-friend', function(){
+      //  $(this).parent().parent().css('pointer-events', 'none');
+       // $(this).css('pointer-events', 'all');
+       // });
 });
 // TO DO
         // detach removed friend and append it to the online list container ul
