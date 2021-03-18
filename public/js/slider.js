@@ -1,35 +1,19 @@
-$(document).ready(function(){
-    fillSlider();
-    showSlides();
-
-    //ACTIVATE SLIDER 
-    $('.slide-left').click(function(){
-        plusSlides(-1);
-    });
-    
-    $('.slide-right').click(function(){
-        plusSlides(1);
-    });
-
-});
-
 function fillSlider(){
     let sliderContainer = $(".slider-container");
-    let gameCode;
-    for(let g = 0; g < gameLibrary.length && g < 5; g++ ){
-        gameCode = gameLibrary[g];
-        gameDetails(gameCode);
+    for (let g = 0; g < gameData.length && g < 5; g++ ) {
+        let { key, gameTitle } = gameData[g];
+
         let sliderTemplate = 
         `
         <div class="slider-preview">
             <div class="hit-area">
-                <a href="./gamepage.html?gm=`+gameCode+`"><i class="far fa-arrow-alt-circle-right"></i></a>
+                <a href="./gamepage.html?gm=${key}"><i class="far fa-arrow-alt-circle-right"></i></a>
             </div>
-            <div class="slider-title"><h4>`+gameTitle+`</h4></div>
-            <div class="slider-preview-cover"><img src="images/games/`+gameCode+`-cover.jpg"></div>
+            <div class="slider-title"><h4>${gameTitle}</h4></div>
+            <div class="slider-preview-cover"><img src="images/games/${key}-cover.jpg"></div>
             <div class="slider-preview-thumbs">
-                <div><img src="images/games/`+gameCode+`-thumb1.jpg"></div>
-                <div><img src="images/games/`+gameCode+`-thumb2.jpg"></div>
+                <div><img src="images/games/${key}-thumb1.jpg"></div>
+                <div><img src="images/games/${key}-thumb2.jpg"></div>
             </div>
         </div>
         `
@@ -67,7 +51,26 @@ function showSlides(n) {
     }
     slides.eq(slideIndex-1).fadeIn(1000);
     dots.eq(slideIndex-1).addClass('active');
-  }
+}
 
+$(document).ready(function(){
 
+    fetch('/games')
+        .then((response) => response.json())
+        .then((data) => gameData = data)
+        .then(() => {
+            fillSlider();
+            showSlides();
+        
+            //ACTIVATE SLIDER 
+            $('.slide-left').click(function(){
+                plusSlides(-1);
+            });
+            
+            $('.slide-right').click(function(){
+                plusSlides(1);
+            });
+        })
+        .catch((err) => console.error(err));
+});
 
