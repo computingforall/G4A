@@ -36,6 +36,7 @@ const gameSchema = new mongoose.Schema({
   gameAbout: String,
   gameProgammedBy: String,
   reviews: [{userid: String, rating: Number, comment: String}],
+  comments: [{userid: String, comment: String, subComment: {}, date: { type: Date, default: Date.now }}],
 });
 
 const Users = mongoose.model("Users", userSchema);
