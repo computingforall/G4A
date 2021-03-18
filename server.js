@@ -139,7 +139,8 @@ app.post('/review', function(req, res) {
 });
 
 app.post('/comments', function(req, res) {
-  Games.find({gameTitle: req.body.game_title}, (err, found) => {
+  const game_title = (req.headers.referer).split('=').pop();
+  Games.find({gameTitle: game_title}, (err, found) => {
     Games.updateOne(
       {"_id": found[0].id},
       {$push: {comments: {userid: req.session.user, comment: req.body.comment}}},
@@ -157,7 +158,7 @@ app.listen(PORT, () => {
 app.get('/comments' ,function(req, res) {
   const game_title = (req.headers.referer).split('=').pop();
   Games.find({gameTitle: game_title}, (err, found) => {
-    console.log(found);
     res.send(found[0].comments);
-  });
+  }).catch(error => 
+    console.error(error)) ;
 });

@@ -113,7 +113,6 @@ $(document).ready(
                 `
 
                 let data = {
-                    "gameTitle": game_title,
                     "comment": commentText,
                 }
 
@@ -338,13 +337,10 @@ $(document).ready(
           });
 
           // Get request for comments
-          fetch('/comments', {
-              method: 'GET',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-          }).then(response => {
-              console.log(response);
+          fetch('/comments',)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
               //Post request on line 115 has an undefined variable
-          });
 });
