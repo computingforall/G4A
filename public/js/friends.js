@@ -1,4 +1,50 @@
 $(document).ready(function(){
+    const friendsData = {
+        friends: ['shiggy', 'vannary', 'maristel', 'gage', 'raymond'],
+        invited: ['default', 'default1'],
+        playedWith: ['default2', 'default3'],
+    };
+
+    for (const key in friendsData) {
+        const friendsArray = friendsData[key];
+        for (let i = 0; i < friendsArray.length; i += 1) {
+            let current = friendsArray[i];
+
+            const button = `                        
+                <div>
+                    <a class="remove-friend" href="#">
+                        <i class="fas fa-user-minus"></i>
+                    </a>
+                </div>
+            `;
+
+            let friendsListTemplate = `
+                <li class="item">
+                    <div class="added-friend">
+                        <div class="user-pro">
+                            <div>
+                                <img src="images/avatars/${key === 'friends' ? 'pic-' + current : current}.jpg">
+                            </div>
+                            <div>
+                                <h2>${current.charAt(0).toUpperCase().concat(current.slice(1))}</h2>
+                            </div>
+                        </div>
+                        ${key === 'friends' ? button : ''}
+                    </div>
+                </li>
+            `
+
+            if (key === 'friends') {
+                $('.friends-list').append(friendsListTemplate);
+            } else if (key === 'invited') {
+                $('.invited-list').append(friendsListTemplate)
+            } else if (key === 'playedWith') {
+                $('.online-list').append(friendsListTemplate) 
+            }
+        } 
+    }
+        
+    
        
     let dragging;
         
@@ -83,3 +129,4 @@ $(document).ready(function(){
 // TO DO
         // detach removed friend and append it to the online list container ul
         // add classes item, and played-with to the removed friend
+
