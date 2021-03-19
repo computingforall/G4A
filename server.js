@@ -2,28 +2,28 @@ require('dotenv').config();
 
 const express = require("express");
 const path = require("path");
-const bodyParser = require("body-parser");
 const Users = require("./database/db.js");
+const Games = require("./database/db.js");
 const axios = require("axios")
 const bcrypt = require("bcrypt");
 const session = require('express-session');
 var uid = require('uid-safe');
-const { updateOne, db } = require('./database/db.js');
-const { nextTick } = require('process');
+// const { updateOne, db } = require('./database/db.js');
+// const { nextTick } = require('process');
 const app = express();
 
 const {PORT, SECRET} = process.env;
 
 const saltNumber = Number(process.env.SALT);
 app.use(express.static(path.join(__dirname, "./public")));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(session({
   secret: SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {}
-}))
+}));
 
 
 
@@ -98,8 +98,6 @@ app.post('/settings', function(req, res) {
     const verify_password = req.body.verify_password;
 
     Users.find({_id: userID}, (err, found) => {
-      console.log(found[0]);
-      console.log(verify_password);
         if (bcrypt.compareSync(verify_password, found[0].password)) {
           const query = { "_id": userID };
           const update = { "$set": { "name": req.body.displayname, "email": req.body.email, "image": req.body.image, "biography": req.body.biography } };
@@ -126,8 +124,25 @@ app.get('/logout', function(req, res) {
 });
 
 app.post('/review', function(req, res) {
-  console.log(req.body);
-  res.sendStatus(100);
+  Games.find({gameTitle: req.body.game_title}, (err, found) => {
+    Games.updateOne(
+      {"_id": found[0].id},
+      {$push: {reviews: {userid: req.session.user, rating: parseInt(req.body.rating), comment: req.body.comment}}},
+    ).then(result => {
+      
+    });
+  });
+  res.sendStatus(200);
+});
+
+app.get('/games', function(req, res) {
+  Games.find({}, function(err, found) {
+    if (!err) {
+      res.status(200).send(found);
+    } else {
+      res.status(500).send(err);
+    }
+  });
 });
 
 app.listen(PORT, () => {

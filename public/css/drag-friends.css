@@ -1,17 +1,19 @@
-.added-friend {
-    display: flex;
-    justify-content: space-between;
-}
-.delete-friend{
-    
-}
-
 #managefriends {
     display:grid;
+
     grid-template-columns: 2fr 1fr;
     user-select:none;
     min-height:500px;
 }
+
+#managefriends > div {
+    
+}
+
+#managefriends > .friend-requests {
+    
+}
+
 
 #managefriends > div {
     border:1px solid #999;
@@ -29,6 +31,7 @@
     background-color:#f0f2f7;
 }
 
+}
 #managefriends > .friend-requests > div {
     margin-bottom:1px;
 }
