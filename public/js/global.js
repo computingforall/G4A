@@ -1,14 +1,23 @@
 $(document).ready(
     function() {
 
-        let session_data = undefined;
+        let session_data = false;
         
+        $(".review-form").hide();
+        $(".pleaseLogin").show();
+
         async function loggedIn() {
             try {
                 await axios.post('/')
                 .then((response) => {
                     session_data = response.data;
                     navBar();
+                })
+                .then(() => {
+                    if (session_data) {
+                        $(".review-form").show();
+                        $(".pleaseLogin").hide();
+                    }
                 })
             } catch (error) {
                 
@@ -385,11 +394,25 @@ $(document).ready(
               });
           });
 
+
+          // If user name is active show comments and reviews
+        //   let userActive = false;
+
+        //   function userActive() {
+        //     if (userActive === false) {
+        //         $(".text-area").hide();
+        //         $(".review-form").hide();
+        //     } else {
+        //         $(".text-area").show();
+        //         $(".review-form").show();
+        //     }
+        //   }
+        //   userActive();
           // Get request for comments
           fetch('/comments',)
             .then(response => response.json())
             .then(data => {
-                foreach((data) => {
+                data.forEach((item) => {
                     let commentText = `
                     <div class="post">
                     <div class="user-pro">
