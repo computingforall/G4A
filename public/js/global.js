@@ -61,8 +61,13 @@ $(document).ready(
                 nav_items.clone().appendTo('nav').attr('id', 'login').html('Login');
             }
         }
+        $('nav').find('a').first().remove();
 
-        // LOGIN
+        // LOGIN 
+        const displayname_regex = /^(?=.*[\w!@#$%^&*()_-]).{4,16}$/;
+        const email_regex = /^(("[\w\d-.!%+ ]{1,64}")|^([\w\d-.!%+]{1,64}))(@[a-zA-Z0-9-.]+)(.[\w\d]+)?$/;
+        const password_regex = /^(?=.*[\w])(?=.*[!@#$%^&*()_-]).{6,16}$/; // word, must have some special character, 6 chars min for length, 16 max.
+
         var loginTemplate = 
         `
         <div class="modal">
@@ -82,7 +87,7 @@ $(document).ready(
         </div>
         `;
 
-        $('#login-form').on('submit', function(e) {
+        $(document).on('submit', '#login-form', function(e) {
             e.preventDefault();
             const email = $('#email').val();
             const password = $('#password').val();
@@ -119,8 +124,10 @@ $(document).ready(
                 console.log(error);
             });
         });
+
+        // REGISTER
         
-        $('nav').find('a').first().remove();
+        // ???
         const userName = 'shiggy';
         const postDate = new Date().valueOf();
 

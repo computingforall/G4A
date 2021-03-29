@@ -2,12 +2,15 @@ require('dotenv').config();
 
 const express = require("express");
 const path = require("path");
-const Users = require("./database/db.js");
-const Games = require("./database/db.js");
 const axios = require("axios")
 const bcrypt = require("bcrypt");
 const session = require('express-session');
 var uid = require('uid-safe');
+const db = require('./database/db.js');
+const Users = db.Users;
+const Games = db.Games;
+
+const { Console } = require('console');
 // const { updateOne, db } = require('./database/db.js');
 // const { nextTick } = require('process');
 const app = express();
@@ -38,7 +41,7 @@ app.post('/', function(req, res) {
 app.post('/login', (req, res) => {
   const email = req.body.email;
   const pass = req.body.password;
-  
+
   Users.find({email: email}, (err, found) => {
     if (found.length === 1) {
       if (bcrypt.compareSync(pass, found[0].password)) {
@@ -77,6 +80,7 @@ app.post('/register', (req, res) => {
     } else {
       res.send('Email already in use');
     }
+      
   })
 });
 

@@ -58,19 +58,4 @@ const gameSchema = new mongoose.Schema({
 const Users = mongoose.model("Users", userSchema);
 const Games = mongoose.model("Games", gameSchema);
 
-/*const testGame = new Games({
-  gameTitle:        "Vesta",
-  reviews:  [{userid: "VeniVidiVici", rating: 2, comment: "HATE"}],
-});*/
-
-module.exports = Users;
-module.exports = Games;
-
-
-
-/*
-// LOAD DB BELOW
-testGame.save(function (err) {
-  if (err) return console.error(err);
-  console.log("DB saved");
-});*/
+module.exports = {Users, Games};
