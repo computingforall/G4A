@@ -254,6 +254,14 @@ footer nav a:hover {color:#fff;}
     text-align: left;
 }
 
+#register-modal {
+    margin: 15% auto;
+    background-color: #fefefe;
+    width: 15%;
+    padding: 3em;
+    border: 1px solid #888;
+}
+
 /* Modal CSS */
 .modal {
     position: fixed;

@@ -2,7 +2,7 @@ $(document).ready(
     function() {
 
         let session_data = undefined;
-        
+
         async function loggedIn() {
             try {
                 await axios.post('/')
@@ -15,6 +15,14 @@ $(document).ready(
             }
         }
         loggedIn();
+
+        // This is how we get out of modals, user clicks 'outside' of modal.
+        $(document).on('click', function(e) {
+            if ($(e.target).hasClass('modal')) {
+                $('.modal').remove();
+            }
+        });
+
         
         
 
@@ -70,7 +78,7 @@ $(document).ready(
 
                     <label for="password">Password:</label>
                     <input type="password" name="password" id="password" autocomplete="current-password" required>
-                    <p>Register Here</p>
+                    <p class="register-here">Register Here</p>
 
                     <input type="submit" value="Login" id="submit-login">
                 </form>
@@ -117,7 +125,68 @@ $(document).ready(
         });
 
         // REGISTER
-        
+        var registrationTemplate =
+        `
+        <div id="register-modal">
+        <h1>Register Here</h1>
+            <form name="register-form" id="register-form">
+                <label for="displayname">Display Name: </label><br>
+                <input type="text" name="displayname" id="displayname" required><br>
+
+                <label for="email">Email: </label><br>
+                <input type="email" name="email" id="new-email" required><br>
+
+                <label for="password">Password: </label><br>
+                <input type="password" name="password" id="new-password" required><br>
+                <ul>
+                    <li>1 special character</li>
+                    <li>1 uppercase chracter</li>
+                    <li>1 number</li>
+                    <li>Minimum of 6 characters</li>
+                </ul
+                <div>
+                    <label for="tos">Agree to <a href="#">Terms of Service</a>:</label>
+                    <input type="checkbox" name="tos" id="tos" required><br>
+                    <input type="submit" id="submit-registration" value="Register">
+                </div>
+                
+            </form>
+        </div>
+        `
+
+        $(document).on('click', '.register-here', function(e) {
+            $(".modal").empty();
+            $(registrationTemplate).appendTo('.modal');
+
+        });
+
+        $(document).on('submit', '#register-form', function(e) {
+            e.preventDefault();
+            const displayname = $('#displayname').val();
+            const email = $('#new-email').val();
+            const password = $('#new-password').val();
+
+            if (email_regex.exec(email) === null) {
+                alert('bad email');
+            } else if (password_regex.exec(password) === null) {
+                alert('bad password');
+            } else if (displayname_regex.exec(displayname) === null) {
+                alert('bad display name');
+            } else {
+                $('#register-form')[0].reset();
+                axios.post('/register', {
+                    displayname,
+                    email,
+                    password
+                })
+                .then((response) => {
+                    window.location = '/';
+                })
+                .catch((error) => {
+                });
+            } 
+        });
+
         // ???
         const userName = 'shiggy';
         const postDate = new Date().valueOf();
