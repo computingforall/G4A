@@ -72,7 +72,7 @@ $(document).ready(
         `
         <div class="modal">
             <div id="login-modal">
-                <h1>Login</h1>
+                <h2>Login Form</h2>
                 <form name="login-form" id="login-form">
                     <label for="email">Email:</label>
                     <input type="text" name="email" id="email" required>
@@ -129,7 +129,7 @@ $(document).ready(
         var registrationTemplate =
         `
         <div id="register-modal">
-        <h1>Register</h1>
+        <h2>Registration Form</h2>
             <form name="register-form" id="register-form">
                 <label for="displayname">Display Name: </label>
                 <input type="text" name="displayname" id="displayname" pattern="^(?=.*[\w!@#$%^&*()_-]).{4,16}$" required>
