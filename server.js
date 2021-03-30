@@ -154,11 +154,39 @@ app.get('/games', function(req, res) {
 
 app.get('/comments' ,function(req, res) {
   const game_title = (req.headers.referer).split('=').pop();
+  let comments; 
   Games.find({key: game_title}, (err, found) => {
+    // 
     try {
-      res.send(found[0].comments);
+      
+      comments = found[0].comments;
+      let storage = [];
+      for (let i = 0; i < comments.length; i += 1) {
+        // Get username into objects, and return it to front end.
+        let comment = comments[i];
+        console.log(comment);
+        // const { userid } = comment;
+        // let username;
+        // Users.find({_id: userid}, (err, docs) => {
+        //   console.log(comment);
+        //   username = docs[0].name;
+        //   const {
+        //     userid,
+        //     comment,
+        //     date
+        //   } = comment;
+        //   storage.push({
+        //     username,
+        //     userid,
+        //     comment,
+        //     date
+        //   });
+        // })
+      }
+      console.log(storage);
+      res.status(200).send(storage);
     } catch(err) {
-
+      res.status(500).send(err);
     }
   }).catch(error => 
     console.error(error));
@@ -167,14 +195,10 @@ app.get('/comments' ,function(req, res) {
 app.post('/comments', function(req, res) {
   const game_title = (req.headers.referer).split('=').pop();
   Games.find({key: game_title}, (err, found) => {
-    Games.updateOne(
-      {"_id": found[0].id},
-      {$push: {comments: {userid: req.session.user, comment: req.body.comment}}},
-    ).then(result => {
-      
-    });
+    let game = found[0];
+    game.comments.push({userid: req.session.user, comment: req.body.comment});
+    game.save();
   });
-  res.sendStatus(200);
 });
 
 app.listen(PORT, () => {

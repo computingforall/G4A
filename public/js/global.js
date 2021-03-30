@@ -3,8 +3,9 @@ $(document).ready(
 
         let session_data = false;
         
-        $(".review-form").hide();
-        $(".pleaseLogin").show();
+        $('.review-form').hide();
+        $('.pleaseLogin').show();
+        $('.text-area').hide();
 
         async function loggedIn() {
             try {
@@ -15,8 +16,9 @@ $(document).ready(
                 })
                 .then(() => {
                     if (session_data) {
-                        $(".review-form").show();
-                        $(".pleaseLogin").hide();
+                        $('.review-form').show();
+                        $('.pleaseLogin').hide();
+                        $('.text-area').show()
                     }
                 })
             } catch (error) {
@@ -401,26 +403,14 @@ $(document).ready(
               });
           });
 
-
-          // If user name is active show comments and reviews
-        //   let userActive = false;
-
-        //   function userActive() {
-        //     if (userActive === false) {
-        //         $(".text-area").hide();
-        //         $(".review-form").hide();
-        //     } else {
-        //         $(".text-area").show();
-        //         $(".review-form").show();
-        //     }
-        //   }
-        //   userActive();
           // Get request for comments
-          fetch('/comments',)
+          fetch('/comments')
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 data.forEach((item) => {
-                    let commentText = `
+                    let commentText = 
+                    `
                     <div class="post">
                     <div class="user-pro">
                         <div><img src='./images/avatars/${userName}.jpg'></div>
