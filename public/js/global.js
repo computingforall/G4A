@@ -16,8 +16,9 @@ $(document).ready(
         }
         loggedIn();
 
-        // This is how we get out of modals, user clicks 'outside' of modal.
-        $(document).on('click', function(e) {
+        // This is how we get out of modals, user mouse downs on the 'outside' of the modal.
+        // General layout of a modal goes as follows: .modal -> #inner-modal (whatever you want to call it) -> content.
+        $(document).on('mousedown', function(e) {
             if ($(e.target).hasClass('modal')) {
                 $('.modal').remove();
             }
@@ -65,7 +66,7 @@ $(document).ready(
         // LOGIN 
         const displayname_regex = /^(?=.*[\w!@#$%^&*()_-]).{4,16}$/;
         const email_regex = /^(("[\w\d-.!%+ ]{1,64}")|^([\w\d-.!%+]{1,64}))(@[a-zA-Z0-9-.]+)(.[\w\d]+)?$/;
-        const password_regex = /^(?=.*[\w])(?=.*[!@#$%^&*()_-]).{6,16}$/; // word, must have some special character, 6 chars min for length, 16 max.
+        const password_regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,16}$/; // word, must have some special character, 6 chars min for length, 16 max.
 
         var loginTemplate = 
         `
@@ -77,8 +78,8 @@ $(document).ready(
                     <input type="text" name="email" id="email" required>
 
                     <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" autocomplete="current-password" required>
-                    <p class="register-here">Register Here</p>
+                    <input type="password" name="password" id="password" autocomplete="current-password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,16}$" required>
+                    <a href="#" class="register-here">Register Here</a>
 
                     <input type="submit" value="Login" id="submit-login">
                 </form>
@@ -128,27 +129,23 @@ $(document).ready(
         var registrationTemplate =
         `
         <div id="register-modal">
-        <h1>Register Here</h1>
+        <h1>Register</h1>
             <form name="register-form" id="register-form">
-                <label for="displayname">Display Name: </label><br>
-                <input type="text" name="displayname" id="displayname" required><br>
+                <label for="displayname">Display Name: </label>
+                <input type="text" name="displayname" id="displayname" pattern="^(?=.*[\w!@#$%^&*()_-]).{4,16}$" required>
 
-                <label for="email">Email: </label><br>
-                <input type="email" name="email" id="new-email" required><br>
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="new-email" required>
 
-                <label for="password">Password: </label><br>
-                <input type="password" name="password" id="new-password" required><br>
-                <ul>
-                    <li>1 special character</li>
-                    <li>1 uppercase chracter</li>
-                    <li>1 number</li>
-                    <li>Minimum of 6 characters</li>
-                </ul
-                <div>
-                    <label for="tos">Agree to <a href="#">Terms of Service</a>:</label>
-                    <input type="checkbox" name="tos" id="tos" required><br>
-                    <input type="submit" id="submit-registration" value="Register">
-                </div>
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="new-password" 
+                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$" 
+                title="Must contain at least one number, one special character, and one uppercase and lowercase letter, and at least 6 or more characters" required>
+
+                <!--<label for="tos">Agree to <a href="#">Terms of Service</a>:</label>
+                <input type="checkbox" name="tos" id="tos" required>-->
+
+                <input type="submit" id="submit-registration" value="Register">
                 
             </form>
         </div>
