@@ -138,7 +138,7 @@ $(document).ready(
         <h2>Registration Form</h2>
             <form name="register-form" id="register-form">
                 <label for="displayname">Display Name: </label>
-                <input type="text" name="displayname" id="displayname" pattern="^(?=.*[\w!@#$%^&*()_-]).{4,16}$" required>
+                <input type="text" name="displayname" id="displayname" required>
 
                 <label for="email">Email: </label>
                 <input type="email" name="email" id="new-email" required>
