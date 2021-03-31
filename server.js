@@ -105,6 +105,12 @@ app.post('/settings', function(req, res) {
         if (bcrypt.compareSync(verify_password, found[0].password)) {
           const query = { "_id": userID };
           const update = { "$set": { "name": req.body.displayname, "email": req.body.email, "image": req.body.image, "biography": req.body.biography } };
+          if (req.body.password.length > 0) {
+            let password_hash =  bcrypt.hashSync(req.body.password, saltNumber, function(err, hash) {
+              return hash;
+            });
+            update.password = password_hash;
+          }
           const options = { "upsert": false };
 
           Users.updateOne(query, update, options)
