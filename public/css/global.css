@@ -246,12 +246,20 @@ footer nav a:hover {color:#fff;}
 
 #login-form {
     margin: auto auto;
-    
+    display: grid;
 }
 
-#login-form label {
-    display: block;
-    text-align: left;
+#register-modal {
+    margin: 15% auto;
+    background-color: #fefefe;
+    width: 15%;
+    padding: 3em;
+    border: 1px solid #888;
+}
+
+#register-form {
+    margin: auto auto;
+    display: grid;
 }
 
 /* Modal CSS */
@@ -264,4 +272,20 @@ footer nav a:hover {color:#fff;}
     height: 100%;
     overflow: auto;
     background-color: #00000066;
+}
+
+.modal h2 {
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+.modal input[type=submit] {
+    margin-top: 1em;
+    background-color:#315682;
+    border:1px solid #999;
+    border-radius:4px;
+    padding:1em 1em;
+    cursor:pointer;
+    color:#fff;
+    transition: all 0.5s;
 }
