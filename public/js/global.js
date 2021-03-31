@@ -98,7 +98,7 @@ $(document).ready(
                 password
             })
             .then((response) => {
-                window.location = '/';
+                location.reload();
             })
             .catch((error) => {
             });
@@ -171,7 +171,7 @@ $(document).ready(
                     password
                 })
                 .then((response) => {
-                    window.location = '/';
+                    location.reload();
                 })
                 .catch((error) => {
                 });
