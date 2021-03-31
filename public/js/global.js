@@ -78,7 +78,7 @@ $(document).ready(
                     <input type="text" name="email" id="email" required>
 
                     <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" autocomplete="current-password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,16}$" required>
+                    <input type="password" name="password" id="password" autocomplete="current-password" required>
                     <a href="#" class="register-here">Register Here</a>
 
                     <input type="submit" value="Login" id="submit-login">
@@ -92,22 +92,16 @@ $(document).ready(
             const email = $('#email').val();
             const password = $('#password').val();
 
-            if (email_regex.exec(email) === null) {
-                alert('bad email');
-            } else if (password_regex.exec(password) === null) {
-                alert('bad password');
-            } else {
-                $('#login-form')[0].reset();
-                axios.post('/login', {
-                    email,
-                    password
-                })
-                .then((response) => {
-                    window.location = '/';
-                })
-                .catch((error) => {
-                });
-            }
+            $('#login-form')[0].reset();
+            axios.post('/login', {
+                email,
+                password
+            })
+            .then((response) => {
+                window.location = '/';
+            })
+            .catch((error) => {
+            });
         });
 
         $(document).on('click', '#login', function(e) {
