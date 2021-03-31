@@ -158,33 +158,32 @@ app.get('/comments' ,function(req, res) {
   Games.find({key: game_title}, (err, found) => {
     // 
     try {
-      
+      const storage = [];
       comments = found[0].comments;
-      let storage = [];
       for (let i = 0; i < comments.length; i += 1) {
-        // Get username into objects, and return it to front end.
         let comment = comments[i];
-        console.log(comment);
-        // const { userid } = comment;
-        // let username;
-        // Users.find({_id: userid}, (err, docs) => {
-        //   console.log(comment);
-        //   username = docs[0].name;
-        //   const {
-        //     userid,
-        //     comment,
-        //     date
-        //   } = comment;
-        //   storage.push({
-        //     username,
-        //     userid,
-        //     comment,
-        //     date
-        //   });
-        // })
+        let copy = comment.toObject();
+        const { userid } = comment;
+        let username;
+        Users.find({_id: userid}, (err, docs) => {
+          const seshId = req.session.user;
+          let edit = false;
+          if (userid === seshId) {
+            edit = true;
+          }
+          username = docs[0].name;
+          avatar = docs[0].image;
+          copy.userName = username;
+          copy.avatar = avatar;
+          copy.edit = edit
+          storage.push(copy);
+        })
+          .then (() => {
+            if (i + 1 === comments.length) {
+              res.status(200).send(storage);
+            }
+          });
       }
-      console.log(storage);
-      res.status(200).send(storage);
     } catch(err) {
       res.status(500).send(err);
     }

@@ -18,7 +18,8 @@ $(document).ready(
                     if (session_data) {
                         $('.review-form').show();
                         $('.pleaseLogin').hide();
-                        $('.text-area').show()
+                        $('.text-area').show();
+                        $('.reply-button').show();
                     }
                 })
             } catch (error) {
@@ -136,49 +137,6 @@ $(document).ready(
         //Comments Field 
         $(document).on('click', '.comment-submit', function(){
                 let commentText = $('#comment-text').val();
-                // let game_title = $(".game-title").text();
-                var commentTemplate =
-                `
-                <div class="post">
-                    <div class="user-pro">
-                        <div><img src='./images/avatars/${userName}.jpg'></div>
-                        <div><h2>${userName}</h2></div>
-                    </div>
-                    <div>
-                        <p id="${userName}${postDate}" class="comment"></p>
-                        <div class="edit-area">
-                            <textarea class="edit-comment"></textarea>
-                            <button class="edit-confirm">Confirm</button>
-                            <button class="cancel-edit ghost">Cancel</button>
-                        </div>
-                        <div class="pointButton likeButton">
-                            <div class="pointButtonG like unliked checkLike">
-                                <i class="fas fa-thumbs-up"></i>
-                                <p class="likeCount">0</p>
-                            </div>
-                            <div class="pointButtonG dislike undisliked checkDislike">
-                                <i class="fas fa-thumbs-down"></i>
-                                <p class="dislikeCount">0</p>
-                            </div>
-                        </div>
-                        <div class="user-buttons">
-                            <div class="comment-button-container">
-                                <button class="reply-button">Reply</button>
-                                <button class="edit-button">Edit</button>
-                            </div>
-                            <div>
-                                <div class="reply-field">
-                                    <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
-                                    <button class="reply-submit">Submit</button>
-                                    <button class="cancel-submit ghost">Cancel</button>
-                                </div>
-                                <div class="replied-comment"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `
-
                 let data = {
                     "comment": commentText,
                 }
@@ -189,28 +147,11 @@ $(document).ready(
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(data),
+                }).then(() => {
+                    location.reload();
                 });
-                
-                // if (commentText.length !== 0) {
-                //     $('.posts').append(commentTemplate);
-                //     $(`#${userName}${postDate}`).text(commentText);
-                //     $('#comment-text').val('');
-                // }
-                // // fix the connection between the comment submit and the main submit button
-                // $('.reply-field').hide();
-                // $('.edit-area').hide();
-                // $('.reply-button').show();
-                // $('.reply-text').val('');
-
-                // $('.reply-cancel').click(function () {
-                //     $(this).parent().hide();
-                //     $('.reply-text').val('');
-                //     $(this).parent().siblings('.reply-button-container').find('.reply-button').show();
-                // });
-                 
-
         });
-
+        
         //Edit Buttons
         $(document).on('click', '.edit-button', function(){
             let toEdit = $(this).parent().parent().siblings().first().text();
@@ -223,7 +164,7 @@ $(document).ready(
 
         $(document).on('click', '.edit-confirm', function() {
             let editVal = $(this).siblings('.edit-comment').val();
-            $(`#${userName}${postDate}`).text(editVal);
+            $(`#${userName}${date}`).text(editVal);
             $(this).parent().hide();
             $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
         });
@@ -409,15 +350,16 @@ $(document).ready(
             .then(data => {
                 console.log(data);
                 data.forEach((item) => {
+                    const { userName, date, comment, avatar, edit } = item;
                     let commentText = 
                     `
                     <div class="post">
                     <div class="user-pro">
-                        <div><img src='./images/avatars/${userName}.jpg'></div>
+                        <div><img src='${avatar}'></div>
                         <div><h2>${userName}</h2></div>
                     </div>
                     <div>
-                        <p id="${userName}${postDate}" class="comment"></p>
+                        <p id="${userName}${date}" class="comment">${comment}</p>
                         <div class="edit-area">
                             <textarea class="edit-comment"></textarea>
                             <button class="edit-confirm">Confirm</button>
@@ -436,7 +378,7 @@ $(document).ready(
                         <div class="user-buttons">
                             <div class="comment-button-container">
                                 <button class="reply-button">Reply</button>
-                                <button class="edit-button">Edit</button>
+                                ${edit ? '<button class="edit-button">Edit</button>' : '<div></div>'}
                             </div>
                             <div>
                                 <div class="reply-field">
@@ -450,7 +392,8 @@ $(document).ready(
                     </div>
                 </div>
                 `
-                $(`#${userName}${postDate}`).text(commentText)
+                $(`#${userName}${date}`).text(comment);
+                $('.posts').append(commentText);
                 });
             });
 });

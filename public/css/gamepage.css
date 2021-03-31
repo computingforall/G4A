@@ -39,6 +39,18 @@
 
 /*NewsFeed starts*/
 
+.reply-field {
+  display: none;
+}
+
+.edit-area {
+  display: none;
+}
+
+.reply-button {
+  display: none;
+}
+
 #newsfeed {
 }
 
