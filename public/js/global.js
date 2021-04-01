@@ -223,8 +223,22 @@ $(document).ready(
         });
 
         $(document).on('click', '.edit-confirm', function() {
-            let editVal = $(this).siblings('.edit-comment').val();
-            $(`#${userName}${date}`).text(editVal);
+            let edit = $(this).siblings('.edit-comment').val();
+            let id = $(this).parent().siblings().first().data('commentId');
+            let data = {
+                edit,
+                id
+            }
+            fetch('/comments', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            }).then(() => {
+                // location.reload();
+            })
+
             $(this).parent().hide();
             $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
         });
@@ -410,7 +424,8 @@ $(document).ready(
             .then(data => {
                 console.log(data);
                 data.forEach((item) => {
-                    const { userName, date, comment, avatar, edit } = item;
+                    const { userName, date, comment, avatar, edit, _id } = item;
+
                     let commentText = 
                     `
                     <div class="post">
@@ -419,9 +434,9 @@ $(document).ready(
                         <div><h2>${userName}</h2></div>
                     </div>
                     <div>
-                        <p id="${userName}${date}" class="comment">${comment}</p>
+                        <p id="${userName}${date}" data-comment-id="${_id}" class="comment">${comment}</p>
                         <div class="edit-area">
-                            <textarea class="edit-comment"></textarea>
+                            <textarea class="edit-comment">${comment}</textarea>
                             <button class="edit-confirm">Confirm</button>
                             <button class="cancel-edit ghost">Cancel</button>
                         </div>

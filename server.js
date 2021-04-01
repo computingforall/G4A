@@ -9,6 +9,7 @@ var uid = require('uid-safe');
 const db = require('./database/db.js');
 const Users = db.Users;
 const Games = db.Games;
+const Comments = db.Comments;
 
 const { Console } = require('console');
 // const { updateOne, db } = require('./database/db.js');
@@ -201,8 +202,19 @@ app.post('/comments', function(req, res) {
   const game_title = (req.headers.referer).split('=').pop();
   Games.find({key: game_title}, (err, found) => {
     let game = found[0];
-    game.comments.push({userid: req.session.user, comment: req.body.comment});
-    game.save();
+    if (req.body.edit === null) {
+      game.comments.push({userid: req.session.user, comment: req.body.comment});
+      game.save();
+    } else {
+      const { id, edit } = req.body;
+      const commentId = { 'comments._id': id };
+      const updateDocument = { '$set': { 'comments.$.comment': edit}};
+      let potato = game.updateOne(
+        commentId,
+        updateDocument
+      );
+      console.log(potato);
+    };
   });
 });
 

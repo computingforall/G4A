@@ -57,5 +57,6 @@ const gameSchema = new mongoose.Schema({
 
 const Users = mongoose.model("Users", userSchema);
 const Games = mongoose.model("Games", gameSchema);
+const Comments = mongoose.model("Comments", commentSchema);
 
-module.exports = {Users, Games};
+module.exports = {Users, Games, Comments};
