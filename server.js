@@ -208,7 +208,7 @@ app.post('/comments', function(req, res) {
     } else {
       const { id, edit } = req.body;
       const commentId = { 'comments._id': id };
-      const updateDocument = { '$set': { 'comments.$.comment': edit}};
+      const updateDocument = { '$set': { 'comment': edit}};
       let potato = game.updateOne(
         commentId,
         updateDocument
