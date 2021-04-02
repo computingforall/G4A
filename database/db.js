@@ -11,6 +11,22 @@ db.once("open", function () {
   console.log("Connected to the database");
 });
 
+const reviewSchema = new mongoose.Schema({
+  userid: String, 
+  rating: Number, 
+  comment: String
+});
+
+const commentSchema = new mongoose.Schema({
+  userid: String, 
+  comment: String, 
+  subComment: {}, 
+  date: { 
+    type: Date, 
+    default: Date.now 
+  }
+});
+
 const userSchema = new mongoose.Schema({
   name: String,
   password: String,
@@ -35,11 +51,12 @@ const gameSchema = new mongoose.Schema({
   gamePublishedBy: String,
   gameAbout: String,
   gameProgammedBy: String,
-  reviews: [{userid: String, rating: Number, comment: String}],
-  comments: [{userid: String, comment: String, subComment: {}, date: { type: Date, default: Date.now }}],
+  reviews: [reviewSchema],
+  comments: [commentSchema],
 });
 
 const Users = mongoose.model("Users", userSchema);
 const Games = mongoose.model("Games", gameSchema);
+const Comments = mongoose.model("Comments", commentSchema);
 
-module.exports = {Users, Games};
+module.exports = {Users, Games, Comments};
