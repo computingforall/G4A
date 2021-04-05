@@ -1,8 +1,12 @@
 $(document).ready(
     function() {
 
-        let session_data = undefined;
+        let session_data = false;
         
+        $('.review-form').hide();
+        $('.pleaseLogin').show();
+        $('.text-area').hide();
+
         async function loggedIn() {
             try {
                 await axios.post('/')
@@ -10,11 +14,28 @@ $(document).ready(
                     session_data = response.data;
                     navBar();
                 })
+                .then(() => {
+                    if (session_data) {
+                        $('.review-form').show();
+                        $('.pleaseLogin').hide();
+                        $('.text-area').show();
+                        $('.reply-button').show();
+                    }
+                })
             } catch (error) {
                 
             }
         }
         loggedIn();
+
+        // This is how we get out of modals, user mouse downs on the 'outside' of the modal.
+        // General layout of a modal goes as follows: .modal -> #inner-modal (whatever you want to call it) -> content.
+        $(document).on('mousedown', function(e) {
+            if ($(e.target).hasClass('modal')) {
+                $('.modal').remove();
+            }
+        });
+
         
         
 
@@ -57,20 +78,20 @@ $(document).ready(
         // LOGIN 
         const displayname_regex = /^(?=.*[\w!@#$%^&*()_-]).{4,16}$/;
         const email_regex = /^(("[\w\d-.!%+ ]{1,64}")|^([\w\d-.!%+]{1,64}))(@[a-zA-Z0-9-.]+)(.[\w\d]+)?$/;
-        const password_regex = /^(?=.*[\w])(?=.*[!@#$%^&*()_-]).{6,16}$/; // word, must have some special character, 6 chars min for length, 16 max.
+        const password_regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,16}$/; // word, must have some special character, 6 chars min for length, 16 max.
 
         var loginTemplate = 
         `
         <div class="modal">
             <div id="login-modal">
-                <h1>Login</h1>
+                <h2>Login Form</h2>
                 <form name="login-form" id="login-form">
                     <label for="email">Email:</label>
                     <input type="text" name="email" id="email" required>
 
                     <label for="password">Password:</label>
                     <input type="password" name="password" id="password" autocomplete="current-password" required>
-                    <p>Register Here</p>
+                    <a href="#" class="register-here">Register Here</a>
 
                     <input type="submit" value="Login" id="submit-login">
                 </form>
@@ -83,22 +104,16 @@ $(document).ready(
             const email = $('#email').val();
             const password = $('#password').val();
 
-            if (email_regex.exec(email) === null) {
-                alert('bad email');
-            } else if (password_regex.exec(password) === null) {
-                alert('bad password');
-            } else {
-                $('#login-form')[0].reset();
-                axios.post('/login', {
-                    email,
-                    password
-                })
-                .then((response) => {
-                    window.location = '/';
-                })
-                .catch((error) => {
-                });
-            }
+            $('#login-form')[0].reset();
+            axios.post('/login', {
+                email,
+                password
+            })
+            .then((response) => {
+                location.reload();
+            })
+            .catch((error) => {
+            });
         });
 
         $(document).on('click', '#login', function(e) {
@@ -117,7 +132,64 @@ $(document).ready(
         });
 
         // REGISTER
-        
+        var registrationTemplate =
+        `
+        <div id="register-modal">
+        <h2>Registration Form</h2>
+            <form name="register-form" id="register-form">
+                <label for="displayname">Display Name: </label>
+                <input type="text" name="displayname" id="displayname" required>
+
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="new-email" required>
+
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="new-password" 
+                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$" 
+                title="Must contain at least one number, one special character, and one uppercase and lowercase letter, and at least 6 or more characters" required>
+
+                <!--<label for="tos">Agree to <a href="#">Terms of Service</a>:</label>
+                <input type="checkbox" name="tos" id="tos" required>-->
+
+                <input type="submit" id="submit-registration" value="Register">
+                
+            </form>
+        </div>
+        `
+
+        $(document).on('click', '.register-here', function(e) {
+            $(".modal").empty();
+            $(registrationTemplate).appendTo('.modal');
+
+        });
+
+        $(document).on('submit', '#register-form', function(e) {
+            e.preventDefault();
+            const displayname = $('#displayname').val();
+            const email = $('#new-email').val();
+            const password = $('#new-password').val();
+
+            if (email_regex.exec(email) === null) {
+                alert('bad email');
+            } else if (password_regex.exec(password) === null) {
+                alert('bad password');
+            } else if (displayname_regex.exec(displayname) === null) {
+                alert('bad display name');
+            } else {
+                $('#register-form')[0].reset();
+                axios.post('/register', {
+                    displayname,
+                    email,
+                    password
+                })
+                .then((response) => {
+                    location.reload();
+                })
+                .catch((error) => {
+                });
+            } 
+        });
+
         // ???
         const userName = 'shiggy';
         const postDate = new Date().valueOf();
@@ -125,69 +197,21 @@ $(document).ready(
         //Comments Field 
         $(document).on('click', '.comment-submit', function(){
                 let commentText = $('#comment-text').val();
-
-                var commentTemplate =
-                `
-                <div class="post">
-                    <div class="user-pro">
-                        <div><img src='./images/avatars/${userName}.jpg'></div>
-                        <div><h2>${userName}</h2></div>
-                    </div>
-                    <div>
-                        <p id="${userName}${postDate}" class="comment"></p>
-                        <div class="edit-area">
-                            <textarea class="edit-comment"></textarea>
-                            <button class="edit-confirm">Confirm</button>
-                            <button class="cancel-edit ghost">Cancel</button>
-                        </div>
-                        <div class="pointButton likeButton">
-                            <div class="pointButtonG like unliked checkLike">
-                                <i class="fas fa-thumbs-up"></i>
-                                <p class="likeCount">0</p>
-                            </div>
-                            <div class="pointButtonG dislike undisliked checkDislike">
-                                <i class="fas fa-thumbs-down"></i>
-                                <p class="dislikeCount">0</p>
-                            </div>
-                        </div>
-                        <div class="user-buttons">
-                            <div class="comment-button-container">
-                                <button class="reply-button">Reply</button>
-                                <button class="edit-button">Edit</button>
-                            </div>
-                            <div>
-                                <div class="reply-field">
-                                    <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
-                                    <button class="reply-submit">Submit</button>
-                                    <button class="cancel-submit ghost">Cancel</button>
-                                </div>
-                                <div class="replied-comment"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                `
-
-                if (commentText.length !== 0) {
-                    $('.posts').append(commentTemplate);
-                    $(`#${userName}${postDate}`).text(commentText);
-                    $('#comment-text').val('');
+                let data = {
+                    "comment": commentText,
                 }
-                // fix the connection between the comment submit and the main submit button
-                $('.reply-field').hide();
-                $('.edit-area').hide();
-                $('.reply-button').show();
-                $('.reply-text').val('');
 
-                $('.reply-cancel').click(function () {
-                    $(this).parent().hide();
-                    $('.reply-text').val('');
-                    $(this).parent().siblings('.reply-button-container').find('.reply-button').show();
+                fetch('/comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data),
+                }).then(() => {
+                    location.reload();
                 });
-                 
-
         });
-
+        
         //Edit Buttons
         $(document).on('click', '.edit-button', function(){
             let toEdit = $(this).parent().parent().siblings().first().text();
@@ -199,8 +223,22 @@ $(document).ready(
         });
 
         $(document).on('click', '.edit-confirm', function() {
-            let editVal = $(this).siblings('.edit-comment').val();
-            $(`#${userName}${postDate}`).text(editVal);
+            let edit = $(this).siblings('.edit-comment').val();
+            let id = $(this).parent().siblings().first().data('commentId');
+            let data = {
+                edit,
+                id
+            }
+            fetch('/comments', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            }).then(() => {
+                // location.reload();
+            })
+
             $(this).parent().hide();
             $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
         });
@@ -376,7 +414,61 @@ $(document).ready(
                   headers: {
                       'Content-Type': 'application/json'
                   },
-                  body: JSON.stringify(data)
+                  body: JSON.stringify(data),
               });
           });
+
+          // Get request for comments
+          fetch('/comments')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.forEach((item) => {
+                    const { userName, date, comment, avatar, edit, _id } = item;
+
+                    let commentText = 
+                    `
+                    <div class="post">
+                    <div class="user-pro">
+                        <div><img src='${avatar}'></div>
+                        <div><h2>${userName}</h2></div>
+                    </div>
+                    <div>
+                        <p id="${userName}${date}" data-comment-id="${_id}" class="comment">${comment}</p>
+                        <div class="edit-area">
+                            <textarea class="edit-comment">${comment}</textarea>
+                            <button class="edit-confirm">Confirm</button>
+                            <button class="cancel-edit ghost">Cancel</button>
+                        </div>
+                        <div class="pointButton likeButton">
+                            <div class="pointButtonG like unliked checkLike">
+                                <i class="fas fa-thumbs-up"></i>
+                                <p class="likeCount">0</p>
+                            </div>
+                            <div class="pointButtonG dislike undisliked checkDislike">
+                                <i class="fas fa-thumbs-down"></i>
+                                <p class="dislikeCount">0</p>
+                            </div>
+                        </div>
+                        <div class="user-buttons">
+                            <div class="comment-button-container">
+                                <button class="reply-button">Reply</button>
+                                ${edit ? '<button class="edit-button">Edit</button>' : '<div></div>'}
+                            </div>
+                            <div>
+                                <div class="reply-field">
+                                    <textarea class="reply-text" placeholder="Leave a reply..."></textarea>
+                                    <button class="reply-submit">Submit</button>
+                                    <button class="cancel-submit ghost">Cancel</button>
+                                </div>
+                                <div class="replied-comment"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `
+                $(`#${userName}${date}`).text(comment);
+                $('.posts').append(commentText);
+                });
+            });
 });

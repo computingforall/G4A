@@ -9,6 +9,7 @@ var uid = require('uid-safe');
 const db = require('./database/db.js');
 const Users = db.Users;
 const Games = db.Games;
+const Comments = db.Comments;
 
 const { Console } = require('console');
 // const { updateOne, db } = require('./database/db.js');
@@ -105,6 +106,12 @@ app.post('/settings', function(req, res) {
         if (bcrypt.compareSync(verify_password, found[0].password)) {
           const query = { "_id": userID };
           const update = { "$set": { "name": req.body.displayname, "email": req.body.email, "image": req.body.image, "biography": req.body.biography } };
+          if (req.body.password.length > 0) {
+            let password_hash =  bcrypt.hashSync(req.body.password, saltNumber, function(err, hash) {
+              return hash;
+            });
+            update.password = password_hash;
+          }
           const options = { "upsert": false };
 
           Users.updateOne(query, update, options)
@@ -134,6 +141,9 @@ app.post('/review', function(req, res) {
       {$push: {reviews: {userid: req.session.user, rating: parseInt(req.body.rating), comment: req.body.comment}}},
     ).then(result => {
       
+    }).catch(error => {
+      console.log(error);
+      res.end();
     });
   });
   res.sendStatus(200);
@@ -146,6 +156,65 @@ app.get('/games', function(req, res) {
     } else {
       res.status(500).send(err);
     }
+  });
+});
+
+app.get('/comments' ,function(req, res) {
+  const game_title = (req.headers.referer).split('=').pop();
+  let comments; 
+  Games.find({key: game_title}, (err, found) => {
+    // 
+    try {
+      const storage = [];
+      comments = found[0].comments;
+      for (let i = 0; i < comments.length; i += 1) {
+        let comment = comments[i];
+        let copy = comment.toObject();
+        const { userid } = comment;
+        let username;
+        Users.find({_id: userid}, (err, docs) => {
+          const seshId = req.session.user;
+          let edit = false;
+          if (userid === seshId) {
+            edit = true;
+          }
+          username = docs[0].name;
+          avatar = docs[0].image;
+          copy.userName = username;
+          copy.avatar = avatar;
+          copy.edit = edit
+          storage.push(copy);
+        })
+          .then (() => {
+            if (i + 1 === comments.length) {
+              res.status(200).send(storage);
+            }
+          });
+      }
+    } catch(err) {
+      res.status(500).send(err);
+    }
+  }).catch(error => 
+    console.error(error));
+});
+
+app.post('/comments', function(req, res) {
+  const game_title = (req.headers.referer).split('=').pop();
+  Games.find({key: game_title}, (err, found) => {
+    let game = found[0];
+    if (req.body.edit === null) {
+      game.comments.push({userid: req.session.user, comment: req.body.comment});
+      game.save();
+    } else {
+      const { id, edit } = req.body;
+      const commentId = { 'comments._id': id };
+      const updateDocument = { '$set': { 'comment': edit}};
+      let potato = game.updateOne(
+        commentId,
+        updateDocument
+      );
+      console.log(potato);
+    };
   });
 });
 

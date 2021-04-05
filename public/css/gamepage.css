@@ -39,6 +39,18 @@
 
 /*NewsFeed starts*/
 
+.reply-field {
+  display: none;
+}
+
+.edit-area {
+  display: none;
+}
+
+.reply-button {
+  display: none;
+}
+
 #newsfeed {
 }
 
@@ -355,39 +367,19 @@
 }
 /* Review */
 
-/*.star-background-1 {
+.star-background-1 {
     background-color: #232429;
-}*/
+}
 
 .star-padd {
     padding: 1em;
 }
 
 .star-rating-1 {
-    color:#999;
+    color:#666;
 }
 
 .star-rating-checked-1 {
     color:#ffd700;
 
-}
-
-.star-rating-border {
-  width: 90%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 2px solid #5c88bd;
-  background-color:#f0f2f7;
-}
-
-.submit-review {
-  background-color: #315682;
-  border: 1px solid #999;
-  border-radius: 4px;
-  padding: 0.5em 1em;
-  cursor: pointer;
-  color: #fff;
-  transition: all 0.5s;
 }

@@ -53,13 +53,19 @@
                         <div id="tabs-containers">
                             <div class="tab-container" id="tab1container">
                                 <div id="newsfeed">
-                                    <div class="posts"></div>
-
 
                                     <div class="text-area">
                                         <textarea id="comment-text" placeholder="Leave a comment..."></textarea>
                                         <button class="comment-submit">Submit</button>
                                         <button class="share-button">Share</button>
+                                    </div>
+                                    <div class="pleaseLogin">
+                                        <span>
+                                            Please login to leave a comment. 
+                                        </span>
+                                    </div>
+                                    <div class="posts">
+                                        
                                     </div>
                                 </div>
                             </div> 
@@ -73,7 +79,7 @@
                                 <div id="reviews">
                                     <form action="" method="get" class="review-form">
                                         <div>
-                                          <label for="rating">Rate the game </label>
+                                          <label for="rating">Rate the game: </label>
                                           <div class="star-background-1 star-rate-group">
                                             <span value="1" class="fas fa-star star-grade star-padd"></span>
                                             <span value="2" class="fas fa-star star-grade star-padd"></span>
@@ -83,13 +89,18 @@
                                           </div>    
                                         </div>
                                         <div>
-                                            <label for="review">Write a review </label>
-                                         <input class="star-rating-border" autocomplete="off" type="text" name="review" id="review" required></input>
+                                            <label for="review">Write a review: </label>
+                                          <textarea type="text" name="review" id="review" placeholder="Leave a review..." required></textarea>
                                         </div>
                                         <div>
-                                            <input type="submit" class="submit-review" onSubmit=""></input>
+                                            <input type="submit" class="submit-review" onSubmit="">Submit</input>
                                         </div>
                                     </form>
+                                    <div class="pleaseLogin">
+                                        <span>
+                                            Please log in to leave a review.
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
