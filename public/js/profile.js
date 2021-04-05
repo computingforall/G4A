@@ -73,6 +73,12 @@ $(document).ready(
                 $('.modal').remove();
             });
 
+            $(document).on('mousedown', function(e) {
+                if ($(e.target).hasClass('modal')) {
+                    change_settings_btn.prependTo('#page');
+                }
+            });
+
             $('#apply-settings-form').on('submit', function(e) {
                 e.preventDefault();
                 const displayname = $('#displayname').val();
