@@ -202,18 +202,17 @@ app.post('/comments', function(req, res) {
   const game_title = (req.headers.referer).split('=').pop();
   Games.find({key: game_title}, (err, found) => {
     let game = found[0];
-    if (req.body.edit === null) {
+    if (req.body.edit === undefined) {
       game.comments.push({userid: req.session.user, comment: req.body.comment});
       game.save();
     } else {
       const { id, edit } = req.body;
-      const commentId = { 'comments._id': id };
-      const updateDocument = { '$set': { 'comment': edit}};
-      let potato = game.updateOne(
-        commentId,
-        updateDocument
-      );
-      console.log(potato);
+      for (comment in game.comments) {
+        if (game.comments[comment]._id == id) {
+          game.comments[comment].comment = edit;
+        }
+      }
+      game.save();
     };
   });
 });

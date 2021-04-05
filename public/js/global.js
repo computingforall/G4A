@@ -215,9 +215,7 @@ $(document).ready(
         //Edit Buttons
         $(document).on('click', '.edit-button', function(){
             let toEdit = $(this).parent().parent().siblings().first().text();
-            console.log(toEdit);
             $(this).parent().parent().siblings('.edit-area').children('.edit-comment').text(toEdit);
-            console.log(toEdit);
             $(this).parent().parent().siblings('.edit-area').show();
             $(this).parent().hide();
         });
