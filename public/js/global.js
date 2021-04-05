@@ -212,7 +212,7 @@ $(document).ready(
                 });
         });
         
-        //Edit Buttons
+        // Edit Buttons
         $(document).on('click', '.edit-button', function(){
             let toEdit = $(this).parent().parent().siblings().first().text();
             console.log(toEdit);
@@ -236,7 +236,7 @@ $(document).ready(
                 },
                 body: JSON.stringify(data),
             }).then(() => {
-                // location.reload();
+            // location.reload();
             })
 
             $(this).parent().hide();
