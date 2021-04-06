@@ -234,8 +234,8 @@ $(document).ready(
                 },
                 body: JSON.stringify(data),
             }).then(() => {
-                // location.reload();
-            })
+                window.location.reload();
+            });
 
             $(this).parent().hide();
             $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();

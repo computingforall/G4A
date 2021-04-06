@@ -213,6 +213,7 @@ app.post('/comments', function(req, res) {
         }
       }
       game.save();
+      res.status(200).send();
     };
   });
 });
