@@ -20,7 +20,7 @@ const reviewSchema = new mongoose.Schema({
 const commentSchema = new mongoose.Schema({
   userid: String, 
   comment: String, 
-  subComment: {}, 
+  subComments: [String], 
   date: { 
     type: Date, 
     default: Date.now 

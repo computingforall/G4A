@@ -217,6 +217,23 @@ app.post('/comments', function(req, res) {
   });
 });
 
+app.post('/replys', function(req, res) {
+  const game_title = (req.headers.referer).split('=').pop();
+  const id = req.body.id;
+  Games.find({ comments: {_id: id} }, (err, found) => {
+    let game = found;
+    console.log(game);
+    // Querying the comment ID through the game
+    // Sending new reply when submitted
+    // game.comments.find({_id: id}, (err, comment) => {
+    //   console.log("this is an id ", id)
+    //   let reply = comment[0];
+    //   console.log("this is a reply ", reply);
+    //   reply.push({subComment: req.body.replyVal});
+    // })
+  })
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
 });

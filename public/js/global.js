@@ -212,14 +212,15 @@ $(document).ready(
                 });
         });
         
-        // Edit Buttons
-        $(document).on('click', '.edit-button', function(){
-            let toEdit = $(this).parent().parent().siblings().first().text();
-            $(this).parent().parent().siblings('.edit-area').children('.edit-comment').text(toEdit);
-            $(this).parent().parent().siblings('.edit-area').show();
-            $(this).parent().hide();
-        });
 
+        // $(document).on('click', '.edit-button', function(){
+        //     let toEdit = $(this).parent().parent().siblings().first().text();
+        //     $(this).parent().parent().siblings('.edit-area').children('.edit-comment').text(toEdit);
+        //     $(this).parent().parent().siblings('.edit-area').show();
+        //     $(this).parent().hide();
+        // });
+
+        // Edit Buttons
         $(document).on('click', '.edit-confirm', function() {
             let edit = $(this).siblings('.edit-comment').val();
             let id = $(this).parent().siblings().first().data('commentId');
@@ -266,44 +267,60 @@ $(document).ready(
 
         $(document).on('click', '.reply-submit', function(){
             let replyVal = $(this).siblings('.reply-text').val();
-            num++;
-            const postDate = new Date().valueOf();
-            const playNum = `Player ${num}`;
-
-            var replyTemplate =
-            `
-            <div>
-            <div class="user-pro">
-                <div><img src='./images/avatars/default.jpg'></div>
-                <div><h2>${playNum}</h2></div>
-            </div>
-            <div>
-                <p id="${playNum.split(' ').join('')}${postDate}" class="reply-post"></p>
-                <div class="pointButton likeButton">
-                    <div class="pointButtonG like unliked checkLike">
-                        <i class="fas fa-thumbs-up"></i>
-                        <p class="likeCount">0</p>
-                    </div>
-                    <div class="pointButtonG dislike undisliked checkDislike">
-                        <i class="fas fa-thumbs-down"></i>
-                        <p class="dislikeCount">0</p>
-                    </div>
-                </div>
-            </div>
-            </div>
-            `
-            let replyText = function() {
-                $(this).parent().siblings('.replied-comment').append(replyTemplate);
-                $(`#${playNum.split(' ').join('')}${postDate}`).text(replyVal);
-                $('.reply-text').val('');
-                $('.reply-field').hide();
-                $(this).parent().parent().siblings().first().show();
-                $(this).parent().hide();
-            }.bind(this);
-
-            if (replyVal.length !== 0) {
-                replyText();
+            let id = $(this).parent().parent().parent().siblings().first().data('commentId');
+            console.log(id)
+            let data = {
+                replyVal,
+                id
             }
+
+            fetch('/replys', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            }).then(() => {
+                location.reload();
+            })
+            // num++;
+            // const postDate = new Date().valueOf();
+            // const playNum = `Player ${num}`;
+
+            // var replyTemplate =
+            // `
+            // <div>
+            // <div class="user-pro">
+            //     <div><img src='./images/avatars/default.jpg'></div>
+            //     <div><h2>${playNum}</h2></div>
+            // </div>
+            // <div>
+            //     <p id="${playNum.split(' ').join('')}${postDate}" class="reply-post"></p>
+            //     <div class="pointButton likeButton">
+            //         <div class="pointButtonG like unliked checkLike">
+            //             <i class="fas fa-thumbs-up"></i>
+            //             <p class="likeCount">0</p>
+            //         </div>
+            //         <div class="pointButtonG dislike undisliked checkDislike">
+            //             <i class="fas fa-thumbs-down"></i>
+            //             <p class="dislikeCount">0</p>
+            //         </div>
+            //     </div>
+            // </div>
+            // </div>
+            // `
+            // let replyText = function() {
+            //     $(this).parent().siblings('.replied-comment').append(replyTemplate);
+            //     $(`#${playNum.split(' ').join('')}${postDate}`).text(replyVal);
+            //     $('.reply-text').val('');
+            //     $('.reply-field').hide();
+            //     $(this).parent().parent().siblings().first().show();
+            //     $(this).parent().hide();
+            // }.bind(this);
+
+            // if (replyVal.length !== 0) {
+            //     replyText();
+            // }
             
         });
 
