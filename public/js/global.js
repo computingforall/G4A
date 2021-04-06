@@ -190,10 +190,6 @@ $(document).ready(
             } 
         });
 
-        // ???
-        const userName = 'shiggy';
-        const postDate = new Date().valueOf();
-
         //Comments Field 
         $(document).on('click', '.comment-submit', function(){
                 let commentText = $('#comment-text').val();
