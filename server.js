@@ -187,6 +187,7 @@ app.get('/comments' ,function(req, res) {
         })
           .then (() => {
             if (i + 1 === comments.length) {
+              storage.sort((a, b) => a.date - b.date);
               res.status(200).send(storage);
             }
           });
