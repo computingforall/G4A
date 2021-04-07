@@ -213,12 +213,12 @@ $(document).ready(
         });
         
 
-        // $(document).on('click', '.edit-button', function(){
-        //     let toEdit = $(this).parent().parent().siblings().first().text();
-        //     $(this).parent().parent().siblings('.edit-area').children('.edit-comment').text(toEdit);
-        //     $(this).parent().parent().siblings('.edit-area').show();
-        //     $(this).parent().hide();
-        // });
+        $(document).on('click', '.edit-button', function(){
+            let toEdit = $(this).parent().parent().siblings().first().text();
+            $(this).parent().parent().siblings('.edit-area').children('.edit-comment').text(toEdit);
+            $(this).parent().parent().siblings('.edit-area').show();
+            $(this).parent().hide();
+        });
 
         // Edit Buttons
         $(document).on('click', '.edit-confirm', function() {
@@ -268,7 +268,6 @@ $(document).ready(
         $(document).on('click', '.reply-submit', function(){
             let replyVal = $(this).siblings('.reply-text').val();
             let id = $(this).parent().parent().parent().siblings().first().data('commentId');
-            console.log(id)
             let data = {
                 replyVal,
                 id

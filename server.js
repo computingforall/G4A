@@ -12,6 +12,7 @@ const Games = db.Games;
 const Comments = db.Comments;
 
 const { Console } = require('console');
+const { ObjectId } = require('bson');
 // const { updateOne, db } = require('./database/db.js');
 // const { nextTick } = require('process');
 const app = express();
@@ -219,20 +220,19 @@ app.post('/comments', function(req, res) {
 
 app.post('/replys', function(req, res) {
   const game_title = (req.headers.referer).split('=').pop();
-  const id = req.body.id;
-  Games.find({ comments: {_id: id} }, (err, found) => {
-    let game = found;
-    console.log(game);
-    // Querying the comment ID through the game
-    // Sending new reply when submitted
-    // game.comments.find({_id: id}, (err, comment) => {
-    //   console.log("this is an id ", id)
-    //   let reply = comment[0];
-    //   console.log("this is a reply ", reply);
-    //   reply.push({subComment: req.body.replyVal});
-    // })
+  const { id, replyVal } = req.body;
+  Games.find({key: game_title}, (err, found) => {
+    let game = found[0];
+    let { comments } = game;
+    comments.forEach((comment) => {
+      if (comment._id == id) {
+        let { subComments } = comment;
+        subComments.push(replyVal);
+        game.save();
+      }
+    });
   })
-})
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);

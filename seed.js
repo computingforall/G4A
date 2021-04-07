@@ -1,4 +1,4 @@
-const Games = require('./database/db');
+const db = require('./database/db');
 
 const gameData = [
   {
@@ -242,7 +242,7 @@ const gameData = [
   }
 ]
 
-Games.insertMany(gameData, function(error, docs) {
+db.Games.insertMany(gameData, function(error, docs) {
   if (error) {
     console.log('Failed to insert documents', error);
   } else {
