@@ -163,7 +163,6 @@ app.get('/comments' ,function(req, res) {
   const game_title = (req.headers.referer).split('=').pop();
   let comments; 
   Games.find({key: game_title}, (err, found) => {
-    // 
     try {
       const storage = [];
       comments = found[0].comments;
