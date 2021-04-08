@@ -208,11 +208,7 @@ app.post('/comments', function(req, res) {
       game.save();
     } else {
       const { id, edit } = req.body;
-      for (comment in game.comments) {
-        if (game.comments[comment]._id == id) {
-          game.comments[comment].comment = edit;
-        }
-      }
+      game.comments.id(id).comment = edit;
       game.save();
     };
   });
