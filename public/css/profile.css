@@ -5,7 +5,7 @@ h1 {
 
 p {
     font-size: 1.5em;
-    line-height: .2em;
+    line-height: 0.2em;
 }
 
 img {
@@ -40,6 +40,14 @@ hr {
     margin-right: 1em;
 }
 
+#biog div {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+#biog div button {
+    margin-left: .35em;
+}
 
 button {
     align-self: center;
@@ -55,18 +63,25 @@ button#cancel {
 
 #biog {
     margin-bottom: 3em;
-    margin-top: 2em;
 }
 
 #biog h2 {
-    margin-bottom: .5em;
+    margin-bottom: 0;
 }
 
 #biog p {
     margin: 0;
-    margin-left: 1em;
-    line-height: 1.5em;
-    line-break: auto;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #00000066;
 }
 
 #settings {
