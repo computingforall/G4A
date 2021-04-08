@@ -7,9 +7,7 @@ const bcrypt = require("bcrypt");
 const session = require('express-session');
 var uid = require('uid-safe');
 const db = require('./database/db.js');
-const Users = db.Users;
-const Games = db.Games;
-const Comments = db.Comments;
+const { Users, Games, Comments} = db;
 
 const { Console } = require('console');
 // const { updateOne, db } = require('./database/db.js');
@@ -149,6 +147,47 @@ app.post('/review', function(req, res) {
   res.sendStatus(200);
 });
 
+app.get('/review', function(req, res) {
+  const game_title = (req.headers.referer).split('=').pop();
+  let reviews;
+  Games.find({key: game_title}, (err, found) => {
+    try {
+      const storage = [];
+      reviews = found[0].reviews;
+      console.log(reviews);
+      for (let i = 0; i < reviews.length; i += 1) {
+        let review = reviews[i];
+        let copy = review.toObject();
+        const { userid } = review;
+        let username;
+        Users.find({_id: userid}, (err, docs) => {
+          const seshId = req.session.user;
+          let edit = false;
+          if (userid === seshId) {
+            edit = true;
+          }
+          username = docs[0].name;
+          avatar = docs[0].image;
+          copy.userName = username;
+          copy.avatar = avatar;
+          copy.edit = edit;
+          storage.push(copy);
+        })
+          .then(() => {
+            if (i + 1 === reviews.length) {
+              res.status(200).send(storage);
+            }
+          });
+      }
+    } catch(err) {
+      res.status(500).send(err);
+    }
+  })
+    .catch(error => {
+      res.status(500).send(error)
+    });
+});
+
 app.get('/games', function(req, res) {
   Games.find({}, function(err, found) {
     if (!err) {
@@ -163,7 +202,6 @@ app.get('/comments' ,function(req, res) {
   const game_title = (req.headers.referer).split('=').pop();
   let comments; 
   Games.find({key: game_title}, (err, found) => {
-    // 
     try {
       const storage = [];
       comments = found[0].comments;
