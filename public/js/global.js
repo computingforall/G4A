@@ -23,7 +23,11 @@ $(document).ready(function() {
             .catch((error) => {
                 console.log(error);
             });
-        });
+        } catch (error) {
+            
+        }
+    }
+    loggedIn();
 
         // REGISTER
         var registrationTemplate =
@@ -90,11 +94,7 @@ $(document).ready(function() {
                 let data = {
                     "comment": commentText,
                 }
-        } catch (error) {
-            
         }
-    }
-    loggedIn();
 
     // This is how we get out of modals, user mouse downs on the 'outside' of the modal.
     // General layout of a modal goes as follows: .modal -> #inner-modal (whatever you want to call it) -> content.
