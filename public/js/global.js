@@ -20,81 +20,11 @@ $(document).ready(function() {
                     $('.reply-button').show();
                 }
             })
-            .catch((error) => {
-                console.log(error);
-            });
         } catch (error) {
             
         }
     }
     loggedIn();
-
-        // REGISTER
-        var registrationTemplate =
-        `
-        <div id="register-modal">
-        <h2>Registration Form</h2>
-            <form name="register-form" id="register-form">
-                <label for="displayname">Display Name: </label>
-                <input type="text" name="displayname" id="displayname" required>
-
-                <label for="email">Email: </label>
-                <input type="email" name="email" id="new-email" required>
-
-                <label for="password">Password: </label>
-                <input type="password" name="password" id="new-password" 
-                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$" 
-                title="Must contain at least one number, one special character, and one uppercase and lowercase letter, and at least 6 or more characters" required>
-
-                <!--<label for="tos">Agree to <a href="#">Terms of Service</a>:</label>
-                <input type="checkbox" name="tos" id="tos" required>-->
-
-                <input type="submit" id="submit-registration" value="Register">
-                
-            </form>
-        </div>
-        `
-
-        $(document).on('click', '.register-here', function(e) {
-            $(".modal").empty();
-            $(registrationTemplate).appendTo('.modal');
-
-        });
-
-        $(document).on('submit', '#register-form', function(e) {
-            e.preventDefault();
-            const displayname = $('#displayname').val();
-            const email = $('#new-email').val();
-            const password = $('#new-password').val();
-
-            if (email_regex.exec(email) === null) {
-                alert('bad email');
-            } else if (password_regex.exec(password) === null) {
-                alert('bad password');
-            } else if (displayname_regex.exec(displayname) === null) {
-                alert('bad display name');
-            } else {
-                $('#register-form')[0].reset();
-                axios.post('/register', {
-                    displayname,
-                    email,
-                    password
-                })
-                .then((response) => {
-                    location.reload();
-                })
-                .catch((error) => {
-                });
-            } 
-        });
-
-        //Comments Field 
-        $(document).on('click', '.comment-submit', function(){
-                let commentText = $('#comment-text').val();
-                let data = {
-                    "comment": commentText,
-                }
-        }
 
     // This is how we get out of modals, user mouse downs on the 'outside' of the modal.
     // General layout of a modal goes as follows: .modal -> #inner-modal (whatever you want to call it) -> content.
@@ -103,6 +33,9 @@ $(document).ready(function() {
             $('.modal').remove();
         }
     });
+
+    
+    
 
     // Main Navigation Bar
     var nav_html =
@@ -153,19 +86,6 @@ $(document).ready(function() {
                 },
                 body: JSON.stringify(data),
             }).then(() => {
-                window.location.reload();
-            });
-
-            $(this).parent().hide();
-            $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
-        });
-
-        $(document).on('click', '.cancel-edit', function() {
-            $(this).parent().hide();
-            $(this).parent().siblings('.user-buttons').children('.comment-button-container').show();
-            console.log($('.edit-comment').text());
-            $('.edit-comment').val('');
-        });
                 location.reload();
             });
     });
@@ -219,6 +139,7 @@ $(document).ready(function() {
         $(this).parent().parent().siblings('.comment-button-container').show();
     });
 
+    
     let num = 0;
 
     $(document).on('click', '.reply-submit', function(){
