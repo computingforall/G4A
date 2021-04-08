@@ -1,103 +1,119 @@
 $(document).ready(
     function() {
 
-        const displayname_regex = /^(?=.*[\w!@#$%^&*()_-]).{4,16}$/;
-        const email_regex = /^(("[\w\d-.!%+ ]{1,64}")|^([\w\d-.!%+]{1,64}))(@[a-zA-Z0-9-.]+)(.[\w\d]+)?$/;
-        const password_regex = /^(?=.*[\w])(?=.*[!@#$%^&*()_-]).{6,16}$/; // word, must have some special character, 6 chars min for length, 16 max.
+    // LOGIN 
+    const displayname_regex = /^(?=.*[\w!@#$%^&*()_-]).{4,16}$/;
+    const email_regex = /^(("[\w\d-.!%+ ]{1,64}")|^([\w\d-.!%+]{1,64}))(@[a-zA-Z0-9-.]+)(.[\w\d]+)?$/;
+    const password_regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,16}$/; // word, must have some special character, 6 chars min for length, 16 max.
 
+    var loginTemplate = 
+    `
+    <div class="modal">
+        <div id="login-modal">
+            <h2>Login Form</h2>
+            <form name="login-form" id="login-form">
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" required>
 
-        // LOGIN
-        var loginTemplate = 
-        `
-        <form name="login-form" id="login-form">
-            <label for="email">Email: </label><br>
-            <input type="text" name="email" id="email" required><br>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" autocomplete="current-password" required>
+                <a href="#" class="register-here">Register Here</a>
 
-            <label for="password">Password: </label><br>
-            <input type="password" name="password" id="password" autocomplete="current-password" required><br>
+                <input type="submit" value="Login" id="submit-login">
+            </form>
+        </div>
+    </div>
+    `;
 
-            <input type="submit" value="Login" id="submit-login">
-        </form>
-        `;
+    $(document).on('submit', '#login-form', function(e) {
+        e.preventDefault();
+        const email = $('#email').val();
+        const password = $('#password').val();
 
-        $(loginTemplate).appendTo('#login');
-
-        $('#login-form').on('submit', function(e) {
-            e.preventDefault();
-            const email = $('#email').val();
-            const password = $('#password').val();
-
-            if (email_regex.exec(email) === null) {
-                alert('bad email');
-            } else if (password_regex.exec(password) === null) {
-                alert('bad password');
-            } else {
-                $('#login-form')[0].reset();
-                axios.post('/login', {
-                    email,
-                    password
-                })
-                .then((response) => {
-                    window.location = '/';
-                })
-                .catch((error) => {
-                });
-            }
+        $('#login-form')[0].reset();
+        axios.post('/login', {
+            email,
+            password
+        })
+        .then((response) => {
+            location.reload();
+        })
+        .catch((error) => {
         });
+    });
 
-        // REGISTER
-        var registrationTemplate =
-        `
-        <form name="form" id="register-form">
-            <label for="displayname">Display Name: </label><br>
-            <input type="text" name="displayname" id="displayname" required><br>
+    $(document).on('click', '#login', function(e) {
+        e.preventDefault();
+        $(loginTemplate).appendTo('#page');
+    });
 
-            <label for="email">Email: </label><br>
-            <input type="email" name="email" id="new-email" required><br>
+    $(document).on('click', '#logout', function(e) {
+        axios.get('/logout', {})
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    });
 
-            <label for="password">Password: </label><br>
-            <input type="password" name="password" id="new-password" required><br>
-            <ul>
-                <li>1 special character</li>
-                <li>1 uppercase chracter</li>
-                <li>1 number</li>
-                <li>Minimum of 6 characters</li>
-            </ul
-            <div>
-            <label for="tos">Agree to <a href="#">Terms of Service</a>:</label>
-            <input type="checkbox" name="tos" id="tos" required><br>
-            </div>
+    // REGISTER
+    var registrationTemplate =
+    `
+    <div id="register-modal">
+    <h2>Registration Form</h2>
+        <form name="register-form" id="register-form">
+            <label for="displayname">Display Name: </label>
+            <input type="text" name="displayname" id="displayname" required>
+
+            <label for="email">Email: </label>
+            <input type="email" name="email" id="new-email" required>
+
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="new-password" 
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$" 
+            title="Must contain at least one number, one special character, and one uppercase and lowercase letter, and at least 6 or more characters" required>
+
+            <!--<label for="tos">Agree to <a href="#">Terms of Service</a>:</label>
+            <input type="checkbox" name="tos" id="tos" required>-->
+
             <input type="submit" id="submit-registration" value="Register">
+            
         </form>
-        `
-        $(registrationTemplate).appendTo('#register');
+    </div>
+    `
 
+    $(document).on('click', '.register-here', function(e) {
+        $(".modal").empty();
+        $(registrationTemplate).appendTo('.modal');
 
-        $('#register-form').on('submit', function(e) {
-            e.preventDefault();
-            const displayname = $('#displayname').val();
-            const email = $('#new-email').val();
-            const password = $('#new-password').val();
+    });
 
-            if (email_regex.exec(email) === null) {
-                alert('bad email');
-            } else if (password_regex.exec(password) === null) {
-                alert('bad password');
-            } else if (displayname_regex.exec(displayname) === null) {
-                alert('bad display name');
-            } else {
-                $('#register-form')[0].reset();
-                axios.post('/register', {
-                    displayname,
-                    email,
-                    password
-                })
-                .then((response) => {
-                    window.location = '/';
-                })
-                .catch((error) => {
-                });
-            } 
-        });
+    $(document).on('submit', '#register-form', function(e) {
+        e.preventDefault();
+        const displayname = $('#displayname').val();
+        const email = $('#new-email').val();
+        const password = $('#new-password').val();
+
+        if (email_regex.exec(email) === null) {
+            alert('bad email');
+        } else if (password_regex.exec(password) === null) {
+            alert('bad password');
+        } else if (displayname_regex.exec(displayname) === null) {
+            alert('bad display name');
+        } else {
+            $('#register-form')[0].reset();
+            axios.post('/register', {
+                displayname,
+                email,
+                password
+            })
+            .then((response) => {
+                location.reload();
+            })
+            .catch((error) => {
+            });
+        } 
+    });
 
 });
