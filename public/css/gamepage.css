@@ -51,9 +51,6 @@
   display: none;
 }
 
-#newsfeed {
-}
-
 #newsfeed .text-area textarea,
 .reply-field textarea {
   resize: none;
@@ -185,19 +182,11 @@
 
 .reply-box > div > p {
   padding: 1em 0em 0em 5em;
-
-  /* padding:0.5em 0em; */
-}
-
-.reply-box > div + div {
 }
 
 .comment,
 .reply-post p {
   max-width: 75%;
-}
-
-.reply-button {
 }
 
 .text-area,
@@ -367,10 +356,6 @@
 }
 /* Review */
 
-.star-background-1 {
-    background-color: #232429;
-}
-
 .star-padd {
     padding: 1em;
 }
@@ -382,4 +367,24 @@
 .star-rating-checked-1 {
     color:#ffd700;
 
+}
+
+.star-rating-border {
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid #5c88bd;
+  background-color:#f0f2f7;
+}
+
+.submit-review {
+  background-color: #315682;
+  border: 1px solid #999;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.5s;
 }
