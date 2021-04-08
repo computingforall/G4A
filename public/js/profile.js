@@ -13,7 +13,7 @@ $(document).ready(
             let biography = response.data[3];
             $('.displayname').html(name);
             $('.email').html(email);
-            $('.user-image').html(image);
+            $('.user-image').attr('src', `${image}`);
             $('#bio-text').text(biography);
         })
         .catch((error) => {
@@ -36,8 +36,9 @@ $(document).ready(
                     <label for="password">New Password: </label><br>
                     <input type="password" name="password" id="password"><br>
 
-                    <label for="image">Upload Image</label>
-                    <input type="file" id="image" name="image" value="" required>
+                    <label for="image">Image: </label><br>
+                    <input type="text" name="image" id="image"><br>
+
                     
                     <label for="biography">Biography: </label><br>
                     <textarea id="bio" rows="5" cols="100"></textarea><br>
@@ -63,7 +64,7 @@ $(document).ready(
             $('#displayname').val($('.displayname').html());
             $('#email').val($('.email').html());
             $('#bio').val($('#bio-text').html());
-            //$('#image').val($('.user-image').attr('src'))
+            $('#image').val($('.user-image').attr('src'))
 
 
             $('#cancel').on('click', function() {
@@ -83,7 +84,7 @@ $(document).ready(
                 const displayname = $('#displayname').val();
                 const password = $('#password').val();
                 const email = $('#email').val();
-                const image = $('#image')[0];
+                const image = $('#image').val();
                 const biography = $('#bio').val();
                 const verify_password = $('#verify-password').val();
 
@@ -93,10 +94,10 @@ $(document).ready(
                     password,
                     image,
                     biography,
-                    verify_password,
-                  })
+                    verify_password
+                })
                   .then((response) => {
-                      //location.reload();
+                      location.reload();
                   })
                   .catch((error) => {
                       console.log(error);
