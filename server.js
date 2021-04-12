@@ -248,7 +248,7 @@ app.post('/comments', function(req, res) {
       for (comment in game.comments) {
         if (game.comments[comment]._id == id) {
           game.comments[comment].comment = edit;
-          breakl
+          break;
         }
       }
       game.save();
