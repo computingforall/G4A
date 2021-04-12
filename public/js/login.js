@@ -17,7 +17,7 @@ $(document).ready(
 
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" autocomplete="current-password" required>
-                <a href="#" class="register-here">Register Here</a>
+                <p>Don't have an account? <a href="#" class="register-here">Register Here</a></p>
 
                 <input type="submit" value="Login" id="submit-login">
             </form>
@@ -74,6 +74,7 @@ $(document).ready(
             pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$" 
             title="Must contain at least one number, one special character, and one uppercase and lowercase letter, and at least 6 or more characters" required>
 
+            <p>Already have an account? <a href="#" class="login-here">Login instead</a></p>
             <!--<label for="tos">Agree to <a href="#">Terms of Service</a>:</label>
             <input type="checkbox" name="tos" id="tos" required>-->
 
@@ -86,6 +87,12 @@ $(document).ready(
     $(document).on('click', '.register-here', function(e) {
         $(".modal").empty();
         $(registrationTemplate).appendTo('.modal');
+
+    });
+
+    $(document).on('click', '.login-here', function(e) {
+        $(".modal").empty();
+        $(loginTemplate).appendTo('.modal');
 
     });
 
