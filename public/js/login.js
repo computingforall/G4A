@@ -74,6 +74,7 @@ $(document).ready(
             pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$" 
             title="Must contain at least one number, one special character, and one uppercase and lowercase letter, and at least 6 or more characters" required>
 
+            <p>Already have an account? <a href="#" class="login-here">Login instead</a></p>
             <!--<label for="tos">Agree to <a href="#">Terms of Service</a>:</label>
             <input type="checkbox" name="tos" id="tos" required>-->
 
@@ -86,6 +87,12 @@ $(document).ready(
     $(document).on('click', '.register-here', function(e) {
         $(".modal").empty();
         $(registrationTemplate).appendTo('.modal');
+
+    });
+
+    $(document).on('click', '.login-here', function(e) {
+        $(".modal").empty();
+        $(loginTemplate).appendTo('.modal');
 
     });
 
