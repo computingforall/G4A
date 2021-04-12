@@ -239,7 +239,7 @@ footer nav a:hover {color:#fff;}
 #login-modal {
     margin: 15% auto;
     background-color: #fefefe;
-    width: 15%;
+    width: 20%;
     padding: 3em;
     border: 1px solid #888;
 }
@@ -252,7 +252,7 @@ footer nav a:hover {color:#fff;}
 #register-modal {
     margin: 15% auto;
     background-color: #fefefe;
-    width: 15%;
+    width: 20%;
     padding: 3em;
     border: 1px solid #888;
 }

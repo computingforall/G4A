@@ -225,6 +225,7 @@ app.get('/comments' ,function(req, res) {
         })
           .then (() => {
             if (i + 1 === comments.length) {
+              storage.sort((a, b) => a.date - b.date);
               res.status(200).send(storage);
             }
           });
@@ -248,9 +249,11 @@ app.post('/comments', function(req, res) {
       for (comment in game.comments) {
         if (game.comments[comment]._id == id) {
           game.comments[comment].comment = edit;
+          break;
         }
       }
       game.save();
+      res.status(200).send();
     };
   });
 });
