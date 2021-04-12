@@ -135,6 +135,8 @@
   padding-bottom: 1em;
   margin-bottom: 3em;
   border-bottom: 1px solid #999;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
 }
 
 .post > div > p {
@@ -376,7 +378,7 @@
   box-sizing: border-box;
   border: none;
   border-bottom: 2px solid #5c88bd;
-  background-color:#f0f2f7;
+  background-color:#E0E3EB;
 }
 
 .submit-review {

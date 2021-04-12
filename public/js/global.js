@@ -297,9 +297,26 @@ $(document).ready(function() {
         // .then(response => response.json())
         .then(({ data }) => {
             data.forEach((item) => {
-                const { userName, date, comment, avatar, edit, _id } = item;
+                const { userName, date, comment, avatar, edit, _id, rating } = item;
 
-                let reviewTemplate = 'chicken';
+                let reviewTemplate = `
+                    <div class="post">
+                        <div class="user-pro">
+                            <div><img src='${avatar}'></div>
+                        </div>
+                        <div>
+                            <div><h2>${userName}</h2></div>
+                            <div class="star-background-1 star-rate-group">
+                                <span value="1" class="fas fa-star"></span>
+                                <span value="2" class="fas fa-star"></span>
+                                <span value="3" class="fas fa-star"></span>
+                                <span value="4" class="fas fa-star"></span>
+                                <span value="5" class="fas fa-star"></span>
+                            </div>    
+                            <p id="${userName}${date}" data-comment-id="${_id}" class="review"=${rating} class="comment">${comment}</p>
+                        </div>
+                    </div>
+                `;
 
                 $('#reviews').append(reviewTemplate);
             });
