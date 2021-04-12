@@ -17,7 +17,7 @@ $(document).ready(
 
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password" autocomplete="current-password" required>
-                <a href="#" class="register-here">Register Here</a>
+                <p>Don't have an account? <a href="#" class="register-here">Register Here</a></p>
 
                 <input type="submit" value="Login" id="submit-login">
             </form>
