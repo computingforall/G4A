@@ -125,7 +125,9 @@ function fillGameDetails(){
         }        
     }
 
-    $('main').css('background-image','url(' + gameBackground + ')');
+    if (gameBackground !== undefined) {
+        $('main').css('background-image','url(' + gameBackground + ')');
+    }
     $('#game-embed').html(gameEmbed);
     $('.game-title').html(gameTitle);
     $('.game-cover').html(gameCover);

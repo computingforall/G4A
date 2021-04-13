@@ -20,6 +20,9 @@ $(document).ready(function() {
                     $('.reply-button').show();
                 }
             })
+            .catch((error) => {
+                console.log(error);
+            });
         } catch (error) {
             
         }

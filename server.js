@@ -10,6 +10,7 @@ const db = require('./database/db.js');
 const { Users, Games, Comments} = db;
 
 const { Console } = require('console');
+const { ObjectId } = require('bson');
 // const { updateOne, db } = require('./database/db.js');
 // const { nextTick } = require('process');
 const app = express();
@@ -225,6 +226,7 @@ app.get('/comments' ,function(req, res) {
         })
           .then (() => {
             if (i + 1 === comments.length) {
+              storage.sort((a, b) => a.date - b.date);
               res.status(200).send(storage);
             }
           });
@@ -245,14 +247,27 @@ app.post('/comments', function(req, res) {
       game.save();
     } else {
       const { id, edit } = req.body;
-      for (comment in game.comments) {
-        if (game.comments[comment]._id == id) {
-          game.comments[comment].comment = edit;
-        }
-      }
+      game.comments.id(id).comment = edit;
       game.save();
+      res.status(200).send();
     };
   });
+});
+
+app.post('/replys', function(req, res) {
+  const game_title = (req.headers.referer).split('=').pop();
+  const { id, replyVal } = req.body;
+  Games.find({key: game_title}, (err, found) => {
+    let game = found[0];
+    let { comments } = game;
+    comments.forEach((comment) => {
+      if (comment._id == id) {
+        let { subComments } = comment;
+        subComments.push(replyVal);
+        game.save();
+      }
+    });
+  })
 });
 
 app.listen(PORT, () => {

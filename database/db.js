@@ -14,13 +14,26 @@ db.once("open", function () {
 const reviewSchema = new mongoose.Schema({
   userid: String, 
   rating: Number, 
-  comment: String
+  comment: String,
+  date: { 
+    type: Date, 
+    default: Date.now 
+  }
+});
+
+const replySchema = new mongoose.Schema({
+  userid: String, 
+  comment: String, 
+  date: { 
+    type: Date, 
+    default: Date.now 
+  }
 });
 
 const commentSchema = new mongoose.Schema({
   userid: String, 
   comment: String, 
-  subComment: {}, 
+  subComments: [replySchema], 
   date: { 
     type: Date, 
     default: Date.now 
