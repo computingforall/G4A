@@ -133,14 +133,14 @@
 }
 .post {
   padding-bottom: 1em;
-  margin-bottom: 3em;
+  margin-top: 3em;
   border-bottom: 1px solid #999;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
 }
 
 .post > div > p {
-  margin: 0 0 0 27px;
-  padding: 0.5em 2em 1em 2.75em;
-  border-left: 2px solid #5c88bd;
+  padding: 0.5em 1em 1em 0em;
   font-size: 1.2em;
 }
 
@@ -376,7 +376,7 @@
   box-sizing: border-box;
   border: none;
   border-bottom: 2px solid #5c88bd;
-  background-color:#f0f2f7;
+  background-color:#E0E3EB;
 }
 
 .submit-review {
@@ -387,4 +387,14 @@
   cursor: pointer;
   color: #fff;
   transition: all 0.5s;
+}
+
+.star-colored {
+  color: #ffd700;
+}
+
+.review-line {
+  height: 60%;
+  width: 50%;
+  border-right: solid 2px #5c88bd;
 }
