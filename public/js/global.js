@@ -293,6 +293,36 @@ $(document).ready(function() {
             },
             body: JSON.stringify(data),
         });
+
+        // let starTemplate = '';
+
+        // for (let i = 1; i <= 5; i++){
+        //     if (i <= rating) {
+        //         starTemplate += `<span value="${i}" class="fas fa-star star-colored"></span>`
+        //     } else {
+        //         starTemplate += `<span value="${i}" class="fas fa-star"></span>`
+        //     }
+            
+        // } 
+
+        // let reviewTemplate = `
+        //     <div class="post">
+        //         <div class="user-pro">
+        //             <div>
+        //                 <img src='${avatar}'>
+        //                 <div class="review-line"></div>
+        //             </div>
+        //         </div>
+        //         <div>
+        //             <div><h2>${userName}</h2></div>
+        //             <div class="star-background-1 star-rate-group">
+        //                 ${starTemplate}
+        //             </div>    
+        //             <p id="${userName}${date}" data-comment-id="${_id}" class="review"=${rating} class="comment">${comment}</p>
+        //         </div>
+        //     </div>
+        // `;
+        // $('#reviews').append(reviewTemplate);
         window.location.reload();
     }); 
 
