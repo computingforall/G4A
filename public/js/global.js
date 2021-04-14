@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 $(document).ready(function() {
     let session_data = false;
     
@@ -363,4 +365,14 @@ $(document).ready(function() {
             $('.posts').append(commentText);
             });
         });
+
+        // replys 
+
+        fetch('/replys')
+        .then(repsonse => response.json())
+        .then(data => {
+            data.forEach((item) => {
+                const {} = item;
+            })
+        })
 });

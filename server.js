@@ -11,8 +11,6 @@ const { Users, Games, Comments} = db;
 
 const { Console } = require('console');
 const { ObjectId } = require('bson');
-// const { updateOne, db } = require('./database/db.js');
-// const { nextTick } = require('process');
 const app = express();
 
 const {PORT, SECRET} = process.env;
@@ -267,6 +265,14 @@ app.post('/replys', function(req, res) {
         game.save();
       }
     });
+  })
+});
+
+app.get('/replys', function(req, res) {
+  const game_title = (req.headers.referer).split('=').pop();
+  Games.find({key: game_title}, (err, found) => {
+    let game = found[0];
+    console.log(game.comments);
   })
 });
 
