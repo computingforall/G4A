@@ -278,52 +278,69 @@ $(document).ready(function() {
     //Submit review
     $('.review-form').on('submit', function(e){
         e.preventDefault();
+        let review;
         let game_title = $(".game-title").text();
-        let rating = starRating;
-        let comment = $('#review').val();
+        let stars = starRating;
+        let text = $('#review').val();
         let data = {
             "game_title": game_title,
-            "rating": rating,
-            "comment": comment,
+            "rating": stars,
+            "comment": text,
         };
-        fetch('/review', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data),
-        });
+        if (text.length > 0) {
 
-        // let starTemplate = '';
+            $('#review').val(function(i, val) {
+                return '';
+            });
 
-        // for (let i = 1; i <= 5; i++){
-        //     if (i <= rating) {
-        //         starTemplate += `<span value="${i}" class="fas fa-star star-colored"></span>`
-        //     } else {
-        //         starTemplate += `<span value="${i}" class="fas fa-star"></span>`
-        //     }
-            
-        // } 
+            fetch('/review', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                review = data;
+            })
+            .then(() => {
+                const { userName, date, comment, avatar, edit, _id, rating } = review;
 
-        // let reviewTemplate = `
-        //     <div class="post">
-        //         <div class="user-pro">
-        //             <div>
-        //                 <img src='${avatar}'>
-        //                 <div class="review-line"></div>
-        //             </div>
-        //         </div>
-        //         <div>
-        //             <div><h2>${userName}</h2></div>
-        //             <div class="star-background-1 star-rate-group">
-        //                 ${starTemplate}
-        //             </div>    
-        //             <p id="${userName}${date}" data-comment-id="${_id}" class="review"=${rating} class="comment">${comment}</p>
-        //         </div>
-        //     </div>
-        // `;
-        // $('#reviews').append(reviewTemplate);
-        window.location.reload();
+                let starTemplate = '';
+
+                for (let i = 1; i <= 5; i++){
+                    if (i <= rating) {
+                        starTemplate += `<span value="${i}" class="fas fa-star star-colored"></span>`
+                    } else {
+                        starTemplate += `<span value="${i}" class="fas fa-star"></span>`
+                    }
+                }
+
+                let reviewTemplate = `
+                    <div class="post">
+                        <div class="user-pro">
+                            <div>
+                                <img src='${avatar}'>
+                                <div class="review-line"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div><h2>${userName}</h2></div>
+                            <div class="star-background-1 star-rate-group">
+                                ${starTemplate}
+                            </div>    
+                            <p id="${userName}${date}" data-comment-id="${_id}" class="review"=${rating} class="comment">${comment}</p>
+                        </div>
+                    </div>
+                `;
+                
+                $('#reviews').append(reviewTemplate);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
     }); 
 
     // Get request for reviews

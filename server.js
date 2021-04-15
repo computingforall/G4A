@@ -138,14 +138,34 @@ app.post('/review', function(req, res) {
     Games.updateOne(
       {"_id": found[0].id},
       {$push: {reviews: {userid: req.session.user, rating: parseInt(req.body.rating), comment: req.body.comment}}},
-    ).then(result => {
-      
+    ).then((result) => {
+      Games.find({gameTitle: req.body.game_title}, (err, docs) => {
+        const { reviews } = docs[0];
+        let review = reviews[reviews.length - 1];
+        let copy = review.toObject();
+        const { userid } = review;
+        let username;
+        Users.find({_id: userid}, (err, docs) => {
+          const seshId = req.session.user;
+          let edit = false;
+          if (userid === seshId) {
+            edit = true;
+          }
+          username = docs[0].name;
+          avatar = docs[0].image;
+          copy.userName = username;
+          copy.avatar = avatar;
+          copy.edit = edit;
+        })
+        .then(() => {
+          res.status(200).send(copy);
+        })
+      });
     }).catch(error => {
       console.log(error);
       res.end();
     });
   });
-  res.sendStatus(200);
 });
 
 app.get('/review', function(req, res) {
@@ -155,7 +175,6 @@ app.get('/review', function(req, res) {
     try {
       const storage = [];
       reviews = found[0].reviews;
-      console.log(reviews);
       for (let i = 0; i < reviews.length; i += 1) {
         let review = reviews[i];
         let copy = review.toObject();
