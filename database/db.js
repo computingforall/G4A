@@ -11,14 +11,65 @@ db.once("open", function () {
   console.log("Connected to the database");
 });
 
+const reviewSchema = new mongoose.Schema({
+  userid: String, 
+  rating: Number, 
+  comment: String,
+  date: { 
+    type: Date, 
+    default: Date.now 
+  }
+});
+
+const replySchema = new mongoose.Schema({
+  userid: String, 
+  comment: String, 
+  date: { 
+    type: Date, 
+    default: Date.now 
+  }
+});
+
+const commentSchema = new mongoose.Schema({
+  userid: String, 
+  comment: String, 
+  subComments: [replySchema], 
+  date: { 
+    type: Date, 
+    default: Date.now 
+  }
+});
+
 const userSchema = new mongoose.Schema({
   name: String,
   password: String,
-  email: String,
+  email: {type: String, unique: true},
+  image: String,
+  biography: String,
   comments: [String],
   date: { type: Date, default: Date.now },
 });
 
-const Users = mongoose.model("Users", userSchema);
+const gameSchema = new mongoose.Schema({
+  key: String,
+  gameKeywords: [String],
+  gameEmbed: String,
+  gameTitle: String,
+  gameBackground: String,
+  gameCover: String,
+  gameThumb1: String,
+  gameThumb2: String,
+  gamePlayer: String,
+  gameDescription: String,
+  gamePublishedBy: String,
+  gameAbout: String,
+  gameProgammedBy: String,
+  reviews: [reviewSchema],
+  comments: [commentSchema],
+});
 
-module.exports = Users;
+const Users = mongoose.model("Users", userSchema);
+const Games = mongoose.model("Games", gameSchema);
+const Comments = mongoose.model("Comments", commentSchema);
+
+module.exports = {Users, Games, Comments};
